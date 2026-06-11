@@ -1,0 +1,1 @@
+export function VAEmptyState({ title, text }: { title: string; text: string }) { return <div className="rounded-3xl border border-dashed border-white/15 p-6 text-center"><h3 className="font-black">{title}</h3><p className="mt-1 text-sm text-violet-100/65">{text}</p></div>; }

@@ -1,0 +1,1 @@
+export function FloatingNumber({ value, kind = 'damage' }: { value: string; kind?: 'damage' | 'heal' | 'crit' }) { const color = kind === 'heal' ? 'text-emerald-300' : kind === 'crit' ? 'text-amber-300' : 'text-rose-200'; return <span className={`absolute animate-[floaty_1.3s_ease-in-out_infinite] text-sm font-black ${color}`}>{value}</span>; }

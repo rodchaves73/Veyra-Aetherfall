@@ -1,0 +1,3 @@
+import type { ReactNode } from 'react';
+import { VAButton } from './VAButton';
+export function VAModal({ open, title, children, onClose }: { open: boolean; title: string; children: ReactNode; onClose: () => void }) { if (!open) return null; return <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/70 p-4"><div className="w-full max-w-[430px] rounded-t-[2rem] border border-white/15 bg-[#0c0b1d] p-5 shadow-2xl"><div className="mb-4 flex items-center justify-between"><h2 className="text-lg font-black">{title}</h2><VAButton variant="ghost" onClick={onClose}>Fechar</VAButton></div>{children}</div></div>; }
