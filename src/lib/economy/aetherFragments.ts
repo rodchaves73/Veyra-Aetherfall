@@ -1,0 +1,3 @@
+export type WithdrawalStatus = 'draft' | 'pending' | 'approved' | 'rejected' | 'paid' | 'cancelled' | 'flagged';
+export const calculateVariableTonShare = (weeklyRewardPoolTon: number, totalEligibleAetherFragments: number, userFragments: number) => totalEligibleAetherFragments <= 0 ? 0 : (weeklyRewardPoolTon / totalEligibleAetherFragments) * userFragments;
+export const aetherFragmentsSafeCopy = 'Aether Fragments participam do pool semanal de recompensas em TON. O valor final é variável e depende do pool disponível, atividade elegível e revisão antifraude. Os saques são revisados antes do pagamento. Não há valor diário garantido.';

@@ -1,0 +1,50 @@
+import type { PlayerState } from '../lib/rpg/types';
+import { heroes } from './heroes';
+
+export const starterState: PlayerState = {
+  player: { id: 'dev-player', name: 'Aetherbound', level: 7, avatar: 'VA', power: 18420 },
+  inventory: {
+    gold: 128000,
+    aether_shards: 3150,
+    gems: 420,
+    stamina: 96,
+    hero_xp: 18200,
+    minor_xp_book: 24,
+    greater_xp_book: 9,
+    ancient_xp_tome: 1,
+    common_skill_tome: 16,
+    rare_skill_tome: 5,
+    fire_crystal: 8,
+    water_crystal: 8,
+    nature_crystal: 8,
+    light_crystal: 3,
+    dark_crystal: 3,
+    aether_crystal: 1,
+    bronze_sigil: 6,
+    silver_sigil: 2,
+    iron_ore: 35,
+    enchanted_leather: 12,
+    mystic_dust: 4,
+  },
+  heroes: heroes.map((hero, index) => ({
+    heroId: hero.id,
+    level: index < 5 ? 18 + index * 3 : Math.max(1, 10 - index),
+    xp: 0,
+    stars: index < 2 ? 4 : index < 6 ? 3 : 1,
+    ascension: index < 4 ? 1 : 0,
+    shards: index % 3 === 0 ? 32 : 8,
+    skillLevels: Object.fromEntries([...hero.skills, hero.ultimate, hero.passive].map((skill) => [skill.id, index < 5 ? 3 : 1])),
+    gearIds: [],
+    owned: index < 12,
+  })),
+  campaignProgress: { unlockedStages: ['1-1', '1-2', '1-3', '1-4'], clearedStages: ['1-1', '1-2', '1-3'], currentStageId: '1-4' },
+  gacha: { totalPulls: 47, rarePity: 3, epicPity: 17, legendaryPity: 47, mythicPity: 47 },
+  dungeonAttempts: {
+    gold: { used: 1, limit: 3 }, xp: { used: 0, limit: 3 }, elemental: { used: 1, limit: 2 }, skill: { used: 0, limit: 2 }, gear: { used: 2, limit: 3 }, ascension: { used: 0, limit: 1 },
+  },
+  adClaims: {
+    doubleBattleReward: { used: 1, limit: 5 }, staminaRefill: { used: 0, limit: 3 }, dungeonExtraEntry: { used: 0, limit: 1 }, dailyShards: { used: 1, limit: 3 }, bonusChest: { used: 0, limit: 3 }, aetherChest: { used: 0, limit: 3 }, spark: { used: 2, limit: 10 },
+  },
+  aetherFountain: { level: 2, progress: 46, lastClaimDay: 'dev' },
+  wallet: { connected: false },
+};

@@ -1,0 +1,1 @@
+export function VABadge({ children }: { children: string }) { return <span className="rounded-full border border-cyan-200/20 bg-cyan-300/10 px-2 py-0.5 text-[10px] font-black uppercase tracking-wide text-cyan-100">{children}</span>; }

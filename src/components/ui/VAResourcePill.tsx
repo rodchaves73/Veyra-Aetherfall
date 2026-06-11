@@ -1,0 +1,1 @@
+export function VAResourcePill({ icon, value, label }: { icon: string; value: number | string; label: string }) { return <div className="flex items-center gap-1 rounded-full border border-white/10 bg-black/35 px-2.5 py-1 text-[11px]"><span>{icon}</span><span className="font-bold">{value}</span><span className="text-violet-100/60">{label}</span></div>; }
