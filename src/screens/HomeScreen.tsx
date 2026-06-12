@@ -1,0 +1,13 @@
+import { VAButton } from '../components/ui/VAButton';
+import { VACard } from '../components/ui/VACard';
+import { VAPanel } from '../components/ui/VAPanel';
+import { VAProgressBar } from '../components/ui/VAProgressBar';
+import type { ScreenId } from '../app/navigation';
+import type { PlayerState } from '../lib/rpg/types';
+import { heroes } from '../data/heroes';
+
+export function HomeScreen({ state, onNavigate }: { state: PlayerState; onNavigate: (screen: ScreenId) => void }) {
+  const spotlight = heroes[2];
+  return <div className="space-y-4"><VAPanel className="relative overflow-hidden"><div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-cyan-400/20 blur-2xl" /><p className="text-xs text-cyan-100/70">Colete os caídos. Domine o Aether.</p><h2 className="mt-1 text-3xl font-black">Reconstrua um mundo partido.</h2><div className="mt-4 grid grid-cols-3 gap-2 text-center text-xs"><div><b>{state.player.level}</b><p className="text-violet-100/55">Nível</p></div><div><b>{state.player.power}</b><p className="text-violet-100/55">Power</p></div><div><b>{state.campaignProgress.currentStageId}</b><p className="text-violet-100/55">Stage</p></div></div></VAPanel><VACard><div className="flex items-center gap-4"><div className="grid h-20 w-20 place-items-center rounded-3xl bg-gradient-to-br from-violet-600 to-cyan-400 text-2xl font-black">{spotlight.portrait}</div><div className="flex-1"><p className="text-[10px] uppercase tracking-widest text-amber-200">Hero Spotlight</p><h3 className="font-black">{spotlight.name}</h3><p className="text-xs text-violet-100/65">{spotlight.shortLore}</p></div></div></VACard><VACard><VAProgressBar value={state.campaignProgress.clearedStages.length} max={10} label="Chapter 1: Ruins of the First Seal" /><div className="mt-4 grid grid-cols-2 gap-2"><VAButton onClick={() => onNavigate('battle')}>Battle</VAButton><VAButton variant="secondary" onClick={() => onNavigate('dungeons')}>Dungeons</VAButton></div></VACard><div className="grid grid-cols-2 gap-3"><Shortcut title="Fonte do Aether" text="Ads limitados" onClick={() => onNavigate('fountain')} /><Shortcut title="Summon" text="Portal ativo" onClick={() => onNavigate('summon')} /><Shortcut title="Shop" text="Packs seguros" onClick={() => onNavigate('shop')} /><Shortcut title="Wallet" text="TON preparado" onClick={() => onNavigate('wallet')} /></div></div>;
+}
+function Shortcut({ title, text, onClick }: { title: string; text: string; onClick: () => void }) { return <button onClick={onClick} className="min-h-24 rounded-3xl border border-white/10 bg-white/[.06] p-3 text-left active:scale-[.98]"><b>{title}</b><p className="mt-1 text-xs text-violet-100/60">{text}</p></button>; }

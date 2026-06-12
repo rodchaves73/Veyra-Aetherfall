@@ -1,0 +1,1 @@
+export function RarityBurst() { return <div className="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-r from-amber-300 via-fuchsia-400 to-cyan-300 opacity-60 blur-xl animate-[burst_1.4s_ease-out_infinite]" />; }
