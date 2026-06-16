@@ -22,3 +22,9 @@ Tabelas futuras planejadas:
 - `fraud_flags`
 
 Use RLS, Edge Functions e service role apenas em ambiente server-side seguro.
+
+## Terminologia de schema
+
+- Tabelas e colunas planejadas com prefixo `ton_*` representam a rede/protocolo TON.
+- A UI pode exibir o ativo como Gram/GRAM.
+- Renomear schema para `gram_*` exige ADR futura e migração específica.
