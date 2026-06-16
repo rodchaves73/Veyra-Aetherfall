@@ -23,3 +23,11 @@ Veyra: Aetherfall é um Vite SPA mobile-first para Telegram Mini App. O MVP usa 
 - Aether Fragments precisam antifraude.
 - Withdraw precisa revisão manual no início.
 - `.env` real nunca no Git.
+
+## Gram / TON
+
+- Gram/GRAM pode ser usado como copy de UI.
+- TON / The Open Network continua sendo a camada técnica.
+- TON Connect continua sendo o conector técnico.
+- Nenhum saldo, pagamento ou saque em Gram deve ser confiado ao cliente.
+- Não existe conversão garantida entre recursos internos e Gram.

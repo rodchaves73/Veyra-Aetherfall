@@ -106,6 +106,14 @@ A auditoria pós-deploy mobile foi concluída, incluindo:
 - **Fase 2:** autenticação Telegram segura e contratos server-side.
 - A Fase 2 ainda não deve ser implementada em tarefas de governança/documentação.
 
+## Terminologia Gram / TON
+
+- A UI futura deve exibir o token como Gram (GRAM), usando "Gram (antiga Toncoin)" quando a transição precisar ficar clara.
+- A rede/protocolo continua documentada como TON / The Open Network.
+- TON Connect continua sendo o termo técnico da integração wallet.
+- Identificadores técnicos futuros podem continuar usando `ton_*` até decisão arquitetural específica.
+- Nenhum pagamento, saque ou saldo real foi implementado.
+
 ## Limites atuais
 
 - O cliente pode apresentar previews, mocks e estados locais de MVP.

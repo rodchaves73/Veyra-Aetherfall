@@ -131,3 +131,18 @@ O frontend pode exibir previews e estados mockados, mas não autorizar resultado
 - Não alterar arquivos fora do escopo aprovado.
 - Não presumir contexto ausente.
 - Documentar riscos, mocks restantes e validações em cada entrega.
+
+
+## ADR-011 | Terminologia Gram / TON
+
+**Decisão:** tratar Gram/GRAM como nome de exibição do token para UI e copy, mantendo TON / The Open Network como rede/protocolo e TON Connect como integração técnica de wallet.
+
+**Regras:**
+
+- `Gram` é usado para textos visíveis ao usuário.
+- `GRAM` é usado como ticker visual.
+- `Toncoin` pode aparecer como nome legado em textos de transição.
+- `TON` continua representando rede/protocolo.
+- `TON Connect` não deve ser renomeado.
+- Identificadores técnicos `ton_*` não devem ser renomeados para `gram_*` sem ADR futura.
+- Nenhum pagamento, saque ou conversão financeira é autorizado por esta decisão.

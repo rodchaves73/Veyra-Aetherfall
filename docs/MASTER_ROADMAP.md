@@ -88,6 +88,26 @@ Este roadmap define a ordem oficial de evolução. Cada tarefa deve implementar 
 - Dependências novas.
 - Mudanças de configuração.
 
+## Fase 1.1 | Gram / TON terminology guardrails
+
+**Status:** em execução nesta tarefa.
+
+### Objetivo
+
+Padronizar a terminologia entre Gram, Toncoin, TON e TON Connect antes de implementar autenticação, wallet, pagamentos ou saques.
+
+### Entregáveis
+
+- `docs/TOKEN_TERMINOLOGY.md`.
+- Atualização incremental dos documentos oficiais.
+- Regra clara entre display/copy e nomes técnicos.
+
+### Definição de pronto
+
+- UI futura orientada a Gram/GRAM.
+- Rede e integração técnica preservadas como TON / TON Connect.
+- Nenhum código, schema ou pagamento real alterado.
+
 ## Fase 2 | Autenticação Telegram segura
 
 **Status:** planejada.
@@ -95,6 +115,7 @@ Este roadmap define a ordem oficial de evolução. Cada tarefa deve implementar 
 ### Pré-requisitos
 
 - Governança concluída.
+- Fase 1.1 concluída com guardrails de terminologia Gram / TON.
 - Contratos de autenticação definidos.
 - Ambiente backend/Edge Function autorizado.
 

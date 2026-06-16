@@ -46,6 +46,11 @@ Não marque como `DONE` algo que ainda seja mock ou apenas preparado.
 | Telegram Stars | PREPARED | Frontend/mock | Não | Não | Fase 11 | Bens digitais internos somente após confirmação server-side. |
 | TON Connect | PREPARED | Frontend/mock | Não | Não | Fase 11 | Conexão preparada; pagamento real não validado. |
 | TON payments | BLOCKED | Não implementado | Não | Não | Fase 11 | Bloqueado até backend, confirmação e ledger. |
+| Gram / TON terminology | PREPARED | Documentação | Não aplicável | Não aplicável | Fase 1.1 | Guardrails oficiais definidos para separar display Gram/GRAM de TON técnico. |
+| Gram UI copy | PLANNED | Documentação | Não aplicável | Não aplicável | Fase 11 | UI futura pode exibir Gram/GRAM sem alterar nomes técnicos. |
+| TON Connect technical naming | PREPARED | Documentação/técnico | Não aplicável | Não aplicável | Fase 11 | TON Connect permanece como nome técnico da integração de wallet. |
+| Gram payments | BLOCKED | Não implementado | Não | Não | Fase 11 | Pagamentos reais em Gram na rede TON exigem backend, confirmação, idempotência e auditoria. |
+| Gram withdrawals | BLOCKED | Não implementado | Não | Não | Fase 12 | Saques em Gram estão bloqueados até revisão econômica/jurídica, antifraude e processo manual. |
 | Aether Fragments | BLOCKED | Mock/conceito | Não | Não | Fase 12 | Depende de revisão econômica/jurídica e antifraude. |
 | Withdrawals | BLOCKED | Não implementado | Não | Não | Fase 12 | Saques reais bloqueados; futuro processo manual. |
 | Antifraude | PLANNED | Documentação/plano | Não | Não | Fases 10-13 | Necessário antes de ads, pagamentos e fragments reais. |
