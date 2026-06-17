@@ -146,3 +146,16 @@ O frontend pode exibir previews e estados mockados, mas não autorizar resultado
 - `TON Connect` não deve ser renomeado.
 - Identificadores técnicos `ton_*` não devem ser renomeados para `gram_*` sem ADR futura.
 - Nenhum pagamento, saque ou conversão financeira é autorizado por esta decisão.
+
+## ADR-012 | Sessão da aplicação
+
+**Decisão:** usar Supabase Edge Functions para validar `initData` do Telegram no servidor e emitir uma sessão curta própria do Veyra assinada com HMAC-SHA-256.
+
+**Regras:**
+
+- A sessão Veyra não é um JWT do Supabase Auth.
+- O algoritmo é fixo em HS256 e não pode ser escolhido a partir do payload recebido.
+- O token deve ter TTL curto, ser verificado por Edge Functions e ficar apenas em memória no frontend futuro.
+- `initDataUnsafe` continua restrito a UI e não autoriza identidade real.
+- Banco, Supabase Auth, RLS e persistência de jogador continuam fora da Fase 2A.
+- Migração futura para Supabase Auth, refresh tokens, revogação persistida ou outro emissor exige ADR específica.

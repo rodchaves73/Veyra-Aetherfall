@@ -37,7 +37,13 @@ Não marque como `DONE` algo que ainda seja mock ou apenas preparado.
 | Pity | MOCK | Frontend visual | Local/mock | Não | Fase 8 | Pity real deve ser transacional e auditável. |
 | Duplicate conversion | PLANNED | Não operacional | Não | Não | Fase 8 | Depende de gacha server-side e hero shards. |
 | Telegram UI | PREPARED | Frontend hook | Não aplicável | Não | Fase 2 | WebApp preparado; `initDataUnsafe` apenas UI. |
-| Telegram authentication | BLOCKED | Não implementada | Não | Não | Fase 2 | Requer validação de `initData` no servidor. |
+| Telegram authentication | BLOCKED | Edge Functions preparadas, sem deploy | Não | Preparada, não operacional | Fase 2B | Requer secrets, deploy, teste real e integração frontend. |
+| Telegram initData validator | PREPARED | Supabase Edge Function helper | Não | Sim | Fase 2B | Validação criptográfica preparada em código, ainda sem deploy e sem secrets reais. |
+| Veyra session signer | PREPARED | Supabase Edge Function helper | Não | Sim | Fase 2B | Emissão HMAC de sessão curta preparada; não é Supabase Auth JWT. |
+| Veyra session verifier | PREPARED | Supabase Edge Function helper | Não | Sim | Fase 2B | Verificação server-side preparada para futuras Edge Functions. |
+| Telegram authentication production | BLOCKED | Supabase Edge Functions | Não | Sim, não implantada | Fase 2B | Bloqueada até secrets, deploy, teste real e integração frontend. |
+| Frontend auth integration | PLANNED | Frontend futuro | Não | Depende da Fase 2B | Fase 2B | Token Veyra deverá ficar apenas em memória. |
+| Supabase Auth integration | DEFERRED | Não operacional | Não | Não | ADR futura | Sessão Veyra da Fase 2A não é Supabase Auth JWT. |
 | Supabase client | PREPARED | Frontend client | Não aplicável | Parcial/não crítico | Fase 3 | Client preparado com publishable key; sem schema real. |
 | Supabase schema | PLANNED | Documentação/plano | Não | Não | Fase 3 | Schema real ainda não aplicado. |
 | RLS | PLANNED | Documentação/plano | Não | Não | Fase 3 | Obrigatório antes de dados públicos reais. |

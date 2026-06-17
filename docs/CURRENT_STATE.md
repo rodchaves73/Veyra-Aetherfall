@@ -62,8 +62,8 @@ Este documento registra o estado real atual do projeto e deve ser tratado como f
 
 ## Ainda não implementado de forma real
 
-- Sessão Telegram validada.
-- Autenticação server-side.
+- Sessão Telegram validada em produção.
+- Autenticação server-side implantada.
 - Perfil persistido.
 - Inventário persistido.
 - Heróis persistidos.
@@ -103,8 +103,16 @@ A auditoria pós-deploy mobile foi concluída, incluindo:
 
 ## Próxima fase autorizada
 
-- **Fase 2:** autenticação Telegram segura e contratos server-side.
-- A Fase 2 ainda não deve ser implementada em tarefas de governança/documentação.
+- **Fase 2B:** configurar secrets, implantar Edge Functions, testar autenticação Telegram real e integrar frontend.
+- A Fase 2A está preparada em código, mas as funções ainda não foram implantadas, os secrets ainda não foram configurados e nenhuma sessão real existe em produção.
+
+## Fase 2A | Telegram Auth Server Foundation
+
+- Validador server-side de `initData` preparado em código.
+- Sessão curta própria do Veyra preparada em código.
+- Edge Functions Supabase `telegram-auth` e `telegram-session` preparadas, ainda não implantadas.
+- Contrato técnico documentado em `docs/TELEGRAM_AUTH_CONTRACT.md`.
+- Nenhuma persistência, Supabase Auth, banco, RLS, frontend auth real ou sessão real em produção foi implementada.
 
 ## Terminologia Gram / TON
 
