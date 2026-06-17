@@ -122,3 +122,63 @@ Depois do deploy, testar endpoints com `initData` real obtido apenas dentro do T
 3. Deploy manual das Edge Functions.
 4. Teste real com Telegram Mini App.
 5. Fase 2C: integração frontend auth controlada, mantendo token Veyra apenas em memória.
+
+## GitHub Actions manual deploy
+
+A Fase 2B.1 prepara um workflow manual em `.github/workflows/deploy-supabase-functions.yml` para implantar somente as Edge Functions `telegram-auth` e `telegram-session` pelo GitHub Actions, sem terminal local.
+
+### Secrets do GitHub Actions
+
+Crie os secrets no GitHub em:
+
+1. Repositório `rodchaves73/Veyra-Aetherfall`.
+2. **Settings** → **Secrets and variables** → **Actions**.
+3. **New repository secret**.
+
+Secrets esperados pelo workflow:
+
+| Secret | Uso | Observação |
+|---|---|---|
+| `SUPABASE_ACCESS_TOKEN` | Autenticar o Supabase CLI no GitHub Actions | Gerado no Supabase e salvo somente como secret do GitHub. |
+| `SUPABASE_PROJECT_ID` | Identificar o projeto Supabase de destino | Deve conter o project ref do projeto, sem ser escrito no workflow. |
+
+Não registre valores reais em arquivos, issues, prints, logs públicos ou mensagens de PR.
+
+### Como rodar pelo celular
+
+1. Abra o GitHub pelo celular.
+2. Entre no repositório `rodchaves73/Veyra-Aetherfall`.
+3. Toque em **Actions**.
+4. Selecione **Deploy Supabase Edge Functions**.
+5. Toque em **Run workflow**.
+6. Confirme a branch desejada após o merge manual desta alteração.
+7. Acompanhe os logs do job até finalizar.
+
+### Funções implantadas
+
+O workflow implanta individualmente:
+
+- `telegram-auth`;
+- `telegram-session`.
+
+Ele não faz deploy geral de todas as funções.
+
+### O que o workflow não faz
+
+- Não roda automaticamente em `push`.
+- Não executa deploy de banco.
+- Não roda migrations.
+- Não executa `supabase db push`.
+- Não executa `supabase secrets set`.
+- Não configura secrets no Supabase ou no GitHub.
+- Não altera frontend, Vercel, `package.json` ou variáveis `.env`.
+- Não imprime valores de secrets.
+
+### Rollback básico
+
+1. Pare de rodar a Action até identificar o problema.
+2. Se a Fase 2C já estiver ativa no futuro, desabilite temporariamente chamadas reais do frontend para as funções.
+3. Reimplante uma versão anterior revisada das funções pelo mesmo workflow ou por ambiente humano autenticado.
+4. Rotacione secrets se houver suspeita de exposição.
+5. Revise logs garantindo que não contenham `initData`, token Telegram, `Authorization`, sessão Veyra ou secrets.
+6. Registre causa raiz e correção antes de novo deploy.

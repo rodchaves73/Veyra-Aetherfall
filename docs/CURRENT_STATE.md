@@ -104,7 +104,8 @@ A auditoria pós-deploy mobile foi concluída, incluindo:
 ## Próxima fase autorizada
 
 - **Fase 2C:** integração frontend auth controlada após deploy manual, configuração de secrets e teste real do Telegram Mini App.
-- A Fase 2B preparou validação e documentação operacional, mas as funções ainda não foram implantadas nesta tarefa, os secrets ainda não foram configurados e nenhuma sessão real existe em produção.
+- A Fase 2B preparou validação e documentação operacional.
+- A Fase 2B.1 preparou um workflow manual de GitHub Actions para deploy controlado das Edge Functions `telegram-auth` e `telegram-session`, mas o workflow não foi executado nesta tarefa e nenhuma sessão real existe em produção.
 
 ## Fase 2A | Telegram Auth Server Foundation
 
@@ -123,7 +124,15 @@ A auditoria pós-deploy mobile foi concluída, incluindo:
 - Supabase CLI não existia no ambiente inicial; deploy e listagem remota ficaram para ambiente humano autenticado.
 - Edge Functions ainda não foram implantadas nesta tarefa.
 - Secrets reais ainda não foram configurados nesta tarefa.
-- Auth real permanece bloqueada até deploy manual revisado, secrets server-side e teste real com Telegram Mini App.
+- Auth real permanece bloqueada até deploy manual revisado, secrets server-side, execução humana do workflow de deploy e teste real com Telegram Mini App.
+
+## Fase 2B.1 | GitHub Actions manual deploy
+
+- Workflow manual `Deploy Supabase Edge Functions` preparado em `.github/workflows/deploy-supabase-functions.yml`.
+- O workflow usa somente `workflow_dispatch` e não roda em `push`.
+- O workflow implanta individualmente `telegram-auth` e `telegram-session`.
+- O workflow não executa deploy de banco, migrations ou configuração de secrets.
+- O workflow não foi executado nesta tarefa; nenhum deploy real foi feito.
 
 ## Terminologia Gram / TON
 
