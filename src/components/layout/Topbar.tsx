@@ -1,3 +1,4 @@
+import { TelegramAuthStatus } from './TelegramAuthStatus';
 import { VAResourcePill } from '../ui/VAResourcePill';
 import type { PlayerState } from '../../lib/rpg/types';
 
@@ -8,10 +9,13 @@ export function Topbar({ state }: { state: PlayerState }) {
         <p className="truncate text-[10px] uppercase tracking-[.35em] text-cyan-200/70">Veyra</p>
         <h1 className="truncate text-base font-black">Aetherfall</h1>
       </div>
-      <div className="flex min-w-0 shrink-0 flex-wrap justify-end gap-1">
-        <VAResourcePill icon="⚡" value={state.inventory.stamina} label="" />
-        <VAResourcePill icon="💠" value={state.inventory.aether_shards} label="" />
-        <VAResourcePill icon="🪙" value={Math.round(state.inventory.gold / 1000) + 'k'} label="" />
+      <div className="flex min-w-0 shrink-0 flex-col items-end gap-1">
+        <TelegramAuthStatus />
+        <div className="flex min-w-0 flex-wrap justify-end gap-1">
+          <VAResourcePill icon="⚡" value={state.inventory.stamina} label="" />
+          <VAResourcePill icon="💠" value={state.inventory.aether_shards} label="" />
+          <VAResourcePill icon="🪙" value={Math.round(state.inventory.gold / 1000) + 'k'} label="" />
+        </div>
       </div>
     </header>
   );

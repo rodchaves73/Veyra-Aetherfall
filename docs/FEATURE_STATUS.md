@@ -41,17 +41,17 @@ Não marque como `DONE` algo que ainda seja mock ou apenas preparado.
 | Telegram initData validator | PREPARED | Supabase Edge Function helper | Não | Sim | Fase 2B | Validação criptográfica preparada em código, ainda sem deploy e sem secrets reais. |
 | Veyra session signer | PREPARED | Supabase Edge Function helper | Não | Sim | Fase 2B | Emissão HMAC de sessão curta preparada; não é Supabase Auth JWT. |
 | Veyra session verifier | PREPARED | Supabase Edge Function helper | Não | Sim | Fase 2B | Verificação server-side preparada para futuras Edge Functions. |
-| Telegram authentication production | BLOCKED | Supabase Edge Functions | Não | Sim, não implantada | Fase 2C | Bloqueada até secrets, deploy manual, teste real e integração frontend. |
+| Telegram authentication production | PREPARED | Supabase Edge Functions + frontend | Não | Sim | Teste real/observação | Secrets e deploy foram feitos manualmente; frontend agora consome endpoints reais quando há `initData`. |
 | Telegram auth deployment readiness | PREPARED | Documentação/validação/GitHub Actions | Não | Parcial, validada em ambiente local | Fase 2C | Checklists de deploy, secrets, CORS, rollback, teste real e workflow manual preparados. |
 | Deno validation | PREPARED | Supabase Edge Functions | Não | Sim | Fase 2C | Deno instalado temporariamente fora do repo para fmt, lint, testes e checks. |
 | Supabase Edge Functions deploy | PREPARED | GitHub Actions manual | Não | Sim, pendente em produção | Fase 2C | Workflow manual preparado para `telegram-auth` e `telegram-session`, mas não executado nesta tarefa. |
-| Telegram real auth test | PLANNED | Telegram Mini App/Supabase | Não | Sim, pendente em produção | Fase 2C | Teste real exige `initData` do Telegram e secrets configurados fora do Git. |
-| Frontend auth integration | PLANNED | Frontend futuro | Não | Depende de deploy/teste real | Fase 2C | Token Veyra deverá ficar apenas em memória. |
-| Supabase Auth integration | DEFERRED | Não operacional | Não | Não | ADR futura | Sessão Veyra da Fase 2A não é Supabase Auth JWT. |
+| Telegram real auth test | READY FOR MANUAL TEST | Telegram Mini App/Supabase | Não | Sim, pendente de observação manual | Teste real/observação | Abrir o Mini App no Telegram e confirmar sessão conectada, refresh e fallback fora do Telegram. |
+| Frontend auth integration | ACTIVE | Frontend | Memória apenas | Sim, via Edge Functions | Teste real/observação | Usa `initData` bruto em `telegram-auth`, confirma em `telegram-session` e mantém token Veyra somente em memória. |
+| Supabase Auth integration | DEFERRED | Não operacional | Não | Não | ADR futura | Fase 2C segue usando sessão curta Veyra; não usa Supabase Auth JWT. |
 | Supabase client | PREPARED | Frontend client | Não aplicável | Parcial/não crítico | Fase 3 | Client preparado com publishable key; sem schema real. |
 | Supabase schema | PLANNED | Documentação/plano | Não | Não | Fase 3 | Schema real ainda não aplicado. |
 | RLS | PLANNED | Documentação/plano | Não | Não | Fase 3 | Obrigatório antes de dados públicos reais. |
-| Player persistence | BLOCKED | Não implementada | Não | Não | Fase 3 | Bloqueada até auth segura e schema. |
+| Player persistence | PLANNED | Não implementada | Não | Não | Fase 3 | Próxima evolução possível após teste/observação da sessão, com schema e RLS revisados. |
 | Monetag | PREPARED | Frontend/mock | Local/mock | Não | Fase 10 | Ads recompensados reais exigem validação server-side. |
 | Telegram Stars | PREPARED | Frontend/mock | Não | Não | Fase 11 | Bens digitais internos somente após confirmação server-side. |
 | TON Connect | PREPARED | Frontend/mock | Não | Não | Fase 11 | Conexão preparada; pagamento real não validado. |
