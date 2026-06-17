@@ -110,11 +110,11 @@ Padronizar a terminologia entre Gram, Toncoin, TON e TON Connect antes de implem
 
 ## Fase 2 | Autenticação Telegram segura
 
-**Status:** planejada, dividida em 2A e 2B.
+**Status:** em andamento, com 2A concluída e 2B preparada para deploy controlado.
 
 ### Fase 2A | Contratos e Edge Functions
 
-**Status:** preparada em código.
+**Status:** concluída e mergeada.
 
 #### Entregáveis 2A
 
@@ -130,17 +130,29 @@ Padronizar a terminologia entre Gram, Toncoin, TON e TON Connect antes de implem
 - Nenhuma sessão real em produção.
 - Nenhuma integração frontend real.
 
-### Fase 2B | Secrets, deploy, teste real e frontend
+### Fase 2B | Deploy readiness e validação operacional
 
-**Status:** planejada.
+**Status:** preparada.
 
 #### Entregáveis 2B
 
-- Configurar secrets server-side.
-- Implantar Edge Functions.
-- Testar com Telegram Mini App real.
-- Integrar frontend mantendo token somente em memória.
-- Registrar riscos operacionais e próximos bloqueios.
+- Documentação de deploy controlado.
+- Checklist de secrets server-side, sem valores reais no Git.
+- Validação Deno/TypeScript das Edge Functions quando o ambiente permitir.
+- Plano de teste real com Telegram Mini App.
+- Registro de riscos operacionais e próximos bloqueios.
+- Deploy real, configuração de secrets reais e integração frontend permanecem manuais ou em fase posterior.
+
+### Fase 2C | Frontend auth integration controlada
+
+**Status:** planejada.
+
+#### Entregáveis 2C
+
+- Integrar o frontend ao endpoint `telegram-auth` após deploy manual validado.
+- Manter token Veyra somente em memória.
+- Preservar fallback seguro sem autenticação falsa fora do Telegram Mini App.
+- Não implementar banco, Supabase Auth, RLS, inventário ou economia real.
 
 ### Pré-requisitos
 

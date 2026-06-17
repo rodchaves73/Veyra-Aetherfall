@@ -1,0 +1,101 @@
+# Telegram Auth Validation | Fase 2B
+
+## Status geral
+
+- **Estado:** validação operacional preparada.
+- **Deploy real:** não executado.
+- **Secrets reais:** não configurados.
+- **Dados reais Telegram:** não incluídos neste documento.
+
+## Resultado de Deno
+
+Deno não estava disponível inicialmente no ambiente. Para validação temporária fora do repositório, foi instalado em `/tmp/veyra-deno` com:
+
+```bash
+mkdir -p /tmp/veyra-deno && curl -fsSL https://deno.land/install.sh | DENO_INSTALL=/tmp/veyra-deno sh
+```
+
+Resultados esperados após correções de formatação e tipagem detectadas pela Fase 2B:
+
+```bash
+/tmp/veyra-deno/bin/deno fmt --check supabase/functions
+/tmp/veyra-deno/bin/deno lint supabase/functions
+/tmp/veyra-deno/bin/deno test supabase/functions/_shared
+/tmp/veyra-deno/bin/deno check supabase/functions/telegram-auth/index.ts
+/tmp/veyra-deno/bin/deno check supabase/functions/telegram-session/index.ts
+```
+
+## Resultado de TypeScript isolado
+
+Validar sempre sem depender do `tsconfig` do app:
+
+```bash
+npx tsc --noEmit --ignoreConfig --target ES2022 --lib DOM,ES2022 --module ESNext --moduleResolution Bundler --allowImportingTsExtensions supabase/functions/_shared/telegramInitData.ts supabase/functions/_shared/sessionToken.ts supabase/functions/_shared/telegramInitData.test.ts supabase/functions/_shared/sessionToken.test.ts supabase/functions/telegram-auth/index.ts supabase/functions/telegram-session/index.ts
+```
+
+## Resultado de lint/build/typecheck
+
+A Fase 2B exige validações gerais do app, mesmo sem alterar `src/**`:
+
+```bash
+npm install
+npm run lint
+npm run build
+npm run typecheck
+git diff --check
+test -f dist/index.html
+```
+
+## Status de Supabase CLI
+
+O Supabase CLI não estava disponível inicialmente no ambiente. A validação destrutiva é proibida nesta fase automatizada. Quando disponível em ambiente humano autenticado, executar apenas validações não destrutivas antes do deploy manual:
+
+```bash
+supabase --version
+supabase functions list --project-ref pjrfwalcattcukjrxnal || true
+```
+
+## Plano de teste com `initData` real
+
+1. Abrir o Mini App dentro do Telegram.
+2. Capturar `window.Telegram.WebApp.initData` apenas em memória durante a sessão de teste.
+3. Enviar o valor bruto para `POST /functions/v1/telegram-auth`.
+4. Confirmar resposta `200` com `ok: true`, `source: "telegram"`, usuário normalizado e `expiresAt` curto.
+5. Não persistir nem copiar `initData`, `hash`, bot token ou sessão Veyra em documentação.
+
+## Plano de teste de CORS
+
+- Testar origem de produção permitida.
+- Testar origem de preview permitida.
+- Testar origem aleatória não permitida e esperar `403`.
+- Testar preflight `OPTIONS` para `telegram-auth` e `telegram-session`.
+- Confirmar ausência de wildcard em produção.
+
+## Plano de teste de expiração
+
+- Usar `initData` real recente e confirmar aceite dentro da janela configurada.
+- Repetir com payload expirado em ambiente controlado e esperar `401`.
+- Confirmar que a sessão Veyra expirada retorna erro em `telegram-session`.
+
+## Plano de teste de assinatura inválida
+
+- Alterar um caractere de um payload de teste controlado.
+- Enviar para `telegram-auth`.
+- Esperar `401` com mensagem genérica.
+- Confirmar que logs não incluem payload completo, `hash` ou secrets.
+
+## Plano de teste do endpoint de sessão
+
+1. Obter sessão Veyra válida via `telegram-auth`.
+2. Chamar `GET /functions/v1/telegram-session` com `Authorization: Bearer <token-em-memoria>`.
+3. Confirmar `ok: true`, `source: "telegram"` e dados mínimos do usuário.
+4. Chamar sem header, com token adulterado e com token expirado; esperar `401`.
+5. Confirmar que o endpoint não renova token e não retorna novo `accessToken`.
+
+## Pendências para Fase 2C
+
+- Integrar frontend de forma controlada.
+- Manter token Veyra somente em memória.
+- Garantir fallback seguro quando Telegram não fornecer `initData`.
+- Não ativar persistência real ainda.
+- Documentar comportamento de preview e produção sem criar autenticação falsa.

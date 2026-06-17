@@ -26,20 +26,23 @@ export function buildCorsHeaders(request: Request): CorsResult {
 export function handleOptions(request: Request): Response | null {
   if (request.method !== "OPTIONS") return null;
   const cors = buildCorsHeaders(request);
-  return new Response(null, { status: cors.allowed ? 204 : 403, headers: cors.headers });
+  return new Response(null, {
+    status: cors.allowed ? 204 : 403,
+    headers: cors.headers,
+  });
 }
 
 function parseAllowedOrigins(): string[] {
   const raw = getEnv("ALLOWED_ORIGINS");
   if (!raw) return [];
-  return raw.split(",").map((origin) => origin.trim()).filter((origin) => origin.length > 0 && origin !== "*");
+  return raw.split(",").map((origin) => origin.trim()).filter((origin) =>
+    origin.length > 0 && origin !== "*"
+  );
 }
 
 function getEnv(name: string): string | undefined {
-  return globalThis.Deno?.env.get(name);
-}
-
-declare global {
-  // deno-lint-ignore no-var
-  var Deno: { env: { get(name: string): string | undefined } } | undefined;
+  const runtime = globalThis as typeof globalThis & {
+    Deno?: { env: { get(name: string): string | undefined } };
+  };
+  return runtime.Deno?.env.get(name);
 }

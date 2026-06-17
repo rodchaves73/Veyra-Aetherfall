@@ -10,7 +10,9 @@ export function bytesToUtf8(value: Uint8Array): string {
 }
 
 export function bytesToHex(bytes: Uint8Array): string {
-  return Array.from(bytes, (byte) => byte.toString(16).padStart(2, "0")).join("");
+  return Array.from(bytes, (byte) => byte.toString(16).padStart(2, "0")).join(
+    "",
+  );
 }
 
 export function hexToBytes(hex: string): Uint8Array {
@@ -29,14 +31,20 @@ export function bytesToBase64Url(bytes: Uint8Array): string {
   for (const byte of bytes) {
     binary += String.fromCharCode(byte);
   }
-  return btoa(binary).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/u, "");
+  return btoa(binary).replace(/\+/g, "-").replace(/\//g, "_").replace(
+    /=+$/u,
+    "",
+  );
 }
 
 export function base64UrlToBytes(value: string): Uint8Array {
   if (!/^[A-Za-z0-9_-]*$/.test(value)) {
     throw new Error("Invalid base64url input");
   }
-  const padded = value.replace(/-/g, "+").replace(/_/g, "/").padEnd(Math.ceil(value.length / 4) * 4, "=");
+  const padded = value.replace(/-/g, "+").replace(/_/g, "/").padEnd(
+    Math.ceil(value.length / 4) * 4,
+    "=",
+  );
   const binary = atob(padded);
   const bytes = new Uint8Array(binary.length);
   for (let index = 0; index < binary.length; index += 1) {
@@ -53,7 +61,10 @@ export function base64UrlToJson<T>(value: string): T {
   return JSON.parse(bytesToUtf8(base64UrlToBytes(value))) as T;
 }
 
-export async function hmacSha256(key: string | Uint8Array, message: string | Uint8Array): Promise<Uint8Array> {
+export async function hmacSha256(
+  key: string | Uint8Array,
+  message: string | Uint8Array,
+): Promise<Uint8Array> {
   const cryptoKey = await crypto.subtle.importKey(
     "raw",
     toArrayBuffer(typeof key === "string" ? utf8ToBytes(key) : key),
@@ -69,7 +80,10 @@ export async function hmacSha256(key: string | Uint8Array, message: string | Uin
   return new Uint8Array(signature);
 }
 
-export function constantTimeEqual(left: Uint8Array, right: Uint8Array): boolean {
+export function constantTimeEqual(
+  left: Uint8Array,
+  right: Uint8Array,
+): boolean {
   if (left.length !== right.length) {
     return false;
   }
@@ -81,5 +95,8 @@ export function constantTimeEqual(left: Uint8Array, right: Uint8Array): boolean 
 }
 
 function toArrayBuffer(bytes: Uint8Array): ArrayBuffer {
-  return bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength) as ArrayBuffer;
+  return bytes.buffer.slice(
+    bytes.byteOffset,
+    bytes.byteOffset + bytes.byteLength,
+  ) as ArrayBuffer;
 }
