@@ -41,8 +41,12 @@ Não marque como `DONE` algo que ainda seja mock ou apenas preparado.
 | Telegram initData validator | PREPARED | Supabase Edge Function helper | Não | Sim | Fase 2B | Validação criptográfica preparada em código, ainda sem deploy e sem secrets reais. |
 | Veyra session signer | PREPARED | Supabase Edge Function helper | Não | Sim | Fase 2B | Emissão HMAC de sessão curta preparada; não é Supabase Auth JWT. |
 | Veyra session verifier | PREPARED | Supabase Edge Function helper | Não | Sim | Fase 2B | Verificação server-side preparada para futuras Edge Functions. |
-| Telegram authentication production | BLOCKED | Supabase Edge Functions | Não | Sim, não implantada | Fase 2B | Bloqueada até secrets, deploy, teste real e integração frontend. |
-| Frontend auth integration | PLANNED | Frontend futuro | Não | Depende da Fase 2B | Fase 2B | Token Veyra deverá ficar apenas em memória. |
+| Telegram authentication production | BLOCKED | Supabase Edge Functions | Não | Sim, não implantada | Fase 2C | Bloqueada até secrets, deploy manual, teste real e integração frontend. |
+| Telegram auth deployment readiness | PREPARED | Documentação/validação | Não | Parcial, validada em ambiente local | Fase 2C | Checklists de deploy, secrets, CORS, rollback e teste real preparados. |
+| Deno validation | PREPARED | Supabase Edge Functions | Não | Sim | Fase 2C | Deno instalado temporariamente fora do repo para fmt, lint, testes e checks. |
+| Supabase Edge Functions deploy | PLANNED | Supabase CLI futuro | Não | Sim, pendente em produção | Fase 2C | Deploy real não executado por exigir ambiente humano autenticado e revisão. |
+| Telegram real auth test | PLANNED | Telegram Mini App/Supabase | Não | Sim, pendente em produção | Fase 2C | Teste real exige `initData` do Telegram e secrets configurados fora do Git. |
+| Frontend auth integration | PLANNED | Frontend futuro | Não | Depende de deploy/teste real | Fase 2C | Token Veyra deverá ficar apenas em memória. |
 | Supabase Auth integration | DEFERRED | Não operacional | Não | Não | ADR futura | Sessão Veyra da Fase 2A não é Supabase Auth JWT. |
 | Supabase client | PREPARED | Frontend client | Não aplicável | Parcial/não crítico | Fase 3 | Client preparado com publishable key; sem schema real. |
 | Supabase schema | PLANNED | Documentação/plano | Não | Não | Fase 3 | Schema real ainda não aplicado. |

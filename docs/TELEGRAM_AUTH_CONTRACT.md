@@ -170,6 +170,13 @@ As funções `telegram-auth` e `telegram-session` não dependem de Supabase Auth
 - Token curto reduz janela de abuso, mas revogação por `jti` exigirá fase futura.
 - Integração frontend real e armazenamento em memória ficam para Fase 2B.
 
+## Fase 2B operational validation
+
+A Fase 2B preparou a validação operacional e os checklists de deploy sem ativar autenticação real no frontend e sem configurar secrets reais no repositório. Consulte:
+
+- [Telegram Auth Deployment](./TELEGRAM_AUTH_DEPLOYMENT.md)
+- [Telegram Auth Validation](./TELEGRAM_AUTH_VALIDATION.md)
+
 ## Checklist da Fase 2B
 
 - Configurar secrets no Supabase.

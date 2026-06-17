@@ -103,16 +103,27 @@ A auditoria pós-deploy mobile foi concluída, incluindo:
 
 ## Próxima fase autorizada
 
-- **Fase 2B:** configurar secrets, implantar Edge Functions, testar autenticação Telegram real e integrar frontend.
-- A Fase 2A está preparada em código, mas as funções ainda não foram implantadas, os secrets ainda não foram configurados e nenhuma sessão real existe em produção.
+- **Fase 2C:** integração frontend auth controlada após deploy manual, configuração de secrets e teste real do Telegram Mini App.
+- A Fase 2B preparou validação e documentação operacional, mas as funções ainda não foram implantadas nesta tarefa, os secrets ainda não foram configurados e nenhuma sessão real existe em produção.
 
 ## Fase 2A | Telegram Auth Server Foundation
 
+- Fase 2A mergeada na `main` pelo PR #7.
 - Validador server-side de `initData` preparado em código.
 - Sessão curta própria do Veyra preparada em código.
 - Edge Functions Supabase `telegram-auth` e `telegram-session` preparadas, ainda não implantadas.
 - Contrato técnico documentado em `docs/TELEGRAM_AUTH_CONTRACT.md`.
 - Nenhuma persistência, Supabase Auth, banco, RLS, frontend auth real ou sessão real em produção foi implementada.
+
+## Fase 2B | Telegram Auth Deploy Readiness
+
+- Documentação operacional de deploy criada em `docs/TELEGRAM_AUTH_DEPLOYMENT.md`.
+- Plano de validação real criado em `docs/TELEGRAM_AUTH_VALIDATION.md`.
+- Deno não existia no ambiente inicial e foi instalado temporariamente fora do repositório em `/tmp/veyra-deno` para validações.
+- Supabase CLI não existia no ambiente inicial; deploy e listagem remota ficaram para ambiente humano autenticado.
+- Edge Functions ainda não foram implantadas nesta tarefa.
+- Secrets reais ainda não foram configurados nesta tarefa.
+- Auth real permanece bloqueada até deploy manual revisado, secrets server-side e teste real com Telegram Mini App.
 
 ## Terminologia Gram / TON
 
