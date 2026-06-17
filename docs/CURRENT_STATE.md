@@ -147,3 +147,11 @@ A auditoria pós-deploy mobile foi concluída, incluindo:
 - O cliente pode apresentar previews, mocks e estados locais de MVP.
 - O cliente não é autoridade para autenticação, moedas, rewards, compras, stamina, gacha, pity, batalha, dungeons ou saques.
 - Qualquer evolução real de economia, persistência ou pagamentos depende de backend, RLS, validação server-side, idempotência e auditoria.
+
+## Fase 2C | Frontend Telegram auth integration controlada
+
+- Integração frontend real e controlada preparada para consumir as Edge Functions `telegram-auth` e `telegram-session` já implantadas no Supabase.
+- O frontend captura somente o `window.Telegram.WebApp.initData` bruto para autenticação server-side; `initDataUnsafe` permanece restrito a UI/preview.
+- O token curto Veyra fica apenas em memória no provider React e é perdido em refresh, sem `localStorage`, `sessionStorage` ou cookies.
+- Fora do Telegram Mini App, o app continua em modo preview/mock, sem fingir usuário autenticado e sem bloquear navegação.
+- Ainda não há banco real, Supabase Auth, RLS, perfil persistido, inventário persistido, stamina real, rewards reais, gacha real ou economia real.

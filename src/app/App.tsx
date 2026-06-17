@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { AppShell } from './AppShell';
 import type { ScreenId } from './navigation';
 import { starterState } from '../data/starterState';
+import { VeyraAuthProvider } from '../lib/auth';
 import { useTelegram } from '../lib/telegram/useTelegram';
 import { HomeScreen } from '../screens/HomeScreen';
 import { HeroesScreen } from '../screens/HeroesScreen';
@@ -25,5 +26,9 @@ export function App() {
     if (active === 'fountain') return <AetherFountainScreen state={starterState} />;
     return <HomeScreen state={starterState} onNavigate={setActive} />;
   };
-  return <AppShell state={starterState} active={active} onNavigate={setActive}>{render()}</AppShell>;
+  return (
+    <VeyraAuthProvider>
+      <AppShell state={starterState} active={active} onNavigate={setActive}>{render()}</AppShell>
+    </VeyraAuthProvider>
+  );
 }

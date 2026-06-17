@@ -186,3 +186,12 @@ A Fase 2B preparou a validação operacional e os checklists de deploy sem ativa
 - Armazenar token Veyra apenas em memória.
 - Confirmar CORS com domínios reais de preview e produção.
 - Registrar riscos, logs operacionais e plano de revogação futura.
+
+## Frontend integration rules
+
+- O frontend deve enviar somente o `window.Telegram.WebApp.initData` bruto para `telegram-auth`.
+- O token curto Veyra recebido deve permanecer somente em memória durante a vida da página.
+- É proibido persistir o token em `localStorage`, `sessionStorage` ou cookies.
+- É proibido exibir ou registrar em logs `initData`, token Veyra, cabeçalho `Authorization`, hash ou payload bruto.
+- `initDataUnsafe` pode ser usado apenas para UI/preview e nunca como autoridade de autenticação ou autorização.
+- Fora do Telegram Mini App, o app deve continuar em modo preview/mock, sem bloquear navegação e sem fingir autenticação real.

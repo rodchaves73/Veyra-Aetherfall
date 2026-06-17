@@ -110,7 +110,7 @@ Padronizar a terminologia entre Gram, Toncoin, TON e TON Connect antes de implem
 
 ## Fase 2 | Autenticação Telegram segura
 
-**Status:** em andamento, com 2A concluída, 2B preparada para deploy controlado e 2B.1 preparada para deploy manual via GitHub Actions.
+**Status:** em andamento, com 2A concluída, 2B preparada para deploy controlado, 2B.1 preparada para deploy manual via GitHub Actions e 2C implementada em código frontend.
 
 ### Fase 2A | Contratos e Edge Functions
 
@@ -162,14 +162,15 @@ Padronizar a terminologia entre Gram, Toncoin, TON e TON Connect antes de implem
 
 ### Fase 2C | Frontend auth integration controlada
 
-**Status:** planejada.
+**Status:** implementada/preparada em código.
 
 #### Entregáveis 2C
 
-- Integrar o frontend ao endpoint `telegram-auth` após deploy manual validado.
-- Manter token Veyra somente em memória.
-- Preservar fallback seguro sem autenticação falsa fora do Telegram Mini App.
-- Não implementar banco, Supabase Auth, RLS, inventário ou economia real.
+- Frontend integrado aos endpoints `telegram-auth` e `telegram-session` para validação real controlada quando aberto no Telegram Mini App.
+- Token Veyra mantido somente em memória, sem armazenamento persistente.
+- Fallback seguro preservado fora do Telegram Mini App em modo preview/mock, sem autenticação falsa.
+- Banco, Supabase Auth, RLS, inventário persistido e economia real continuam fora do escopo.
+- Próxima fase deve focar teste real/observação da sessão ou bootstrap player server-side mínimo; economia real continua bloqueada.
 
 ### Pré-requisitos
 

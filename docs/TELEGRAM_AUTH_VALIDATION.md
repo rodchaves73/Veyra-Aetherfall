@@ -127,3 +127,15 @@ Nunca registrar em documentação, logs permanentes, prints públicos ou issues:
 - header `Authorization`;
 - sessão Veyra;
 - secrets do Supabase ou GitHub Actions.
+
+## Checklist manual | Fase 2C frontend auth
+
+1. Abrir o Veyra pelo Telegram Mini App usando o domínio configurado no BotFather.
+2. Confirmar que a UI mostra `Telegram Auth: Connected` ou estado autenticado equivalente.
+3. Confirmar que o nome seguro do usuário aparece sem expor `initData`, hash, token ou payload bruto.
+4. Confirmar que a expiração formatada da sessão aparece na UI.
+5. Recarregar o app e confirmar que uma nova autenticação em memória ocorre sem persistência local.
+6. Abrir o mesmo deploy fora do Telegram e confirmar `Preview mode` / `Open inside Telegram to authenticate`.
+7. Confirmar que Home, Battle, Dungeons, Summon, Shop, Wallet e Fonte do Aether seguem navegáveis em mock/preview.
+8. Inspecionar UI e console para confirmar que token Veyra, `Authorization` e `initData` não aparecem.
+9. Confirmar que não há `localStorage`, `sessionStorage` ou cookie de autenticação criado pela integração Veyra.
