@@ -49,7 +49,7 @@ Este roadmap define a ordem oficial de evolução. Cada tarefa deve implementar 
 
 ## Fase 1 | Governança
 
-**Status:** em execução nesta tarefa.
+**Status:** concluída.
 
 ### Pré-requisitos
 
@@ -90,7 +90,7 @@ Este roadmap define a ordem oficial de evolução. Cada tarefa deve implementar 
 
 ## Fase 1.1 | Gram / TON terminology guardrails
 
-**Status:** em execução nesta tarefa.
+**Status:** concluída.
 
 ### Objetivo
 
@@ -110,7 +110,37 @@ Padronizar a terminologia entre Gram, Toncoin, TON e TON Connect antes de implem
 
 ## Fase 2 | Autenticação Telegram segura
 
+**Status:** planejada, dividida em 2A e 2B.
+
+### Fase 2A | Contratos e Edge Functions
+
+**Status:** preparada em código.
+
+#### Entregáveis 2A
+
+- Contrato técnico de autenticação Telegram.
+- Helpers compartilhados para encoding, HMAC, validação de `initData`, sessão Veyra e CORS.
+- Edge Functions `telegram-auth` e `telegram-session`.
+- Testes Deno dos helpers críticos.
+
+#### Limites 2A
+
+- Funções ainda não implantadas.
+- Secrets ainda não configurados.
+- Nenhuma sessão real em produção.
+- Nenhuma integração frontend real.
+
+### Fase 2B | Secrets, deploy, teste real e frontend
+
 **Status:** planejada.
+
+#### Entregáveis 2B
+
+- Configurar secrets server-side.
+- Implantar Edge Functions.
+- Testar com Telegram Mini App real.
+- Integrar frontend mantendo token somente em memória.
+- Registrar riscos operacionais e próximos bloqueios.
 
 ### Pré-requisitos
 
