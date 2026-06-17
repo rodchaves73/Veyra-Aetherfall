@@ -110,7 +110,7 @@ Padronizar a terminologia entre Gram, Toncoin, TON e TON Connect antes de implem
 
 ## Fase 2 | Autenticação Telegram segura
 
-**Status:** em andamento, com 2A concluída e 2B preparada para deploy controlado.
+**Status:** em andamento, com 2A concluída, 2B preparada para deploy controlado e 2B.1 preparada para deploy manual via GitHub Actions.
 
 ### Fase 2A | Contratos e Edge Functions
 
@@ -142,6 +142,23 @@ Padronizar a terminologia entre Gram, Toncoin, TON e TON Connect antes de implem
 - Plano de teste real com Telegram Mini App.
 - Registro de riscos operacionais e próximos bloqueios.
 - Deploy real, configuração de secrets reais e integração frontend permanecem manuais ou em fase posterior.
+
+### Fase 2B.1 | GitHub Actions manual deploy das Edge Functions
+
+**Status:** preparada, não executada.
+
+#### Entregáveis 2B.1
+
+- Workflow manual `Deploy Supabase Edge Functions` com gatilho exclusivo `workflow_dispatch`.
+- Deploy individual das funções `telegram-auth` e `telegram-session`.
+- Uso dos secrets de GitHub Actions `SUPABASE_ACCESS_TOKEN` e `SUPABASE_PROJECT_ID`, sem valores reais no Git.
+- Documentação de execução pelo celular, validação pós-Action e rollback básico.
+
+#### Limites 2B.1
+
+- Workflow não executado por esta tarefa.
+- Nenhum deploy de banco, migration ou configuração de secrets.
+- Nenhuma alteração de frontend, `package.json`, Vercel ou `.env`.
 
 ### Fase 2C | Frontend auth integration controlada
 

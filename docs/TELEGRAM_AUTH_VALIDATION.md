@@ -99,3 +99,31 @@ supabase functions list --project-ref pjrfwalcattcukjrxnal || true
 - Garantir fallback seguro quando Telegram não fornecer `initData`.
 - Não ativar persistência real ainda.
 - Documentar comportamento de preview e produção sem criar autenticação falsa.
+
+## Validação pendente após GitHub Actions manual
+
+Depois que a Action **Deploy Supabase Edge Functions** for executada manualmente, validar:
+
+1. O workflow terminou com sucesso no GitHub Actions.
+2. Os logs mostram a versão do Supabase CLI.
+3. Os passos `Deploy telegram-auth` e `Deploy telegram-session` concluíram sem erro.
+4. Não há execução de `supabase db push`, migrations ou configuração de secrets.
+5. Não há `initData`, token Telegram, `Authorization`, sessão Veyra ou secrets nos logs.
+
+## Teste dos endpoints após deploy
+
+Com o Mini App aberto dentro do Telegram e usando dados apenas em memória:
+
+1. Testar `POST /functions/v1/telegram-auth` com `window.Telegram.WebApp.initData` bruto.
+2. Confirmar resposta de sucesso apenas para `initData` válido e recente.
+3. Testar `GET /functions/v1/telegram-session` com `Authorization: Bearer <token-em-memoria>`.
+4. Confirmar erro para token ausente, adulterado ou expirado.
+5. Repetir testes de CORS para origem de produção e preview autorizadas.
+
+Nunca registrar em documentação, logs permanentes, prints públicos ou issues:
+
+- `initData`;
+- token Telegram;
+- header `Authorization`;
+- sessão Veyra;
+- secrets do Supabase ou GitHub Actions.
