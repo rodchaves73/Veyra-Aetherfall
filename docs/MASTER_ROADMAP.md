@@ -172,6 +172,23 @@ Padronizar a terminologia entre Gram, Toncoin, TON e TON Connect antes de implem
 - Banco, Supabase Auth, RLS, inventário persistido e economia real continuam fora do escopo.
 - Próxima fase deve focar teste real/observação da sessão ou bootstrap player server-side mínimo; economia real continua bloqueada.
 
+### Fase 2D | Player bootstrap server-side mínimo
+
+**Status:** implementada/preparada em código.
+
+#### Entregáveis 2D
+
+- Migration `public.veyra_players` mínima com RLS habilitado e sem policy pública.
+- Edge Function `player-bootstrap` para validar sessão Veyra e criar/atualizar o player por `telegram_user_id`.
+- Frontend chama bootstrap após auth e mostra status básico do player sem expor token.
+- Workflow manual passa a implantar também `player-bootstrap`.
+
+#### Limites 2D
+
+- Migration e deploy ainda exigem execução manual após merge.
+- Não há inventário, economia, stamina, rewards, gacha, pity, pagamentos ou saques reais.
+- Próxima fase sugerida: aplicar migration via Supabase SQL Editor, rodar deploy manual e validar `Telegram Auth: Connected` + `Player synced` no Mini App.
+
 ### Pré-requisitos
 
 - Governança concluída.

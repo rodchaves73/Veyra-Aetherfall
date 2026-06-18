@@ -195,3 +195,10 @@ A Fase 2B preparou a validação operacional e os checklists de deploy sem ativa
 - É proibido exibir ou registrar em logs `initData`, token Veyra, cabeçalho `Authorization`, hash ou payload bruto.
 - `initDataUnsafe` pode ser usado apenas para UI/preview e nunca como autoridade de autenticação ou autorização.
 - Fora do Telegram Mini App, o app deve continuar em modo preview/mock, sem bloquear navegação e sem fingir autenticação real.
+
+
+## Relação com Fase 2D | Veyra session → player-bootstrap
+
+Após `telegram-auth` emitir a sessão Veyra e `telegram-session` validá-la, o frontend pode chamar `GET /functions/v1/player-bootstrap` com `Authorization: Bearer <veyra-session-token>`. A função valida a sessão com o helper compartilhado, usa o usuário normalizado do token e retorna somente um player seguro.
+
+`player-bootstrap` não retorna `accessToken`, `Authorization`, `initData`, hash, service role, payload bruto da sessão ou dados brutos completos do Telegram.

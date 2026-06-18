@@ -50,6 +50,7 @@ Executar somente depois de revisão humana, autenticação segura do Supabase CL
 ```bash
 supabase functions deploy telegram-auth
 supabase functions deploy telegram-session
+supabase functions deploy player-bootstrap
 ```
 
 Não executar nesta fase automatizada:
@@ -159,7 +160,8 @@ Não registre valores reais em arquivos, issues, prints, logs públicos ou mensa
 O workflow implanta individualmente:
 
 - `telegram-auth`;
-- `telegram-session`.
+- `telegram-session`;
+- `player-bootstrap`.
 
 Ele não faz deploy geral de todas as funções.
 
@@ -182,3 +184,8 @@ Ele não faz deploy geral de todas as funções.
 4. Rotacione secrets se houver suspeita de exposição.
 5. Revise logs garantindo que não contenham `initData`, token Telegram, `Authorization`, sessão Veyra ou secrets.
 6. Registre causa raiz e correção antes de novo deploy.
+
+
+## Fase 2D | Deploy de player-bootstrap
+
+O workflow manual passa a implantar também `player-bootstrap` após `telegram-auth` e `telegram-session`. A aplicação da migration `202606180001_create_veyra_players.sql` continua manual e separada; o workflow não executa `supabase db push`, migrations ou configuração de secrets.

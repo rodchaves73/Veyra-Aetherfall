@@ -4,6 +4,7 @@ import type { VeyraAuthState } from './veyraAuthTypes';
 export type VeyraAuthContextValue = VeyraAuthState & {
   retryAuth: () => void;
   clearAuth: () => void;
+  withAccessToken: <T>(callback: (token: string) => Promise<T>) => Promise<T | null>;
 };
 
 export const VeyraAuthContext = createContext<VeyraAuthContextValue | null>(null);

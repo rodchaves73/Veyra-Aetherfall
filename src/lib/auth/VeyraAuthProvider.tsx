@@ -22,6 +22,12 @@ export function VeyraAuthProvider({ children }: { children: ReactNode }) {
     setRetryNonce((value) => value + 1);
   }, []);
 
+  const withAccessToken = useCallback(async <T,>(callback: (token: string) => Promise<T>): Promise<T | null> => {
+    const token = tokenRef.current;
+    if (!token) return null;
+    return callback(token);
+  }, []);
+
   useEffect(() => {
     let cancelled = false;
     const webApp = getTelegramWebApp();
@@ -60,6 +66,6 @@ export function VeyraAuthProvider({ children }: { children: ReactNode }) {
     return () => { cancelled = true; };
   }, [retryNonce]);
 
-  const value = useMemo(() => ({ ...state, retryAuth, clearAuth }), [clearAuth, retryAuth, state]);
+  const value = useMemo(() => ({ ...state, retryAuth, clearAuth, withAccessToken }), [clearAuth, retryAuth, state, withAccessToken]);
   return <VeyraAuthContext.Provider value={value}>{children}</VeyraAuthContext.Provider>;
 }
