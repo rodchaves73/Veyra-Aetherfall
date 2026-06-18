@@ -31,3 +31,12 @@ Veyra: Aetherfall é um Vite SPA mobile-first para Telegram Mini App. O MVP usa 
 - TON Connect continua sendo o conector técnico.
 - Nenhum saldo, pagamento ou saque em Gram deve ser confiado ao cliente.
 - Não existe conversão garantida entre recursos internos e Gram.
+
+
+## Fase 2D | Bootstrap seguro de player
+
+- `SUPABASE_SERVICE_ROLE_KEY` é usada somente na Edge Function `player-bootstrap`, nunca no frontend.
+- `public.veyra_players` tem RLS habilitado e nenhuma policy pública nesta fase.
+- O frontend não acessa a tabela diretamente; ele chama a Edge Function com sessão Veyra em memória.
+- O token Veyra é passado por callback de auth e não é renderizado, persistido, logado, salvo em `localStorage`, `sessionStorage` ou cookie.
+- A resposta do bootstrap omite payload bruto do Telegram, `initData`, hash, `Authorization`, token e dados server-side sensíveis.

@@ -30,7 +30,7 @@ Este documento registra o estado real atual do projeto e deve ser tratado como f
 - Deploy automático ativo.
 - Supabase integrado à Vercel.
 - Variáveis públicas Vite configuradas.
-- Nenhuma persistência real do jogador ainda.
+- Bootstrap real mínimo de jogador preparado em código; aplicação da migration ainda é manual.
 
 ## Telas existentes
 
@@ -64,7 +64,7 @@ Este documento registra o estado real atual do projeto e deve ser tratado como f
 
 - Sessão Telegram validada em produção.
 - Autenticação server-side implantada.
-- Perfil persistido.
+- Perfil persistido completo; apenas bootstrap mínimo `veyra_players` preparado.
 - Inventário persistido.
 - Heróis persistidos.
 - Stamina persistida.
@@ -155,3 +155,14 @@ A auditoria pós-deploy mobile foi concluída, incluindo:
 - O token curto Veyra fica apenas em memória no provider React e é perdido em refresh, sem `localStorage`, `sessionStorage` ou cookies.
 - Fora do Telegram Mini App, o app continua em modo preview/mock, sem fingir usuário autenticado e sem bloquear navegação.
 - Ainda não há banco real, Supabase Auth, RLS, perfil persistido, inventário persistido, stamina real, rewards reais, gacha real ou economia real.
+
+
+## Fase 2D | Player bootstrap server-side mínimo
+
+- Fase 2D preparada em código para criar o bootstrap real mínimo de jogador após autenticação Telegram/Veyra.
+- Migration `202606180001_create_veyra_players.sql` cria `public.veyra_players` com RLS habilitado e sem policy pública.
+- Edge Function `player-bootstrap` valida a sessão Veyra server-side, usa `telegram_user_id` vindo do token verificado e faz upsert/select do jogador com service role apenas no servidor.
+- Frontend chama o bootstrap após auth usando token Veyra apenas em memória via callback, sem `localStorage`, `sessionStorage`, cookies ou renderização do token.
+- UI exibe somente estado básico: `Player synced`, nome de exibição, status da conta, preview ou retry.
+- Gameplay, inventário, moedas, stamina, rewards, gacha, pity, pagamentos, Gram/TON, Stars, Aether Fragments e saques continuam mock/bloqueados.
+- Próximo passo manual: aplicar migration no Supabase, rodar workflow manual de deploy das functions e testar no Mini App real.

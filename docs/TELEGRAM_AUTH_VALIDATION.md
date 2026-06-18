@@ -139,3 +139,14 @@ Nunca registrar em documentação, logs permanentes, prints públicos ou issues:
 7. Confirmar que Home, Battle, Dungeons, Summon, Shop, Wallet e Fonte do Aether seguem navegáveis em mock/preview.
 8. Inspecionar UI e console para confirmar que token Veyra, `Authorization` e `initData` não aparecem.
 9. Confirmar que não há `localStorage`, `sessionStorage` ou cookie de autenticação criado pela integração Veyra.
+
+
+## Checklist manual | Fase 2D player bootstrap
+
+1. Aplicar a migration `202606180001_create_veyra_players.sql` no Supabase.
+2. Rodar o workflow manual de deploy das functions, incluindo `player-bootstrap`.
+3. Abrir o Mini App no Telegram.
+4. Confirmar `Telegram Auth: Connected`.
+5. Confirmar `Player synced` com nome básico do jogador.
+6. Confirmar que inventário, economia, rewards, gacha e gameplay continuam mock e não foram ativados como estado real.
+7. Confirmar que não há token, `Authorization`, `initData`, hash ou secrets na UI, console ou logs.

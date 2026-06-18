@@ -3,3 +3,6 @@ verify_jwt = false
 
 [functions.telegram-session]
 verify_jwt = false
+
+[functions.player-bootstrap]
+verify_jwt = false

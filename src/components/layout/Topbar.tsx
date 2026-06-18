@@ -1,3 +1,4 @@
+import { PlayerBootstrapStatus } from './PlayerBootstrapStatus';
 import { TelegramAuthStatus } from './TelegramAuthStatus';
 import { VAResourcePill } from '../ui/VAResourcePill';
 import type { PlayerState } from '../../lib/rpg/types';
@@ -11,6 +12,7 @@ export function Topbar({ state }: { state: PlayerState }) {
       </div>
       <div className="flex min-w-0 shrink-0 flex-col items-end gap-1">
         <TelegramAuthStatus />
+        <PlayerBootstrapStatus />
         <div className="flex min-w-0 flex-wrap justify-end gap-1">
           <VAResourcePill icon="⚡" value={state.inventory.stamina} label="" />
           <VAResourcePill icon="💠" value={state.inventory.aether_shards} label="" />

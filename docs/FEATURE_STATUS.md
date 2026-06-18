@@ -49,9 +49,13 @@ Não marque como `DONE` algo que ainda seja mock ou apenas preparado.
 | Frontend auth integration | ACTIVE | Frontend | Memória apenas | Sim, via Edge Functions | Teste real/observação | Usa `initData` bruto em `telegram-auth`, confirma em `telegram-session` e mantém token Veyra somente em memória. |
 | Supabase Auth integration | DEFERRED | Não operacional | Não | Não | ADR futura | Fase 2C segue usando sessão curta Veyra; não usa Supabase Auth JWT. |
 | Supabase client | PREPARED | Frontend client | Não aplicável | Parcial/não crítico | Fase 3 | Client preparado com publishable key; sem schema real. |
-| Supabase schema | PLANNED | Documentação/plano | Não | Não | Fase 3 | Schema real ainda não aplicado. |
-| RLS | PLANNED | Documentação/plano | Não | Não | Fase 3 | Obrigatório antes de dados públicos reais. |
-| Player persistence | PLANNED | Não implementada | Não | Não | Fase 3 | Próxima evolução possível após teste/observação da sessão, com schema e RLS revisados. |
+| Supabase schema | PREPARED | Migration | `veyra_players` mínima | Parcial | Aplicação manual | Migration 2D preparada; inventário/economia ainda planejados. |
+| RLS | PREPARED | Migration | `veyra_players` | Parcial | Aplicação manual | RLS habilitado na tabela mínima, sem policy pública. |
+| Player bootstrap server-side | PREPARED | Edge Function + frontend | Parcial | Sim | Deploy/teste manual | `player-bootstrap` valida sessão Veyra e sincroniza player mínimo. |
+| Player persistence | PARTIAL | Supabase schema mínimo | `veyra_players` preparada | Sim | Fase 3 | Perfil mínimo preparado; estado completo do jogador ainda não existe. |
+| Inventory persistence | PLANNED | Não operacional | Não | Não | Fase 3 | Inventário real continua fora da Fase 2D. |
+| Economy persistence | PLANNED | Não operacional | Não | Não | Fase futura | Moedas, rewards, compras e saldos reais seguem bloqueados. |
+| Rewards persistence | PLANNED | Não operacional | Não | Não | Fases 4+ | Rewards reais exigem validação server-side específica. |
 | Monetag | PREPARED | Frontend/mock | Local/mock | Não | Fase 10 | Ads recompensados reais exigem validação server-side. |
 | Telegram Stars | PREPARED | Frontend/mock | Não | Não | Fase 11 | Bens digitais internos somente após confirmação server-side. |
 | TON Connect | PREPARED | Frontend/mock | Não | Não | Fase 11 | Conexão preparada; pagamento real não validado. |

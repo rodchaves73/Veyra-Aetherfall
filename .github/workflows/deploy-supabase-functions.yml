@@ -35,3 +35,6 @@ jobs:
 
       - name: Deploy telegram-session
         run: supabase functions deploy telegram-session --project-ref "$SUPABASE_PROJECT_ID"
+
+      - name: Deploy player-bootstrap
+        run: supabase functions deploy player-bootstrap --project-ref "$SUPABASE_PROJECT_ID"
