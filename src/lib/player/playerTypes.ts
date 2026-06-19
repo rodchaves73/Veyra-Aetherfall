@@ -1,5 +1,17 @@
 export type VeyraPlayerAccountStatus = 'active' | 'limited' | 'banned' | 'deleted';
 
+export type VeyraPlayerOnboardingStatus = 'new' | 'started' | 'completed' | 'skipped';
+
+export type VeyraPlayerProfile = {
+  level: number;
+  xp: number;
+  powerScore: number;
+  campaignChapter: number;
+  campaignStage: number;
+  onboardingStatus: VeyraPlayerOnboardingStatus;
+  lastBootstrapAt: string | null;
+};
+
 export type VeyraPlayer = {
   id: string;
   telegramUserId: number;
@@ -8,6 +20,7 @@ export type VeyraPlayer = {
   createdAt: string;
   updatedAt: string;
   lastSeenAt: string;
+  profile: VeyraPlayerProfile;
 };
 
 export type PlayerBootstrapErrorCode =

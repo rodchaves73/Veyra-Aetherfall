@@ -47,3 +47,10 @@ A Edge Function `player-bootstrap` implementa o primeiro bootstrap real mínimo:
 - retorna somente player seguro para o frontend.
 
 Ela não valida nem persiste inventário, moedas, stamina, rewards, gacha, pity, batalha ou dungeon.
+
+
+## Fase 2E/2F | Read model seguro do player
+
+`player-bootstrap` passa a retornar somente um read model seguro do player após validar a sessão Veyra. O read model inclui identidade interna mínima, status de conta e `profile` com level, XP, power, capítulo, stage, onboarding e último bootstrap.
+
+A função não aceita valores de profile enviados pelo cliente e não sobrescreve progresso existente no bootstrap; apenas atualiza metadados de Telegram, `last_seen_at` e `last_bootstrap_at`. Inventário, moedas, stamina, rewards, gacha, pity, batalha e dungeon continuam fora do escopo.

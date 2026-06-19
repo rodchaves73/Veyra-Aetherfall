@@ -725,3 +725,19 @@ Entrar > receber equipe inicial > escolher fase > gastar stamina > lutar > valid
 
 - Lançar sistemas financeiros sem revisão específica.
 - Ativar saques sem operação manual e antifraude aprovados.
+
+
+### Fase 2E/2F | Player core profile e fechamento
+
+**Status:** implementada em código, pendente de validação manual.
+
+#### Entregáveis 2E/2F
+
+- Core profile mínimo em `public.veyra_players`.
+- `player-bootstrap` retorna read model seguro com progresso básico do jogador.
+- UI mostra `Player synced`, nível e stage sem expor identificadores sensíveis.
+- Relatório de fechamento da Fase 2 criado.
+
+#### Próxima fase
+
+- **Fase 3 — RPG Systems Foundation.** Deve começar por sistemas RPG server-aware, contratos de schema e validação, sem implementar battle completo ou economia real antecipadamente.

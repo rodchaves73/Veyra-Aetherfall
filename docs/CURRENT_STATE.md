@@ -166,3 +166,11 @@ A auditoria pós-deploy mobile foi concluída, incluindo:
 - UI exibe somente estado básico: `Player synced`, nome de exibição, status da conta, preview ou retry.
 - Gameplay, inventário, moedas, stamina, rewards, gacha, pity, pagamentos, Gram/TON, Stars, Aether Fragments e saques continuam mock/bloqueados.
 - Próximo passo manual: aplicar migration no Supabase, rodar workflow manual de deploy das functions e testar no Mini App real.
+
+
+## Fase 2E/2F | Player core profile e fechamento da Fase 2
+
+- Fase 2E/2F adiciona core profile persistente mínimo em `public.veyra_players`.
+- O player real mínimo passa a expor level, XP, power, capítulo, stage, onboarding e último bootstrap por read model seguro.
+- Gameplay, economia, inventário, stamina, rewards, gacha, pity, pagamentos, Gram/TON, Stars, Aether Fragments e saques continuam mock/bloqueados.
+- A Fase 2 fica pronta para fechamento após aplicação manual da migration, deploy das Edge Functions e validação real no Telegram Mini App.
