@@ -93,7 +93,12 @@ Deno.serve(async (request: Request) => {
       .single<PlayerRow>();
 
     if (error || !data) {
-      console.error("Player bootstrap persistence failed.");
+      console.error("Player bootstrap persistence failed.", {
+        code: error?.code,
+        message: error?.message,
+        details: error?.details,
+        hint: error?.hint,
+      });
       return jsonError(
         500,
         "PLAYER_BOOTSTRAP_FAILED",
