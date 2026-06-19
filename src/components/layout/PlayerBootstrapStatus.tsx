@@ -8,7 +8,7 @@ export function PlayerBootstrapStatus() {
   }
 
   if (status === 'synced' && player) {
-    return <StatusShell tone="success" title="Player synced" detail={`${player.displayName} · ${player.accountStatus}`} />;
+    return <StatusShell tone="success" title="Player synced" detail={`${player.displayName} · Lv. ${player.profile.level} · Stage ${player.profile.campaignChapter}-${player.profile.campaignStage}`} />;
   }
 
   if (status === 'error') {

@@ -71,3 +71,15 @@ Não marque como `DONE` algo que ainda seja mock ou apenas preparado.
 | Assets finais | PLANNED | Placeholder/UI MVP | Não aplicável | Não aplicável | Fase 9 | Retratos, ícones e FX finais ainda não existem. |
 | Analytics | PLANNED | Não implementado | Não | Não | Fase 13 | Adiar até beta/produção observável. |
 | Automated tests | PLANNED | Não implementado | Não aplicável | Não aplicável | Fases futuras | Ainda não há suíte automatizada dedicada além de lint/build/typecheck. |
+
+
+## Atualização Fase 2E/2F
+
+| Funcionalidade | Status | Camada atual | Persistência | Validação server-side | Próxima fase | Observação |
+|---|---|---|---|---|---|---|
+| Player core profile | PREPARED | Supabase + Edge Function + frontend | `veyra_players` | Sim | Validação manual | Level, XP, power, stage e onboarding preparados como read model seguro. |
+| Player profile persistence | PARTIAL | Supabase schema mínimo | `veyra_players` | Sim | Fase 3 | Persistência mínima existe; inventário/economia/progressão transacional ainda não existem. |
+| Phase 2 foundation | READY FOR VALIDATION | Auth + player bootstrap | Parcial | Sim | Fechamento manual | Depende de migration, deploy e teste no Telegram Mini App. |
+| Gameplay state persistence | PLANNED | Não operacional | Não | Não | Fase 3 | Deve iniciar com contratos server-aware. |
+| Economy persistence | PLANNED | Não operacional | Não | Não | Fase futura | Moedas/rewards/compras continuam bloqueados. |
+| Inventory persistence | PLANNED | Não operacional | Não | Não | Fase 3 | Inventário real permanece fora da Fase 2. |

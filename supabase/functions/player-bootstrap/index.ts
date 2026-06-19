@@ -7,6 +7,7 @@ import {
 import type { NormalizedTelegramUser } from "../_shared/telegramInitData.ts";
 
 type AccountStatus = "active" | "limited" | "banned" | "deleted";
+type OnboardingStatus = "new" | "started" | "completed" | "skipped";
 
 type PlayerRow = {
   id: string;
@@ -16,6 +17,13 @@ type PlayerRow = {
   created_at: string;
   updated_at: string;
   last_seen_at: string;
+  player_level: number;
+  player_xp: number;
+  power_score: number;
+  campaign_chapter: number;
+  campaign_stage: number;
+  onboarding_status: OnboardingStatus;
+  last_bootstrap_at: string | null;
 };
 
 Deno.serve(async (request: Request) => {
@@ -86,9 +94,10 @@ Deno.serve(async (request: Request) => {
         telegram_photo_url: optionalText(user.photoUrl),
         display_name: buildDisplayName(user),
         last_seen_at: now,
+        last_bootstrap_at: now,
       }, { onConflict: "telegram_user_id" })
       .select(
-        "id, telegram_user_id, display_name, account_status, created_at, updated_at, last_seen_at",
+        "id, telegram_user_id, display_name, account_status, created_at, updated_at, last_seen_at, player_level, player_xp, power_score, campaign_chapter, campaign_stage, onboarding_status, last_bootstrap_at",
       )
       .single<PlayerRow>();
 
@@ -126,6 +135,15 @@ Deno.serve(async (request: Request) => {
         createdAt: data.created_at,
         updatedAt: data.updated_at,
         lastSeenAt: data.last_seen_at,
+        profile: {
+          level: data.player_level,
+          xp: data.player_xp,
+          powerScore: data.power_score,
+          campaignChapter: data.campaign_chapter,
+          campaignStage: data.campaign_stage,
+          onboardingStatus: data.onboarding_status,
+          lastBootstrapAt: data.last_bootstrap_at,
+        },
       },
     }, cors.headers);
   } catch (error) {

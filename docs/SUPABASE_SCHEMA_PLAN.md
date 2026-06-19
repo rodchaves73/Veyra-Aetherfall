@@ -42,3 +42,17 @@ Campos principais:
 - `display_name`, `account_status`, `created_at`, `updated_at` e `last_seen_at`.
 
 RLS fica habilitado sem policy pública. O frontend não deve ler a tabela diretamente; acesso real ocorre via Edge Function com service role no servidor. Inventário, economia, rewards e gameplay persistidos continuam planejados.
+
+
+## Fase 2E/2F | Core profile em `public.veyra_players`
+
+A migration `202606190002_add_veyra_player_core_profile.sql` adiciona ao player mínimo:
+
+- `player_level` com default `1` e limite entre 1 e 999.
+- `player_xp` com default `0` e valor não negativo.
+- `power_score` com default `0` e valor não negativo.
+- `campaign_chapter` e `campaign_stage` com default `1` e valores mínimos 1.
+- `onboarding_status` com valores `new`, `started`, `completed` ou `skipped`.
+- `last_bootstrap_at` para auditoria operacional do bootstrap.
+
+Também cria índice de progresso e preserva acesso `select`, `insert` e `update` para `service_role`. Não cria tabela nova, policy pública nem desabilita RLS.

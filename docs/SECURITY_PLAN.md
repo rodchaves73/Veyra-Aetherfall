@@ -40,3 +40,12 @@ Veyra: Aetherfall é um Vite SPA mobile-first para Telegram Mini App. O MVP usa 
 - O frontend não acessa a tabela diretamente; ele chama a Edge Function com sessão Veyra em memória.
 - O token Veyra é passado por callback de auth e não é renderizado, persistido, logado, salvo em `localStorage`, `sessionStorage` ou cookie.
 - A resposta do bootstrap omite payload bruto do Telegram, `initData`, hash, `Authorization`, token e dados server-side sensíveis.
+
+
+## Fase 2E/2F | Segurança do profile read model
+
+- O profile read model é retornado somente após sessão Veyra válida.
+- O frontend continua sem acesso direto à tabela `public.veyra_players`.
+- RLS permanece ativo e nenhuma policy pública foi adicionada.
+- `service_role` continua restrita às Edge Functions.
+- A resposta não expõe token, `Authorization`, `initData`, hash, payload bruto do Telegram, service role ou segredo de sessão.
