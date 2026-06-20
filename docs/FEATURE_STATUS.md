@@ -90,3 +90,8 @@ Não marque como `DONE` algo que ainda seja mock ou apenas preparado.
 - Novas operações críticas são server-side via Supabase Edge Functions e funções SQL transacionais; o frontend não sorteia gacha nem entrega recursos.
 - RLS fica habilitado nas novas tabelas, sem policy pública e sem grants para `anon` ou `authenticated`.
 - Ainda planejado: battle/dungeon result persistente, guilda, raid, eventos funcionais, Monetag real, pagamentos, Stars, TON/Gram, marketplace, NFT, Aether Fragments e saques.
+
+## Patch pré-merge PR #16 | Gacha server-side
+
+- Gacha server-side permanece PREPARED, agora com correção de rates cumulativos por banner, bloqueio de Common no Astral Covenant, `event_banner_weekly`, Beginner Banner limitado a 30 pulls e featured guarantee 70/30.
+- A auditoria persistente de `wasFeatured` e `wasPity` ainda está PLANNED para schema futuro; nesta correção os campos retornam no JSON seguro da RPC.

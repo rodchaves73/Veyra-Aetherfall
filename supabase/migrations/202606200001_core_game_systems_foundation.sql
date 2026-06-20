@@ -30,6 +30,7 @@ insert into public.veyra_gacha_banners (id,name,banner_type,token_type,pity_grou
 ('astral_covenant','Astral Covenant','astral','astral_ticket','astral','{"uncommon":35,"rare":34,"epic":20,"legendary":7,"divine":2.5,"mythic":1.5}','[]',now(),null,true),
 ('divine_focus_weekly','Divine Focus Weekly','divine_focus','divine_sigil_ticket','divine_focus','{"uncommon":35,"rare":34,"epic":20,"legendary":7,"divine":2.5,"mythic":1.5}','["ielara_star_saint"]',now(),now()+interval '7 days',true),
 ('mythic_focus_weekly','Mythic Focus Weekly','mythic_focus','mythic_sigil_ticket','mythic_focus','{"uncommon":34,"rare":34,"epic":20,"legendary":7,"divine":3.5,"mythic":1.5}','["elysra_aether_mythic"]',now(),now()+interval '7 days',true),
+('event_banner_weekly','Event Banner Weekly','event','event_ticket','event','{"uncommon":35,"rare":34,"epic":20,"legendary":7,"divine":2.5,"mythic":1.5}','[]',now(),now()+interval '7 days',true),
 ('beginner_banner','Beginner Banner','beginner','beginner_ticket','beginner','{"common":35,"uncommon":35,"rare":20,"epic":8,"legendary":2}','[]',now(),null,true);
 insert into public.veyra_game_content_definitions values ('campaign_chapter_1','campaign','Chapter 1 — Ruins of the First Seal','{"stages":["1-1","1-2","1-3","1-4","1-5","1-6","1-7","1-8","1-9","1-10"],"dungeons":["gold_dungeon","xp_dungeon","elemental_sanctums","skill_archive","gear_forge","ascension_shrine","shard_ruins","soul_crucible"],"mobs":["grunt","bruiser","assassin","shaman","hexer","guardian","summoner","bomber","breaker","elite"],"bosses":["dragon_boss","necromancer_boss","celestial_boss","abyss_boss","titan_boss","mirror_boss","raid_boss"]}','prepared');
 insert into public.veyra_ad_reward_definitions values ('daily_ads_fragments','daily','{"limit":3,"reward":{"standard_ticket_fragment":1},"combine":"3 fragments = 1 standard_ticket"}',true,true),('weekly_ads_astral','weekly','{"threshold":7,"reward":{"astral_ticket":1}}',true,true),('divine_weekly_ads','weekly','{"threshold":10,"reward":{"divine_sigil_fragment":1},"combine":"5 fragments = 1 divine_sigil_ticket"}',true,true),('mythic_weekly_ads','weekly','{"threshold":15,"reward":{"mythic_sigil_fragment":1},"combine":"8 fragments = 1 mythic_sigil_ticket"}',true,true),('monthly_ads_chest','monthly','{"threshold":30,"reward":{"standard_ticket":3,"astral_ticket":1,"divine_sigil_fragment":1,"mythic_sigil_fragment":1,"gold":"planned","materials":"planned"}}',true,true);
@@ -49,26 +50,128 @@ begin
 end $$;
 
 create or replace function public.veyra_perform_gacha_summon(p_player_id uuid, p_banner_id text, p_pull_count int) returns jsonb language plpgsql security definer set search_path = public as $$
-declare b public.veyra_gacha_banners%rowtype; c public.veyra_player_currencies%rowtype; p public.veyra_gacha_pity%rowtype; i int; r numeric; rarity text; h public.veyra_game_heroes%rowtype; owned boolean; conv jsonb; results jsonb='[]'; cost int; use_ticket boolean;
+declare
+  b public.veyra_gacha_banners%rowtype;
+  c public.veyra_player_currencies%rowtype;
+  p public.veyra_gacha_pity%rowtype;
+  i int;
+  roll numeric;
+  rate_total numeric;
+  cumulative numeric;
+  rarity text;
+  target_rarity text;
+  h public.veyra_game_heroes%rowtype;
+  owned boolean;
+  conv jsonb;
+  results jsonb='[]';
+  cost int;
+  use_ticket boolean;
+  was_pity boolean;
+  was_featured boolean;
+  avoid_featured boolean;
+  next_featured_guarantee boolean;
+  featured_ids text[];
 begin
   if p_pull_count not in (1,10) then raise exception 'invalid_pull_count'; end if;
-  select * into b from public.veyra_gacha_banners where id=p_banner_id; if not found then raise exception 'invalid_banner'; end if; if not b.is_active or (b.ends_at is not null and b.ends_at < now()) then raise exception 'inactive_banner'; end if;
+  select * into b from public.veyra_gacha_banners where id=p_banner_id;
+  if not found then raise exception 'invalid_banner'; end if;
+  if not b.is_active or (b.ends_at is not null and b.ends_at < now()) then raise exception 'inactive_banner'; end if;
+
   perform public.veyra_claim_starter_pack(p_player_id);
-  insert into public.veyra_gacha_pity(player_id,pity_group) values (p_player_id,b.pity_group) on conflict do nothing; select * into p from public.veyra_gacha_pity where player_id=p_player_id and pity_group=b.pity_group for update;
+  insert into public.veyra_gacha_pity(player_id,pity_group) values (p_player_id,b.pity_group) on conflict do nothing;
+  select * into p from public.veyra_gacha_pity where player_id=p_player_id and pity_group=b.pity_group for update;
+  if b.pity_group='beginner' and p.beginner_pulls + p_pull_count > 30 then raise exception 'beginner_limit_reached'; end if;
+
   select * into c from public.veyra_player_currencies where player_id=p_player_id for update;
-  use_ticket := (case b.token_type when 'standard_ticket' then c.standard_ticket when 'astral_ticket' then c.astral_ticket when 'divine_sigil_ticket' then c.divine_sigil_ticket when 'mythic_sigil_ticket' then c.mythic_sigil_ticket when 'beginner_ticket' then c.beginner_ticket else c.event_ticket end) >= p_pull_count;
-  cost := (case b.pity_group when 'standard' then 160 when 'astral' then 240 when 'beginner' then 120 else 320 end) * p_pull_count;
-  if use_ticket then execute format('update public.veyra_player_currencies set %I=%I-$1, updated_at=now() where player_id=$2', b.token_type, b.token_type) using p_pull_count, p_player_id; elsif c.gems >= cost then update public.veyra_player_currencies set gems=gems-cost, updated_at=now() where player_id=p_player_id; else raise exception 'insufficient_currency'; end if;
+  use_ticket := (case b.token_type when 'standard_ticket' then c.standard_ticket when 'astral_ticket' then c.astral_ticket when 'divine_sigil_ticket' then c.divine_sigil_ticket when 'mythic_sigil_ticket' then c.mythic_sigil_ticket when 'beginner_ticket' then c.beginner_ticket when 'event_ticket' then c.event_ticket else 0 end) >= p_pull_count;
+  cost := (case b.pity_group when 'standard' then 160 when 'astral' then 240 when 'beginner' then 120 when 'event' then 240 else 320 end) * p_pull_count;
+  if use_ticket then
+    execute format('update public.veyra_player_currencies set %I=%I-$1, updated_at=now() where player_id=$2', b.token_type, b.token_type) using p_pull_count, p_player_id;
+  elsif c.gems >= cost then
+    update public.veyra_player_currencies set gems=gems-cost, updated_at=now() where player_id=p_player_id;
+  else
+    raise exception 'insufficient_currency';
+  end if;
+
+  select coalesce(sum(value::numeric),0) into rate_total from jsonb_each_text(b.rates);
+  if rate_total <= 0 then raise exception 'invalid_banner'; end if;
+  select array_agg(value) into featured_ids from jsonb_array_elements_text(b.featured_hero_ids);
+
   for i in 1..p_pull_count loop
-    r := random()*100; rarity := case when (p.pulls_since_mythic+1) >= coalesce((case b.pity_group when 'standard' then 400 when 'astral' then 300 when 'mythic_focus' then 300 else 999999 end),999999) then 'mythic' when (p.pulls_since_divine+1) >= (case b.pity_group when 'standard' then 250 when 'astral' then 180 when 'divine_focus' then 160 when 'mythic_focus' then 180 else 999999 end) then 'divine' when (p.pulls_since_legendary+1) >= (case b.pity_group when 'standard' then 100 when 'astral' then 80 else 90 end) then 'legendary' when p_pull_count=10 and i=10 then (case when b.pity_group='astral' then 'epic' else 'rare' end) when r < coalesce((b.rates->>'mythic')::numeric,0) then 'mythic' when r < coalesce((b.rates->>'mythic')::numeric,0)+coalesce((b.rates->>'divine')::numeric,0) then 'divine' when r < 10 then 'legendary' when r < 25 then 'epic' when r < 55 then 'rare' when r < 80 then 'uncommon' else 'common' end;
-    select * into h from public.veyra_game_heroes where veyra_game_heroes.rarity=rarity and (not limited or rarity in ('divine','mythic')) order by random() limit 1;
+    rarity := null; was_pity := false; was_featured := false; avoid_featured := false; next_featured_guarantee := p.featured_guarantee;
+
+    if b.pity_group in ('standard','astral','mythic_focus','event') and (p.pulls_since_mythic+1) >= (case b.pity_group when 'standard' then 400 when 'astral' then 300 else 300 end) then rarity := 'mythic'; was_pity := true; end if;
+    if rarity is null and b.pity_group in ('standard','astral','divine_focus','mythic_focus','event') and (p.pulls_since_divine+1) >= (case b.pity_group when 'standard' then 250 when 'astral' then 180 when 'divine_focus' then 160 when 'mythic_focus' then 180 else 180 end) then rarity := 'divine'; was_pity := true; end if;
+    if rarity is null and b.pity_group in ('standard','astral','divine_focus','mythic_focus','event','beginner') and (p.pulls_since_legendary+1) >= (case b.pity_group when 'standard' then 100 when 'astral' then 80 when 'beginner' then 30 else 90 end) then rarity := 'legendary'; was_pity := true; end if;
+    if rarity is null and b.pity_group in ('astral','event','beginner') and (p.pulls_since_epic+1) >= (case b.pity_group when 'beginner' then 20 else 10 end) then rarity := 'epic'; was_pity := true; end if;
+    if rarity is null and b.pity_group='standard' and (p.pulls_since_rare+1) >= 10 then rarity := 'rare'; was_pity := true; end if;
+
+    if rarity is null then
+      roll := random() * rate_total; cumulative := 0;
+      cumulative := cumulative + coalesce((b.rates->>'mythic')::numeric,0); if rarity is null and roll < cumulative then rarity := 'mythic'; end if;
+      cumulative := cumulative + coalesce((b.rates->>'divine')::numeric,0); if rarity is null and roll < cumulative then rarity := 'divine'; end if;
+      cumulative := cumulative + coalesce((b.rates->>'legendary')::numeric,0); if rarity is null and roll < cumulative then rarity := 'legendary'; end if;
+      cumulative := cumulative + coalesce((b.rates->>'epic')::numeric,0); if rarity is null and roll < cumulative then rarity := 'epic'; end if;
+      cumulative := cumulative + coalesce((b.rates->>'rare')::numeric,0); if rarity is null and roll < cumulative then rarity := 'rare'; end if;
+      cumulative := cumulative + coalesce((b.rates->>'uncommon')::numeric,0); if rarity is null and roll < cumulative then rarity := 'uncommon'; end if;
+      cumulative := cumulative + coalesce((b.rates->>'common')::numeric,0); if rarity is null and roll < cumulative then rarity := 'common'; end if;
+      if rarity is null then
+        rarity := case when coalesce((b.rates->>'uncommon')::numeric,0) > 0 then 'uncommon' when coalesce((b.rates->>'rare')::numeric,0) > 0 then 'rare' when coalesce((b.rates->>'epic')::numeric,0) > 0 then 'epic' when coalesce((b.rates->>'legendary')::numeric,0) > 0 then 'legendary' when coalesce((b.rates->>'divine')::numeric,0) > 0 then 'divine' when coalesce((b.rates->>'mythic')::numeric,0) > 0 then 'mythic' else 'common' end;
+      end if;
+    end if;
+
+    if b.pity_group='beginner' and rarity in ('divine','mythic') then rarity := 'legendary'; end if;
+    if b.pity_group='astral' and rarity='common' then rarity := 'uncommon'; end if;
+
+    target_rarity := case b.banner_type when 'divine_focus' then 'divine' when 'mythic_focus' then 'mythic' when 'event' then rarity else null end;
+    if target_rarity is not null and rarity=target_rarity and coalesce(array_length(featured_ids,1),0) > 0 then
+      if p.featured_guarantee or random() < 0.70 then
+        select * into h from public.veyra_game_heroes gh where gh.id = any(featured_ids) and gh.rarity=rarity order by random() limit 1;
+        if found then was_featured := true; next_featured_guarantee := false; end if;
+      else
+        avoid_featured := true;
+        next_featured_guarantee := true;
+      end if;
+    end if;
+
+    if h.id is null then
+      select * into h from public.veyra_game_heroes gh
+      where gh.rarity=rarity
+        and (b.pity_group not in ('standard','astral','beginner') or gh.limited=false)
+        and (b.pity_group <> 'beginner' or gh.rarity not in ('divine','mythic'))
+        and (not avoid_featured or gh.id <> all(featured_ids))
+      order by random() limit 1;
+    end if;
+    if h.id is null then
+      select * into h from public.veyra_game_heroes gh
+      where gh.rarity in ('legendary','epic','rare','uncommon','common') and gh.limited=false
+        and (b.pity_group <> 'beginner' or gh.rarity not in ('divine','mythic'))
+      order by case gh.rarity when rarity then 0 when 'legendary' then 1 when 'epic' then 2 when 'rare' then 3 when 'uncommon' then 4 else 5 end, random() limit 1;
+      was_pity := false;
+    end if;
+    if h.id is null then raise exception 'invalid_banner'; end if;
+
     select exists(select 1 from public.veyra_player_heroes where player_id=p_player_id and hero_id=h.id) into owned;
     conv := case h.rarity when 'common' then '{"shards":10,"soulDust":5}'::jsonb when 'uncommon' then '{"shards":15,"soulDust":10}'::jsonb when 'rare' then '{"shards":25,"soulDust":30}'::jsonb when 'epic' then '{"shards":50,"soulDust":100}'::jsonb when 'legendary' then '{"shards":100,"soulDust":500}'::jsonb when 'divine' then '{"shards":150,"soulDust":1500,"divineSigil":1}'::jsonb else '{"shards":200,"soulDust":3000,"mythicSigil":1}'::jsonb end;
-    if owned then insert into public.veyra_hero_shards(player_id,hero_id,quantity) values (p_player_id,h.id,(conv->>'shards')::int) on conflict (player_id,hero_id) do update set quantity=veyra_hero_shards.quantity+excluded.quantity,updated_at=now(); update public.veyra_player_currencies set soul_dust=soul_dust+(conv->>'soulDust')::int, divine_sigil=divine_sigil+coalesce((conv->>'divineSigil')::int,0), mythic_sigil=mythic_sigil+coalesce((conv->>'mythicSigil')::int,0) where player_id=p_player_id; else insert into public.veyra_player_heroes(player_id,hero_id,stars,power_score) values (p_player_id,h.id, case h.rarity when 'common' then 1 when 'uncommon' then 2 when 'rare' then 3 else 5 end, h.base_hp/6+h.base_atk*3+h.base_def*2); end if;
+    if owned then
+      insert into public.veyra_hero_shards(player_id,hero_id,quantity) values (p_player_id,h.id,(conv->>'shards')::int) on conflict (player_id,hero_id) do update set quantity=veyra_hero_shards.quantity+excluded.quantity,updated_at=now();
+      update public.veyra_player_currencies set soul_dust=soul_dust+(conv->>'soulDust')::int, divine_sigil=divine_sigil+coalesce((conv->>'divineSigil')::int,0), mythic_sigil=mythic_sigil+coalesce((conv->>'mythicSigil')::int,0) where player_id=p_player_id;
+    else
+      insert into public.veyra_player_heroes(player_id,hero_id,stars,power_score) values (p_player_id,h.id, case h.rarity when 'common' then 1 when 'uncommon' then 2 when 'rare' then 3 else 5 end, h.base_hp/6+h.base_atk*3+h.base_def*2);
+    end if;
     insert into public.veyra_gacha_pull_history(player_id,banner_id,hero_id,rarity,pull_count,is_duplicate,shards_gained,soul_dust_gained) values (p_player_id,b.id,h.id,h.rarity,p_pull_count,owned,case when owned then (conv->>'shards')::int else 0 end,case when owned then (conv->>'soulDust')::int else 0 end);
-    results := results || jsonb_build_array(jsonb_build_object('heroId',h.id,'name',h.name,'rarity',h.rarity,'isDuplicate',owned,'shardsGained',case when owned then (conv->>'shards')::int else 0 end,'soulDustGained',case when owned then (conv->>'soulDust')::int else 0 end));
-    p.pulls_since_rare := case when h.rarity in ('rare','epic','legendary','divine','mythic') then 0 else p.pulls_since_rare+1 end; p.pulls_since_epic := case when h.rarity in ('epic','legendary','divine','mythic') then 0 else p.pulls_since_epic+1 end; p.pulls_since_legendary := case when h.rarity in ('legendary','divine','mythic') then 0 else p.pulls_since_legendary+1 end; p.pulls_since_divine := case when h.rarity in ('divine','mythic') then 0 else p.pulls_since_divine+1 end; p.pulls_since_mythic := case when h.rarity='mythic' then 0 else p.pulls_since_mythic+1 end;
+    results := results || jsonb_build_array(jsonb_build_object('heroId',h.id,'name',h.name,'rarity',h.rarity,'isDuplicate',owned,'shardsGained',case when owned then (conv->>'shards')::int else 0 end,'soulDustGained',case when owned then (conv->>'soulDust')::int else 0 end,'wasFeatured',was_featured,'wasPity',was_pity));
+
+    p.featured_guarantee := next_featured_guarantee;
+    p.pulls_since_rare := case when h.rarity in ('rare','epic','legendary','divine','mythic') then 0 else p.pulls_since_rare+1 end;
+    p.pulls_since_epic := case when h.rarity in ('epic','legendary','divine','mythic') then 0 else p.pulls_since_epic+1 end;
+    p.pulls_since_legendary := case when h.rarity in ('legendary','divine','mythic') then 0 else p.pulls_since_legendary+1 end;
+    p.pulls_since_divine := case when h.rarity in ('divine','mythic') then 0 else p.pulls_since_divine+1 end;
+    p.pulls_since_mythic := case when h.rarity='mythic' then 0 else p.pulls_since_mythic+1 end;
+    if b.pity_group='beginner' then p.beginner_pulls := p.beginner_pulls + 1; end if;
+    h := null;
   end loop;
-  update public.veyra_gacha_pity set pulls_since_rare=p.pulls_since_rare,pulls_since_epic=p.pulls_since_epic,pulls_since_legendary=p.pulls_since_legendary,pulls_since_divine=p.pulls_since_divine,pulls_since_mythic=p.pulls_since_mythic, beginner_pulls=beginner_pulls + case when b.pity_group='beginner' then p_pull_count else 0 end, updated_at=now() where player_id=p_player_id and pity_group=b.pity_group;
+
+  update public.veyra_gacha_pity set pulls_since_rare=p.pulls_since_rare,pulls_since_epic=p.pulls_since_epic,pulls_since_legendary=p.pulls_since_legendary,pulls_since_divine=p.pulls_since_divine,pulls_since_mythic=p.pulls_since_mythic,featured_guarantee=p.featured_guarantee,beginner_pulls=p.beginner_pulls, updated_at=now() where player_id=p_player_id and pity_group=b.pity_group;
   return jsonb_build_object('results',results,'currencies',(select to_jsonb(x) from public.veyra_player_currencies x where x.player_id=p_player_id),'pity',(select jsonb_agg(to_jsonb(y)) from public.veyra_gacha_pity y where y.player_id=p_player_id));
 end $$;

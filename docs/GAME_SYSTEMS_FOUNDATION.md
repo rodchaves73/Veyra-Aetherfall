@@ -18,3 +18,7 @@ Batalha persistente, dungeon rewards, guilda, raid, eventos, Monetag real, pagam
 ## Segurança
 
 Nenhum secret deve ser exposto no cliente. Claims de ads, compras, rewards, battle finish e dungeon finish exigem validação server-side futura.
+
+## Patch pré-merge PR #16
+
+A fundação de gacha foi corrigida para usar rates reais dos banners no servidor, adicionar `event_banner_weekly`, aplicar limite/garantias do Beginner Banner e implementar featured guarantee 70/30 para banners com featured. O frontend permanece apenas como consumidor de estado e executor de chamadas server-side.

@@ -21,7 +21,7 @@ Deno.serve(async (request: Request) => {
   } catch (error) { if (error instanceof SessionTokenError) return jsonError(401, 'invalid_session', 'Session token is invalid or expired.', cors.headers); return jsonError(500, 'summon_failed', 'Summon failed.', cors.headers); }
 });
 async function readBody(request: Request): Promise<Record<string, unknown> | null> { try { const value = await request.json(); return value && typeof value === 'object' && !Array.isArray(value) ? value as Record<string, unknown> : null; } catch { return null; } }
-function mapRpcError(message: string) { return ['invalid_banner', 'inactive_banner', 'invalid_pull_count', 'insufficient_currency'].find((code) => message.includes(code)) ?? 'summon_failed'; }
+function mapRpcError(message: string) { return ['invalid_banner', 'inactive_banner', 'invalid_pull_count', 'insufficient_currency', 'beginner_limit_reached'].find((code) => message.includes(code)) ?? 'summon_failed'; }
 function readConfig() { const supabaseUrl = Deno.env.get('SUPABASE_URL'); const serviceRoleKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY'); const sessionSecret = Deno.env.get('VEYRA_SESSION_SECRET'); return supabaseUrl && serviceRoleKey && sessionSecret ? { supabaseUrl, serviceRoleKey, sessionSecret } : null; }
 function getBearerToken(request: Request) { return /^Bearer\s+(.+)$/i.exec(request.headers.get('Authorization') ?? '')?.[1]?.trim() || null; }
 function jsonError(status: number, code: string, message: string, headers: Headers) { return jsonResponse(status, { ok: false, error: { code, message } }, headers); }

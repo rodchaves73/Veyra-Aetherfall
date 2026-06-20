@@ -28,3 +28,14 @@ Pity por grupos: standard, astral, divine_focus, mythic_focus, event e beginner.
 ## Duplicatas
 
 Duplicatas viram hero shards e soul dust; Divine/Mythic também concedem sigils internos não sacáveis. Novo herói cria uma linha única em `veyra_player_heroes`.
+
+## Patch pré-merge PR #16 — correções de gacha
+
+- O roll de raridade é server-side e usa cumulativamente o JSON `rates` do banner na ordem mythic, divine, legendary, epic, rare, uncommon e common; raridades ausentes no JSON têm chance 0 e o fallback respeita o menor tier permitido pelo banner.
+- Astral Covenant bloqueia Common porque seu JSON não contém `common` e a RPC converte qualquer fallback defensivo para Uncommon+.
+- `event_banner_weekly` foi adicionado como banner semanal do grupo `event`, com rates premium sem Common e carry-over por `pity_group`.
+- Pity tem prioridade sobre RNG para `standard`, `astral`, `divine_focus`, `mythic_focus`, `event` e `beginner`.
+- Beginner Banner tem limite real de 30 pulls por jogador, retorna `beginner_limit_reached` ao exceder, bloqueia Divine/Mythic e aplica garantias Epic+ até 20 pulls e Legendary até 30 pulls.
+- Divine Focus, Mythic Focus e Event Banner aplicam featured guarantee 70/30 quando existe featured válido: perder o featured ativa garantia para a próxima raridade alvo; ganhar o featured desativa a garantia.
+- A resposta do summon inclui `wasFeatured` e `wasPity`; o histórico persistente ainda será ampliado em uma migration futura se for necessário auditar estes campos em tabela.
+- O cliente continua proibido de sortear, alterar pity, conceder moeda, conceder herói ou converter duplicata.
