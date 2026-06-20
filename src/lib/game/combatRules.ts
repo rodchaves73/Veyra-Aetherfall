@@ -1,0 +1,10 @@
+import { classRoles, type GameElement, type HeroClass } from './gameBalance';
+import { calculateLevelCap } from './heroProgression';
+export type CombatStats = { hp: number; atk: number; def: number; spd: number; critRate: number; critDamage: number; accuracy: number; resistance: number; dodge: number; energyGain: number };
+export const calculatePowerScore = (s: CombatStats) => Math.round(s.hp / 6 + s.atk * 3 + s.def * 2.4 + s.spd * 2 + s.critRate * 120 + s.critDamage * 60 + s.accuracy * 30 + s.resistance * 30 + s.dodge * 35 + s.energyGain * 20);
+export const getElementDamageModifier = (attacker: GameElement, defender: GameElement) => attacker === 'arcane' || defender === 'arcane' ? 1 : (attacker === 'fire' && defender === 'nature') || (attacker === 'nature' && defender === 'water') || (attacker === 'water' && defender === 'fire') || (attacker === 'light' && defender === 'dark') || (attacker === 'dark' && defender === 'light') ? 1.25 : (defender === 'fire' && attacker === 'nature') || (defender === 'nature' && attacker === 'water') || (defender === 'water' && attacker === 'fire') ? 0.8 : 1;
+export const calculateBaseDamage = (attacker: CombatStats, defender: CombatStats, skillMultiplier: number, elementModifier = 1) => Math.max(1, Math.round(attacker.atk * skillMultiplier * (100 / (100 + defender.def)) * elementModifier));
+export const calculateCritDamage = (baseDamage: number, critDamage: number, didCrit: boolean) => didCrit ? Math.max(1, Math.round(baseDamage * critDamage)) : baseDamage;
+export { calculateLevelCap };
+export const getClassRole = (heroClass: HeroClass) => classRoles[heroClass];
+export const getFactionSynergyPreview = (sameFactionCount: number) => sameFactionCount >= 5 ? 'special' : sameFactionCount >= 3 ? 'medium' : sameFactionCount >= 2 ? 'light' : 'none';

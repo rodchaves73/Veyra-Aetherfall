@@ -38,3 +38,9 @@ jobs:
 
       - name: Deploy player-bootstrap
         run: supabase functions deploy player-bootstrap --project-ref "$SUPABASE_PROJECT_ID"
+
+      - name: Deploy game-state
+        run: supabase functions deploy game-state --project-ref "$SUPABASE_PROJECT_ID"
+
+      - name: Deploy gacha-summon
+        run: supabase functions deploy gacha-summon --project-ref "$SUPABASE_PROJECT_ID"
