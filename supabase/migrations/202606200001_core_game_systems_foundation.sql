@@ -175,3 +175,15 @@ begin
   update public.veyra_gacha_pity set pulls_since_rare=p.pulls_since_rare,pulls_since_epic=p.pulls_since_epic,pulls_since_legendary=p.pulls_since_legendary,pulls_since_divine=p.pulls_since_divine,pulls_since_mythic=p.pulls_since_mythic,featured_guarantee=p.featured_guarantee,beginner_pulls=p.beginner_pulls, updated_at=now() where player_id=p_player_id and pity_group=b.pity_group;
   return jsonb_build_object('results',results,'currencies',(select to_jsonb(x) from public.veyra_player_currencies x where x.player_id=p_player_id),'pity',(select jsonb_agg(to_jsonb(y)) from public.veyra_gacha_pity y where y.player_id=p_player_id));
 end $$;
+
+-- Restrict transactional game RPCs to server-side service role only.
+revoke all on function public.veyra_claim_starter_pack(uuid) from public;
+revoke all on function public.veyra_claim_starter_pack(uuid) from anon;
+revoke all on function public.veyra_claim_starter_pack(uuid) from authenticated;
+
+revoke all on function public.veyra_perform_gacha_summon(uuid, text, int) from public;
+revoke all on function public.veyra_perform_gacha_summon(uuid, text, int) from anon;
+revoke all on function public.veyra_perform_gacha_summon(uuid, text, int) from authenticated;
+
+grant execute on function public.veyra_claim_starter_pack(uuid) to service_role;
+grant execute on function public.veyra_perform_gacha_summon(uuid, text, int) to service_role;
