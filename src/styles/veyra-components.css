@@ -1,0 +1,208 @@
+.veyra-app-bg {
+  position: relative;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at 50% -10%, rgba(93, 35, 154, 0.52), transparent 34rem),
+    radial-gradient(circle at 92% 12%, rgba(14, 165, 233, 0.16), transparent 18rem),
+    linear-gradient(180deg, var(--veyra-bg-1), var(--veyra-bg-0) 54%, #02030a);
+}
+
+.veyra-app-bg::before {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+  background:
+    linear-gradient(115deg, transparent 0 32%, rgba(255, 255, 255, 0.025) 32.4% 32.8%, transparent 33.2%),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.018) 0 1px, transparent 1px 4.5rem),
+    radial-gradient(circle at 50% 50%, transparent 0 52%, rgba(0, 0, 0, 0.45) 100%);
+  mix-blend-mode: screen;
+  opacity: 0.54;
+}
+
+.veyra-screen {
+  width: min(100%, 430px);
+  min-height: 100dvh;
+  margin: 0 auto;
+  padding: max(1rem, env(safe-area-inset-top)) 0.875rem max(1rem, env(safe-area-inset-bottom));
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.veyra-panel,
+.veyra-card {
+  position: relative;
+  border: 1px solid var(--veyra-border);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), transparent 42%), var(--veyra-panel);
+  box-shadow: var(--veyra-shadow-panel);
+  backdrop-filter: blur(10px);
+}
+
+.veyra-panel {
+  border-radius: var(--veyra-radius-xl);
+  padding: 1rem;
+}
+
+.veyra-panel::before,
+.veyra-card::before {
+  position: absolute;
+  inset: 1px 1px auto;
+  height: 1px;
+  content: "";
+  background: linear-gradient(90deg, transparent, rgba(250, 204, 21, 0.52), rgba(56, 189, 248, 0.36), transparent);
+}
+
+.veyra-panel::after {
+  position: absolute;
+  inset: 0.25rem;
+  pointer-events: none;
+  border: 1px solid rgba(214, 168, 79, 0.13);
+  border-radius: calc(var(--veyra-radius-xl) - 0.25rem);
+  content: "";
+}
+
+.veyra-panel-header {
+  display: flex;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  border-bottom: 1px solid var(--veyra-border-soft);
+  padding-bottom: 0.75rem;
+}
+
+.veyra-card {
+  border-radius: var(--veyra-radius-lg);
+  padding: 0.875rem;
+  box-shadow: var(--veyra-shadow-card);
+}
+
+.veyra-card-hover {
+  transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.veyra-card-hover:where(:hover, :focus-visible, :active) {
+  transform: translateY(-2px);
+  box-shadow: var(--veyra-shadow-card), var(--veyra-shadow-glow);
+}
+
+.veyra-button {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 1px solid var(--veyra-border-soft);
+  border-radius: var(--veyra-radius-md);
+  padding: 0.65rem 1rem;
+  color: var(--veyra-text);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  touch-action: manipulation;
+  transition: transform 140ms ease, filter 140ms ease, box-shadow 140ms ease;
+}
+
+.veyra-button:where(:hover, :focus-visible, :active) {
+  transform: translateY(-1px);
+  filter: brightness(1.08);
+}
+
+.veyra-button-primary { background: linear-gradient(180deg, #9b5cf6, #5b21b6); box-shadow: var(--veyra-shadow-glow); }
+.veyra-button-secondary { background: linear-gradient(180deg, #1d4ed8, #0f172a); box-shadow: 0 0 18px rgba(37, 99, 235, 0.22); }
+.veyra-button-gold { border-color: rgba(250, 204, 21, 0.48); background: linear-gradient(180deg, #f3c96b, #8a5b16); color: #1b1205; box-shadow: var(--veyra-shadow-gold); }
+.veyra-button-danger { border-color: rgba(244, 63, 94, 0.46); background: linear-gradient(180deg, #be123c, #4c0519); box-shadow: 0 0 18px rgba(159, 18, 57, 0.28); }
+.veyra-button-disabled,
+.veyra-button:disabled { cursor: not-allowed; border-color: rgba(100, 116, 139, 0.26); background: linear-gradient(180deg, #334155, #111827); color: #94a3b8; box-shadow: none; opacity: 0.62; transform: none; }
+
+.veyra-currency-chip,
+.veyra-reward-chip {
+  display: inline-flex;
+  min-height: 32px;
+  align-items: center;
+  gap: 0.4rem;
+  border: 1px solid var(--veyra-border-soft);
+  border-radius: 999px;
+  background: rgba(6, 10, 24, 0.68);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 0 12px rgba(56, 189, 248, 0.08);
+  color: var(--veyra-text);
+  font-size: 0.8125rem;
+  font-weight: 750;
+  line-height: 1;
+  padding: 0.35rem 0.65rem;
+}
+
+.veyra-reward-chip { border-color: rgba(214, 168, 79, 0.36); box-shadow: var(--veyra-shadow-gold); }
+
+.veyra-section-title {
+  color: var(--veyra-text);
+  font-size: clamp(1rem, 4.8vw, 1.35rem);
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-shadow: 0 0 16px rgba(168, 85, 247, 0.38);
+}
+
+.veyra-divider {
+  height: 1px;
+  border: 0;
+  background: linear-gradient(90deg, transparent, var(--veyra-border), var(--veyra-gold-soft), transparent);
+}
+
+.veyra-rarity-common { border-color: var(--rarity-common); box-shadow: 0 0 18px var(--rarity-common-glow); }
+.veyra-rarity-uncommon { border-color: var(--rarity-uncommon); box-shadow: 0 0 18px var(--rarity-uncommon-glow); }
+.veyra-rarity-rare { border-color: var(--rarity-rare); box-shadow: 0 0 20px var(--rarity-rare-glow); }
+.veyra-rarity-epic { border-color: var(--rarity-epic); box-shadow: 0 0 22px var(--rarity-epic-glow); }
+.veyra-rarity-legendary { border-color: var(--rarity-legendary); box-shadow: 0 0 24px var(--rarity-legendary-glow); }
+.veyra-rarity-divine { border-color: var(--rarity-divine); box-shadow: 0 0 26px var(--rarity-divine-glow); }
+.veyra-rarity-mythic { border-color: var(--rarity-mythic); box-shadow: 0 0 26px var(--rarity-mythic-glow); }
+
+.veyra-glow-arcane { box-shadow: var(--veyra-shadow-glow); }
+.veyra-glow-gold { box-shadow: var(--veyra-shadow-gold); }
+
+.veyra-loading,
+.veyra-empty-state,
+.veyra-error-state {
+  display: grid;
+  min-height: 8rem;
+  place-items: center;
+  border: 1px dashed var(--veyra-border-soft);
+  border-radius: var(--veyra-radius-lg);
+  background: rgba(6, 10, 24, 0.48);
+  color: var(--veyra-muted);
+  padding: 1rem;
+  text-align: center;
+}
+
+.veyra-loading::before {
+  width: 1.75rem;
+  height: 1.75rem;
+  border: 2px solid rgba(196, 181, 253, 0.22);
+  border-top-color: var(--veyra-cyan);
+  border-radius: 999px;
+  content: "";
+  animation: veyra-spin 900ms linear infinite;
+}
+
+.veyra-error-state {
+  border-color: rgba(244, 63, 94, 0.46);
+  color: #fecdd3;
+}
+
+.veyra-safe-bottom {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
+@keyframes veyra-spin { to { transform: rotate(360deg); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .veyra-card-hover,
+  .veyra-button {
+    transition: none;
+  }
+
+  .veyra-loading::before {
+    animation: none;
+  }
+}

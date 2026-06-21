@@ -1,0 +1,86 @@
+:root {
+  color-scheme: dark;
+  --veyra-bg-0: #050711;
+  --veyra-bg-1: #0a1020;
+  --veyra-bg-2: #11182f;
+  --veyra-panel: rgba(12, 18, 36, 0.78);
+  --veyra-panel-strong: rgba(16, 24, 48, 0.92);
+  --veyra-border: rgba(139, 92, 246, 0.46);
+  --veyra-border-soft: rgba(125, 211, 252, 0.22);
+  --veyra-gold: #d6a84f;
+  --veyra-gold-soft: rgba(250, 204, 21, 0.24);
+  --veyra-purple: #8b5cf6;
+  --veyra-purple-soft: rgba(139, 92, 246, 0.28);
+  --veyra-blue: #2563eb;
+  --veyra-blue-soft: rgba(37, 99, 235, 0.24);
+  --veyra-cyan: #38bdf8;
+  --veyra-danger: #9f1239;
+  --veyra-text: #f8fafc;
+  --veyra-muted: #c4b5fd;
+  --veyra-dim: #64748b;
+  --veyra-radius-sm: 0.5rem;
+  --veyra-radius-md: 0.75rem;
+  --veyra-radius-lg: 1rem;
+  --veyra-radius-xl: 1.35rem;
+  --veyra-shadow-panel: 0 18px 44px rgba(0, 0, 0, 0.42), 0 0 28px rgba(139, 92, 246, 0.16);
+  --veyra-shadow-card: 0 14px 30px rgba(0, 0, 0, 0.36), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  --veyra-shadow-glow: 0 0 24px rgba(139, 92, 246, 0.32);
+  --veyra-shadow-gold: 0 0 22px rgba(214, 168, 79, 0.28);
+  --rarity-common: #64748b;
+  --rarity-uncommon: #22c55e;
+  --rarity-rare: #38bdf8;
+  --rarity-epic: #a855f7;
+  --rarity-legendary: #facc15;
+  --rarity-divine: #fff7cc;
+  --rarity-mythic: #f472b6;
+  --rarity-common-glow: rgba(100, 116, 139, 0.35);
+  --rarity-uncommon-glow: rgba(34, 197, 94, 0.35);
+  --rarity-rare-glow: rgba(56, 189, 248, 0.4);
+  --rarity-epic-glow: rgba(168, 85, 247, 0.45);
+  --rarity-legendary-glow: rgba(250, 204, 21, 0.45);
+  --rarity-divine-glow: rgba(255, 247, 204, 0.55);
+  --rarity-mythic-glow: rgba(244, 114, 182, 0.55);
+}
+
+html {
+  background: var(--veyra-bg-0);
+  overflow-x: hidden;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+  background: var(--veyra-bg-0);
+  color: var(--veyra-text);
+  -webkit-tap-highlight-color: transparent;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: rgba(168, 85, 247, 0.42);
+  color: var(--veyra-text);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(139, 92, 246, 0.58) rgba(6, 10, 24, 0.72);
+}
+
+*::-webkit-scrollbar {
+  width: 0.45rem;
+  height: 0.45rem;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgba(6, 10, 24, 0.72);
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(168, 85, 247, 0.8), rgba(56, 189, 248, 0.62));
+}
