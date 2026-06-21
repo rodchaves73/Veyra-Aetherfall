@@ -1,97 +1,71 @@
 # Status oficial de funcionalidades | Veyra: Aetherfall
 
-Status padronizados:
+Este documento diferencia funcionalidades reais, foundations server-side, sistemas preparados e telas mock/shell. Não trate UI mock como sistema final completo.
 
-- **DONE:** concluído para o escopo atual e validado.
-- **PREPARED:** estrutura preparada, mas não operacional em produção real.
-- **MOCK:** funciona com dados locais/mockados, sem autoridade real.
-- **BLOCKED:** bloqueado por segurança, backend, revisão jurídica/econômica ou dependência crítica.
+## Legenda
+
+- **DONE:** implementado, aplicado/deployado quando necessário e validado no fluxo real descrito.
+- **PARTIAL:** integração ou experiência existe, mas ainda não cobre a versão final completa.
+- **PREPARED:** contratos, base técnica ou schema preparados para fase futura; não é funcionalidade final completa.
+- **MOCK/SHELL:** tela, preview ou comportamento visual/local sem autoridade real.
 - **PLANNED:** planejado para fase futura.
-- **DEFERRED:** deliberadamente adiado.
+- **BLOCKED/FUTURE:** bloqueado até revisão, fase específica ou infraestrutura adicional.
 
-Não marque como `DONE` algo que ainda seja mock ou apenas preparado.
-
-| Funcionalidade | Status | Camada atual | Persistência | Validação server-side | Próxima fase | Observação |
-|---|---|---|---|---|---|---|
-| AppShell | DONE | Frontend | Não aplicável | Não aplicável | Fase 0 concluída | Shell mobile MVP existe e passou por auditoria pós-deploy. |
-| Mobile safe area | DONE | Frontend/CSS | Não aplicável | Não aplicável | Fase 0 concluída | Ajustado para portrait, safe area, scroll e overflow. |
-| Home | MOCK | Frontend | Local/mock | Não | Fase 4 | Tela MVP existe, mas não reflete perfil persistido real. |
-| Heroes | MOCK | Frontend | Local/mock | Não | Fase 5 | Catálogo e coleção visual existem; ownership real ainda não existe. |
-| Battle | MOCK | Frontend | Local/mock | Não | Fase 6 | Auto battle MVP local; resultado não é autoridade do servidor. |
-| Dungeons | MOCK | Frontend | Local/mock | Não | Fase 7 | Dungeons e limites visuais existem; tentativas/rewards não são reais. |
-| Summon | MOCK | Frontend | Local/mock | Não | Fase 8 | Gacha visual existe; rolls/pity não são server-side. |
-| Shop | PREPARED | Frontend | Local/mock | Não | Fase 11 | Catálogo visual preparado; compras reais bloqueadas. |
-| Wallet | PREPARED | Frontend | Local/mock | Não | Fase 11 | Wallet/TON Connect preparados, sem pagamentos reais. |
-| Fonte do Aether | MOCK | Frontend | Local/mock | Não | Fase 12 | Experiência visual/mock; sem fragments reais ou saques. |
-| Hero catalog | MOCK | Frontend/data local | Arquivos locais | Não | Fase 5 | Catálogo local serve ao MVP e previews. |
-| Player inventory | MOCK | Frontend/data local | Local/mock | Não | Fase 3 | Inventário real depende de schema, RLS e bootstrap seguro. |
-| Collection | MOCK | Frontend/data local | Local/mock | Não | Fase 3 | Coleção real depende de owned heroes persistidos. |
-| Campaign | MOCK | Frontend/data local | Local/mock | Não | Fase 7 | Progresso real depende de persistência e validação server-side. |
-| Stamina | MOCK | Frontend/data local | Local/mock | Não | Fase 3 | Consumo real deve ser server-side e transacional. |
-| Hero progression | MOCK | Frontend/helpers | Local/mock | Não | Fase 5 | Helpers existem; upgrades reais exigem custos server-side. |
-| Gear | PLANNED | Data/UI parcial | Não | Não | Fase 5 | Sistema completo ainda não implementado. |
-| Battle engine | MOCK | Frontend | Local/mock | Não | Fase 6 | MVP local sem autoridade server-side. |
-| Battle rewards | BLOCKED | Mock visual | Não | Não | Fase 4 | Bloqueado até validação server-side e persistência. |
-| Dungeon rewards | BLOCKED | Mock visual | Não | Não | Fase 7 | Bloqueado até dungeons server-side e idempotência. |
-| Gacha | MOCK | Frontend | Local/mock | Não | Fase 8 | Não usar para resultados reais. |
-| Pity | MOCK | Frontend visual | Local/mock | Não | Fase 8 | Pity real deve ser transacional e auditável. |
-| Duplicate conversion | PLANNED | Não operacional | Não | Não | Fase 8 | Depende de gacha server-side e hero shards. |
-| Telegram UI | PREPARED | Frontend hook | Não aplicável | Não | Fase 2 | WebApp preparado; `initDataUnsafe` apenas UI. |
-| Telegram authentication | BLOCKED | Edge Functions preparadas, sem deploy | Não | Preparada, não operacional | Fase 2B | Requer secrets, deploy, teste real e integração frontend. |
-| Telegram initData validator | PREPARED | Supabase Edge Function helper | Não | Sim | Fase 2B | Validação criptográfica preparada em código, ainda sem deploy e sem secrets reais. |
-| Veyra session signer | PREPARED | Supabase Edge Function helper | Não | Sim | Fase 2B | Emissão HMAC de sessão curta preparada; não é Supabase Auth JWT. |
-| Veyra session verifier | PREPARED | Supabase Edge Function helper | Não | Sim | Fase 2B | Verificação server-side preparada para futuras Edge Functions. |
-| Telegram authentication production | PREPARED | Supabase Edge Functions + frontend | Não | Sim | Teste real/observação | Secrets e deploy foram feitos manualmente; frontend agora consome endpoints reais quando há `initData`. |
-| Telegram auth deployment readiness | PREPARED | Documentação/validação/GitHub Actions | Não | Parcial, validada em ambiente local | Fase 2C | Checklists de deploy, secrets, CORS, rollback, teste real e workflow manual preparados. |
-| Deno validation | PREPARED | Supabase Edge Functions | Não | Sim | Fase 2C | Deno instalado temporariamente fora do repo para fmt, lint, testes e checks. |
-| Supabase Edge Functions deploy | PREPARED | GitHub Actions manual | Não | Sim, pendente em produção | Fase 2C | Workflow manual preparado para `telegram-auth` e `telegram-session`, mas não executado nesta tarefa. |
-| Telegram real auth test | READY FOR MANUAL TEST | Telegram Mini App/Supabase | Não | Sim, pendente de observação manual | Teste real/observação | Abrir o Mini App no Telegram e confirmar sessão conectada, refresh e fallback fora do Telegram. |
-| Frontend auth integration | ACTIVE | Frontend | Memória apenas | Sim, via Edge Functions | Teste real/observação | Usa `initData` bruto em `telegram-auth`, confirma em `telegram-session` e mantém token Veyra somente em memória. |
-| Supabase Auth integration | DEFERRED | Não operacional | Não | Não | ADR futura | Fase 2C segue usando sessão curta Veyra; não usa Supabase Auth JWT. |
-| Supabase client | PREPARED | Frontend client | Não aplicável | Parcial/não crítico | Fase 3 | Client preparado com publishable key; sem schema real. |
-| Supabase schema | PREPARED | Migration | `veyra_players` mínima | Parcial | Aplicação manual | Migration 2D preparada; inventário/economia ainda planejados. |
-| RLS | PREPARED | Migration | `veyra_players` | Parcial | Aplicação manual | RLS habilitado na tabela mínima, sem policy pública. |
-| Player bootstrap server-side | PREPARED | Edge Function + frontend | Parcial | Sim | Deploy/teste manual | `player-bootstrap` valida sessão Veyra e sincroniza player mínimo. |
-| Player persistence | PARTIAL | Supabase schema mínimo | `veyra_players` preparada | Sim | Fase 3 | Perfil mínimo preparado; estado completo do jogador ainda não existe. |
-| Inventory persistence | PLANNED | Não operacional | Não | Não | Fase 3 | Inventário real continua fora da Fase 2D. |
-| Economy persistence | PLANNED | Não operacional | Não | Não | Fase futura | Moedas, rewards, compras e saldos reais seguem bloqueados. |
-| Rewards persistence | PLANNED | Não operacional | Não | Não | Fases 4+ | Rewards reais exigem validação server-side específica. |
-| Monetag | PREPARED | Frontend/mock | Local/mock | Não | Fase 10 | Ads recompensados reais exigem validação server-side. |
-| Telegram Stars | PREPARED | Frontend/mock | Não | Não | Fase 11 | Bens digitais internos somente após confirmação server-side. |
-| TON Connect | PREPARED | Frontend/mock | Não | Não | Fase 11 | Conexão preparada; pagamento real não validado. |
-| TON payments | BLOCKED | Não implementado | Não | Não | Fase 11 | Bloqueado até backend, confirmação e ledger. |
-| Gram / TON terminology | PREPARED | Documentação | Não aplicável | Não aplicável | Fase 1.1 | Guardrails oficiais definidos para separar display Gram/GRAM de TON técnico. |
-| Gram UI copy | PLANNED | Documentação | Não aplicável | Não aplicável | Fase 11 | UI futura pode exibir Gram/GRAM sem alterar nomes técnicos. |
-| TON Connect technical naming | PREPARED | Documentação/técnico | Não aplicável | Não aplicável | Fase 11 | TON Connect permanece como nome técnico da integração de wallet. |
-| Gram payments | BLOCKED | Não implementado | Não | Não | Fase 11 | Pagamentos reais em Gram na rede TON exigem backend, confirmação, idempotência e auditoria. |
-| Gram withdrawals | BLOCKED | Não implementado | Não | Não | Fase 12 | Saques em Gram estão bloqueados até revisão econômica/jurídica, antifraude e processo manual. |
-| Aether Fragments | BLOCKED | Mock/conceito | Não | Não | Fase 12 | Depende de revisão econômica/jurídica e antifraude. |
-| Withdrawals | BLOCKED | Não implementado | Não | Não | Fase 12 | Saques reais bloqueados; futuro processo manual. |
-| Antifraude | PLANNED | Documentação/plano | Não | Não | Fases 10-13 | Necessário antes de ads, pagamentos e fragments reais. |
-| Assets finais | PLANNED | Placeholder/UI MVP | Não aplicável | Não aplicável | Fase 9 | Retratos, ícones e FX finais ainda não existem. |
-| Analytics | PLANNED | Não implementado | Não | Não | Fase 13 | Adiar até beta/produção observável. |
-| Automated tests | PLANNED | Não implementado | Não aplicável | Não aplicável | Fases futuras | Ainda não há suíte automatizada dedicada além de lint/build/typecheck. |
-
-
-## Atualização Fase 2E/2F
+## Status atual
 
 | Funcionalidade | Status | Camada atual | Persistência | Validação server-side | Próxima fase | Observação |
 |---|---|---|---|---|---|---|
-| Player core profile | PREPARED | Supabase + Edge Function + frontend | `veyra_players` | Sim | Validação manual | Level, XP, power, stage e onboarding preparados como read model seguro. |
-| Player profile persistence | PARTIAL | Supabase schema mínimo | `veyra_players` | Sim | Fase 3 | Persistência mínima existe; inventário/economia/progressão transacional ainda não existem. |
-| Phase 2 foundation | READY FOR VALIDATION | Auth + player bootstrap | Parcial | Sim | Fechamento manual | Depende de migration, deploy e teste no Telegram Mini App. |
-| Gameplay state persistence | PLANNED | Não operacional | Não | Não | Fase 3 | Deve iniciar com contratos server-aware. |
-| Economy persistence | PLANNED | Não operacional | Não | Não | Fase futura | Moedas/rewards/compras continuam bloqueados. |
-| Inventory persistence | PLANNED | Não operacional | Não | Não | Fase 3 | Inventário real permanece fora da Fase 2. |
+| AppShell | DONE | Frontend | Não aplicável | Não aplicável | Fase 4A | Shell mobile MVP existe; Fase 4A deve elevar base visual e game shell. |
+| Mobile safe area | DONE | Frontend/CSS | Não aplicável | Não aplicável | Fase 4A | Portrait, safe area, scroll e overflow continuam obrigatórios. |
+| Telegram Auth | DONE | Edge Functions + frontend | Sessão Veyra curta | Sim | Observabilidade futura | `initData` validado server-side; `initDataUnsafe` fica só para UI. |
+| Player Bootstrap | DONE | Edge Function + Supabase | `veyra_players` | Sim | Evoluções futuras | Player real mínimo sincronizado via sessão Veyra. |
+| Player Core Profile | DONE | Edge Function + Supabase | `veyra_players` | Sim | Evoluções futuras | Read model seguro com level, XP, power e stage básico. |
+| Game-state | DONE | Edge Function + Supabase | Foundation real | Sim | Fase 4A/4B | Carregou no Mini App após Fase 3. |
+| Starter Pack | DONE | Edge Function/RPC | Foundation real | Sim | Fase 4B | Claim server-side funcionou uma única vez. |
+| Currencies foundation | DONE | Supabase/RPC | Foundation real | Sim | Fases futuras | Moedas/tickets base testados; não implica pagamentos reais. |
+| Hero catalog foundation | DONE | Supabase/data seed | Foundation real | Sim | Fase 4D | Catálogo base disponível para UI. |
+| Banners foundation | DONE | Supabase/data seed | Foundation real | Sim | Fase 4C | Banners base disponíveis para summon. |
+| Gacha-summon server-side foundation | DONE | Edge Function/RPC | Foundation real | Sim | Fase 4C | Summon 1x e 10x testados; frontend não sorteia. |
+| Pity foundation | DONE | Supabase/RPC | Foundation real | Sim | Fase 4C | Pity server-side testado como foundation. |
+| Duplicate conversion foundation | DONE | Supabase/RPC | Foundation real | Sim | Fase 4C/4D | Duplicatas geram shards/soul dust via servidor. |
+| Summon frontend integration | PARTIAL | Frontend + Edge Function | Via servidor | Sim | Fase 4C | Integração existe, mas UI premium/reveal/histórico final ainda não. |
+| Home UI | MOCK/SHELL | Frontend | Visual/local parcial | Não para UI | Fase 4B | Deve ser elevada para Home RPG Premium. |
+| Heroes UI | MOCK/SHELL | Frontend | Visual/local parcial | Não para UI | Fase 4D | Coleção visual não deve fingir upgrade final completo. |
+| Campaign UI | MOCK/SHELL | Frontend | Visual/local parcial | Não | Fase 4E | Progressão real está preparada, mas UI ainda shell. |
+| Battle UI | MOCK/SHELL | Frontend | Visual/local parcial | Não | Fase 4E | Battle visual/local não é autoridade de resultado persistente. |
+| Shop UI | MOCK/SHELL | Frontend | Visual/local parcial | Não | Fase futura | Compras reais seguem bloqueadas. |
+| Battle loop | PREPARED | Regras/base | Não final | Parcial/contratos | Fase futura | Foundation existe; persistência de resultado ainda não. |
+| Campaign progression real | PREPARED | Supabase/contratos | Preparada | Sim em fase futura | Fase futura | Não tratar como fluxo final completo. |
+| Battle result persistence | PREPARED | Contratos/foundation | Não final | Exigida | Fase futura | Resultado real requer validação/idempotência server-side específica. |
+| Dungeon result persistence | PREPARED | Contratos/foundation | Não final | Exigida | Fase futura | Rewards reais de dungeon ainda não estão ativos. |
+| Hero upgrade execution | PREPARED | Foundation | Não final | Exigida | Fase futura | Custos e execução reais precisam fase própria. |
+| Gear | PREPARED | Data/contratos | Não final | Exigida | Fase futura | Sistema completo ainda não implementado. |
+| Ads reward claims | PLANNED | Não operacional | Não | Exigida | Fase futura | Monetag real e claims precisam validação antiabuso. |
+| Guild | PLANNED | Não operacional | Não | Exigida | Fase futura | Fora da Fase 4A. |
+| Raid | PLANNED | Não operacional | Não | Exigida | Fase futura | Fora da Fase 4A. |
+| Events | PLANNED | Não operacional | Não | Exigida | Fase futura | Fora da Fase 4A. |
+| Monetag | PREPARED | Frontend/mock | Local/mock | Não | Fase futura | Ads recompensados reais exigem validação server-side. |
+| Telegram Stars | BLOCKED/FUTURE | Frontend/mock | Não | Exigida | Fase específica | Sem Stars reais nesta fase. |
+| TON Connect | PREPARED | Frontend/mock | Não | Não final | Fase específica | Conexão preparada; pagamento real bloqueado. |
+| TON real | BLOCKED/FUTURE | Não implementado | Não | Exigida | Fase específica | Nenhum crédito real de TON/Gram. |
+| Gram real | BLOCKED/FUTURE | Não implementado | Não | Exigida | Fase específica | Gram é terminologia de UI futura; sem saldo real. |
+| Aether Fragments | BLOCKED/FUTURE | Conceito/mock | Não | Exigida | Revisão econômica/jurídica | Bloqueado até fase aprovada. |
+| Withdrawals | BLOCKED/FUTURE | Não implementado | Não | Exigida | Revisão específica | Saques reais bloqueados. |
+| Marketplace | BLOCKED/FUTURE | Não implementado | Não | Exigida | Fase específica | Fora do MVP atual. |
+| NFT | BLOCKED/FUTURE | Não implementado | Não | Exigida | Fase específica | Fora do MVP atual. |
+| Antifraude | PLANNED | Plano/contratos | Não final | Exigida | Fases futuras | Necessário antes de ads/pagamentos/fragments. |
+| Assets finais | PLANNED | Placeholder/UI MVP | Não aplicável | Não aplicável | Fase 4+ | Direção premium começa na Fase 4A. |
+| Analytics | PLANNED | Não implementado | Não | Não | Beta/produção | Adiar até observabilidade de beta. |
 
-## Atualização Fase 3 | Core game systems foundation
+## Segurança confirmada
 
-- Preparada fundação real de game-state, starter pack, moedas, tickets, catálogo inicial de heróis, banners, pity, summon server-side, duplicatas, hero shards, soul dust, progressão de heróis, regras puras de combate, conteúdo base e contratos de ads.
-- Novas operações críticas são server-side via Supabase Edge Functions e funções SQL transacionais; o frontend não sorteia gacha nem entrega recursos.
-- RLS fica habilitado nas novas tabelas, sem policy pública e sem grants para `anon` ou `authenticated`.
-- Ainda planejado: battle/dungeon result persistente, guilda, raid, eventos funcionais, Monetag real, pagamentos, Stars, TON/Gram, marketplace, NFT, Aether Fragments e saques.
+- O frontend não sorteia gacha.
+- O frontend não entrega resources, starter pack, moedas, shards, soul dust ou rewards reais.
+- Starter pack e summon são server-side.
+- RPCs críticas são `service_role` only.
+- Tokens Veyra não ficam em `localStorage`, `sessionStorage` ou cookies.
+- Supabase service role não é exposta ao frontend.
 
-## Patch pré-merge PR #16 | Gacha server-side
+## Próxima fase autorizada
 
-- Gacha server-side permanece PREPARED, agora com correção de rates cumulativos por banner, bloqueio de Common no Astral Covenant, `event_banner_weekly`, Beginner Banner limitado a 30 pulls e featured guarantee 70/30.
-- A auditoria persistente de `wasFeatured` e `wasPity` ainda está PLANNED para schema futuro; nesta correção os campos retornam no JSON seguro da RPC.
+- **Fase 4A — Visual System + Game Shell Base.**

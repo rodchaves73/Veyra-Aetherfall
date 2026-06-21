@@ -1,65 +1,68 @@
 # Plano de Schema Supabase
 
-Tabelas futuras planejadas:
+Este documento registra o estado oficial de schema após a Fase 3. A Fase 3 — Core Game Systems Foundation foi concluída, aplicada manualmente no Supabase e testada no Telegram Mini App.
 
-- `players`
-- `player_profiles`
-- `player_inventory`
-- `player_heroes`
-- `player_gacha_state`
-- `player_campaign_progress`
-- `player_dungeon_runs`
-- `player_ad_claims`
-- `player_aether_fountain`
-- `player_wallets`
-- `purchase_history`
-- `stars_orders`
-- `ton_payments`
-- `aether_balances`
-- `aether_ledger`
-- `reward_pools`
-- `withdrawals`
-- `fraud_flags`
+## Implementado/aplicado até a Fase 3
 
-Use RLS, Edge Functions e service role apenas em ambiente server-side seguro.
+- Player bootstrap e core profile em `public.veyra_players`.
+- Game-state foundation.
+- Starter Pack server-side com claim único.
+- Currencies foundation.
+- Hero catalog foundation.
+- Banners foundation.
+- Pity foundation.
+- Duplicate conversion foundation com hero shards e soul dust.
+- Gacha-summon server-side foundation para summon 1x e 10x.
+
+## Segurança de schema atual
+
+- RLS permanece habilitada nas tabelas públicas relevantes.
+- O frontend não deve ler/escrever diretamente tabelas críticas para conceder recursos.
+- RPCs críticas permanecem restritas a `service_role` no servidor.
+- Não há grants públicos para operações econômicas críticas.
+- Supabase service role não é exposta ao frontend.
+
+## PREPARED
+
+- Battle loop.
+- Campaign progression real.
+- Dungeon result real.
+- Hero upgrade execution.
+- Gear.
+- Ads claim validation.
+- Guild.
+- Raid.
+- Events.
+
+## BLOCKED / FUTURE
+
+- TON real.
+- Gram real.
+- Telegram Stars reais.
+- Aether Fragments reais.
+- Withdrawals/saques.
+- Marketplace.
+- NFT.
+
+## Tabelas/sistemas futuros ainda planejados
+
+Nomes finais podem mudar em migrations futuras. Nenhum item abaixo deve ser tratado como disponível apenas por constar no plano.
+
+- `player_dungeon_runs`.
+- `player_ad_claims`.
+- `player_aether_fountain`.
+- `player_wallets`.
+- `purchase_history`.
+- `stars_orders`.
+- `ton_payments`.
+- `aether_balances`.
+- `aether_ledger`.
+- `reward_pools`.
+- `withdrawals`.
+- `fraud_flags`.
 
 ## Terminologia de schema
 
 - Tabelas e colunas planejadas com prefixo `ton_*` representam a rede/protocolo TON.
 - A UI pode exibir o ativo como Gram/GRAM.
 - Renomear schema para `gram_*` exige ADR futura e migração específica.
-
-
-## Fase 2D | `public.veyra_players`
-
-A migration `202606180001_create_veyra_players.sql` prepara a tabela mínima `public.veyra_players` para bootstrap server-side do jogador real.
-
-Campos principais:
-
-- `id` UUID interno.
-- `telegram_user_id` único, derivado da sessão Veyra validada server-side.
-- Metadados mínimos do Telegram normalizados para bootstrap.
-- `display_name`, `account_status`, `created_at`, `updated_at` e `last_seen_at`.
-
-RLS fica habilitado sem policy pública. O frontend não deve ler a tabela diretamente; acesso real ocorre via Edge Function com service role no servidor. Inventário, economia, rewards e gameplay persistidos continuam planejados.
-
-
-## Fase 2E/2F | Core profile em `public.veyra_players`
-
-A migration `202606190002_add_veyra_player_core_profile.sql` adiciona ao player mínimo:
-
-- `player_level` com default `1` e limite entre 1 e 999.
-- `player_xp` com default `0` e valor não negativo.
-- `power_score` com default `0` e valor não negativo.
-- `campaign_chapter` e `campaign_stage` com default `1` e valores mínimos 1.
-- `onboarding_status` com valores `new`, `started`, `completed` ou `skipped`.
-- `last_bootstrap_at` para auditoria operacional do bootstrap.
-
-Também cria índice de progresso e preserva acesso `select`, `insert` e `update` para `service_role`. Não cria tabela nova, policy pública nem desabilita RLS.
-
-## Atualização Fase 3 | Core game systems foundation
-
-- Preparada fundação real de game-state, starter pack, moedas, tickets, catálogo inicial de heróis, banners, pity, summon server-side, duplicatas, hero shards, soul dust, progressão de heróis, regras puras de combate, conteúdo base e contratos de ads.
-- Novas operações críticas são server-side via Supabase Edge Functions e funções SQL transacionais; o frontend não sorteia gacha nem entrega recursos.
-- RLS fica habilitado nas novas tabelas, sem policy pública e sem grants para `anon` ou `authenticated`.
-- Ainda planejado: battle/dungeon result persistente, guilda, raid, eventos funcionais, Monetag real, pagamentos, Stars, TON/Gram, marketplace, NFT, Aether Fragments e saques.

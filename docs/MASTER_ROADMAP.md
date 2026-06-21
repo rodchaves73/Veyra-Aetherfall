@@ -110,7 +110,7 @@ Padronizar a terminologia entre Gram, Toncoin, TON e TON Connect antes de implem
 
 ## Fase 2 | Autenticação Telegram segura
 
-**Status:** em andamento, com 2A concluída, 2B preparada para deploy controlado, 2B.1 preparada para deploy manual via GitHub Actions e 2C implementada em código frontend.
+**Status:** concluída. Telegram Auth, Player Bootstrap e Player Core Profile foram implementados, deployados/aplicados e testados no Telegram Mini App.
 
 ### Fase 2A | Contratos e Edge Functions
 
@@ -125,10 +125,9 @@ Padronizar a terminologia entre Gram, Toncoin, TON e TON Connect antes de implem
 
 #### Limites 2A
 
-- Funções ainda não implantadas.
-- Secrets ainda não configurados.
-- Nenhuma sessão real em produção.
-- Nenhuma integração frontend real.
+- Histórico da subfase: contratos e código base preparados antes do deploy.
+- Estado atual consolidado: funções de auth foram disponibilizadas e testadas em fases posteriores.
+- Secrets reais permanecem fora do Git.
 
 ### Fase 2B | Deploy readiness e validação operacional
 
@@ -141,11 +140,11 @@ Padronizar a terminologia entre Gram, Toncoin, TON e TON Connect antes de implem
 - Validação Deno/TypeScript das Edge Functions quando o ambiente permitir.
 - Plano de teste real com Telegram Mini App.
 - Registro de riscos operacionais e próximos bloqueios.
-- Deploy real, configuração de secrets reais e integração frontend permanecem manuais ou em fase posterior.
+- Estado atual consolidado: deploy e teste real foram executados em fases posteriores; secrets reais continuam fora do Git.
 
 ### Fase 2B.1 | GitHub Actions manual deploy das Edge Functions
 
-**Status:** preparada, não executada.
+**Status:** concluída/executada para as funções necessárias até a Fase 3.
 
 #### Entregáveis 2B.1
 
@@ -156,25 +155,25 @@ Padronizar a terminologia entre Gram, Toncoin, TON e TON Connect antes de implem
 
 #### Limites 2B.1
 
-- Workflow não executado por esta tarefa.
-- Nenhum deploy de banco, migration ou configuração de secrets.
-- Nenhuma alteração de frontend, `package.json`, Vercel ou `.env`.
+- Workflow manual usado para disponibilizar as Edge Functions necessárias.
+- Secrets reais permanecem fora do Git.
+- Nenhuma service role é exposta ao frontend.
 
 ### Fase 2C | Frontend auth integration controlada
 
-**Status:** implementada/preparada em código.
+**Status:** concluída e testada no Mini App.
 
 #### Entregáveis 2C
 
 - Frontend integrado aos endpoints `telegram-auth` e `telegram-session` para validação real controlada quando aberto no Telegram Mini App.
 - Token Veyra mantido somente em memória, sem armazenamento persistente.
 - Fallback seguro preservado fora do Telegram Mini App em modo preview/mock, sem autenticação falsa.
-- Banco, Supabase Auth, RLS, inventário persistido e economia real continuam fora do escopo.
-- Próxima fase deve focar teste real/observação da sessão ou bootstrap player server-side mínimo; economia real continua bloqueada.
+- Supabase Auth JWT continua fora do escopo; a sessão Veyra curta permanece o mecanismo atual.
+- Bootstrap de player e foundation core foram concluídos em fases posteriores.
 
 ### Fase 2D | Player bootstrap server-side mínimo
 
-**Status:** implementada/preparada em código.
+**Status:** concluída e testada no Mini App.
 
 #### Entregáveis 2D
 
@@ -185,9 +184,9 @@ Padronizar a terminologia entre Gram, Toncoin, TON e TON Connect antes de implem
 
 #### Limites 2D
 
-- Migration e deploy ainda exigem execução manual após merge.
-- Não há inventário, economia, stamina, rewards, gacha, pity, pagamentos ou saques reais.
-- Próxima fase sugerida: aplicar migration via Supabase SQL Editor, rodar deploy manual e validar `Telegram Auth: Connected` + `Player synced` no Mini App.
+- Migration e deploy foram executados no processo de validação até a Fase 3.
+- Pagamentos, saques e sistemas financeiros continuam bloqueados.
+- `Telegram Auth: Connected` e `Player synced` foram validados no Mini App real.
 
 ### Pré-requisitos
 
@@ -209,7 +208,7 @@ Padronizar a terminologia entre Gram, Toncoin, TON e TON Connect antes de implem
 - Nenhuma identidade real depende de `initDataUnsafe`.
 - Sessão é criada somente após validação server-side.
 - Fluxo dev não se mistura com produção.
-- Recursos reais ainda não são persistidos antes da Fase 3.
+- Recursos foundation da Fase 3 só são persistidos por operações server-side autorizadas.
 
 ### Dependências
 
@@ -224,15 +223,14 @@ Padronizar a terminologia entre Gram, Toncoin, TON e TON Connect antes de implem
 
 ### Sistemas proibidos nesta fase
 
-- Persistir inventário real.
-- Creditar moedas/rewards reais.
-- Gacha real.
-- Pagamentos reais.
-- Saques.
+- Implementar pagamentos reais.
+- Implementar saques.
+- Expor service role no frontend.
+- Confiar em `initDataUnsafe` como autenticação.
 
-## Fase 3 | Supabase mínimo
+## Fase 3 | Core Game Systems Foundation
 
-**Status:** planejada.
+**Status:** concluída, aplicada no Supabase e testada no Telegram Mini App.
 
 ### Pré-requisitos
 
@@ -242,22 +240,29 @@ Padronizar a terminologia entre Gram, Toncoin, TON e TON Connect antes de implem
 
 ### Entregáveis
 
-- Schema inicial.
-- RLS.
-- Player profile.
-- Inventory.
-- Owned heroes.
-- Campaign progress.
-- Stamina.
-- Repositories/services.
-- Bootstrap seguro.
+- Game-state Edge Function.
+- Starter Pack server-side com claim único.
+- Currencies foundation.
+- Hero catalog foundation.
+- Banners foundation.
+- Gacha-summon Edge Function para 1x e 10x.
+- Pity foundation.
+- Duplicate conversion foundation com hero shards e soul dust.
+- Progressão de heróis preparada.
+- Regras puras de combate e contratos de ads preparados.
+- RLS e grants restritivos para operações críticas.
 
 ### Definição de pronto
 
-- Dados mínimos do jogador persistem com RLS.
-- Cliente usa APIs/repositories seguros.
+- Migration da Fase 3 aplicada manualmente no Supabase.
+- Workflow de Edge Functions executado.
+- Mini App testado em fluxo real.
+- `game-state` carregando.
+- Starter pack funcionando uma única vez.
+- Summon 1x e 10x funcionando server-side.
+- Currencies, pity, duplicatas/shards/soul dust testados.
 - Service role permanece fora do frontend.
-- Migrations e políticas revisadas.
+- Frontend não sorteia gacha e não entrega resources.
 
 ### Dependências
 
@@ -272,57 +277,63 @@ Padronizar a terminologia entre Gram, Toncoin, TON e TON Connect antes de implem
 
 ### Sistemas proibidos nesta fase
 
-- Battle finish com rewards reais.
-- Gacha real.
+- Battle finish com rewards reais finais.
+- Dungeon finish com rewards reais finais.
 - Pagamentos reais.
+- Stars reais.
+- TON/Gram real.
+- Marketplace/NFT/staking.
 - Aether Fragments reais.
+- Saques.
 
-## Fase 4 | Vertical slice jogável
+## Fase 4 | Visual e Game Shell Premium
 
 **Status:** planejada.
 
-### Fluxo oficial
+### Próxima fase autorizada
 
-Entrar > receber equipe inicial > escolher fase > gastar stamina > lutar > validar resultado > receber rewards > melhorar herói > desbloquear próxima fase.
+- **Fase 4A — Visual System + Game Shell Base.**
+
+### Subfases oficiais
+
+#### Fase 4A — Visual System + Game Shell Base
+
+- Definir base visual premium dark aether fantasy.
+- Consolidar shell mobile-first, navegação, espaçamentos, safe area, tokens visuais e estados globais.
+- Não implementar UI final completa de cada feature nem novos sistemas server-side.
+
+#### Fase 4B — Home RPG Premium
+
+- Evoluir Home UI de mock/shell para experiência RPG premium conectada ao estado disponível.
+- Preservar honestidade sobre sistemas ainda preparados ou futuros.
+
+#### Fase 4C — Summon Premium UI
+
+- Evoluir interface de summon para consumir a foundation server-side sem mover sorteio para o cliente.
+- Frontend continua sem autoridade sobre rates, pity, duplicatas ou entrega de recursos.
+
+#### Fase 4D — Heroes Collection UI
+
+- Evoluir coleção e detalhe de heróis com base na foundation existente.
+- Execução real de upgrades permanece fase preparada/futura até validação server-side específica.
+
+#### Fase 4E — Campaign + Battle Shell
+
+- Evoluir shell de Campaign/Battle para visual e fluxo premium.
+- Resultado persistente real de battle/campaign/dungeon permanece PREPARED até fase server-side específica.
 
 ### Pré-requisitos
 
-- Fase 3 concluída.
-- Persistência mínima e RLS funcionando.
-
-### Entregáveis
-
-- Fluxo jogável ponta a ponta.
-- Gastar stamina com autoridade server-side.
-- Validar resultado.
-- Receber rewards server-side.
-- Upgrade simples de herói.
-- Desbloqueio de próxima fase.
-
-### Definição de pronto
-
-- Fluxo completo testado com usuário autenticado.
-- Operações críticas idempotentes.
-- Cliente não decide rewards reais.
-
-### Dependências
-
-- Auth segura.
-- Supabase mínimo.
-- Battle MVP.
-
-### Riscos
-
-- Exploração por replay.
-- Divergência client/server.
-- Balanceamento inicial frágil.
+- Fase 3 concluída e testada.
+- Game-state, starter pack e summon server-side disponíveis.
+- Status mock/shell de telas visuais reconhecido nos documentos oficiais.
 
 ### Sistemas proibidos nesta fase
 
-- Gacha real completo.
-- Pagamentos reais.
-- Saques.
-- Marketplace/NFT/staking.
+- Implementar pagamentos reais, TON/Gram real ou Stars reais.
+- Implementar Aether Fragments, saques, marketplace, NFT ou staking.
+- Fazer o frontend sortear gacha ou entregar resources.
+- Transformar battle/dungeon/campaign result em persistência real sem fase server-side aprovada.
 
 ## Fase 5 | Heroes progression
 
@@ -729,7 +740,7 @@ Entrar > receber equipe inicial > escolher fase > gastar stamina > lutar > valid
 
 ### Fase 2E/2F | Player core profile e fechamento
 
-**Status:** implementada em código, pendente de validação manual.
+**Status:** concluída e validada.
 
 #### Entregáveis 2E/2F
 
@@ -740,11 +751,4 @@ Entrar > receber equipe inicial > escolher fase > gastar stamina > lutar > valid
 
 #### Próxima fase
 
-- **Fase 3 — RPG Systems Foundation.** Deve começar por sistemas RPG server-aware, contratos de schema e validação, sem implementar battle completo ou economia real antecipadamente.
-
-## Atualização Fase 3 | Core game systems foundation
-
-- Preparada fundação real de game-state, starter pack, moedas, tickets, catálogo inicial de heróis, banners, pity, summon server-side, duplicatas, hero shards, soul dust, progressão de heróis, regras puras de combate, conteúdo base e contratos de ads.
-- Novas operações críticas são server-side via Supabase Edge Functions e funções SQL transacionais; o frontend não sorteia gacha nem entrega recursos.
-- RLS fica habilitado nas novas tabelas, sem policy pública e sem grants para `anon` ou `authenticated`.
-- Ainda planejado: battle/dungeon result persistente, guilda, raid, eventos funcionais, Monetag real, pagamentos, Stars, TON/Gram, marketplace, NFT, Aether Fragments e saques.
+- **Fase 4A — Visual System + Game Shell Base.**

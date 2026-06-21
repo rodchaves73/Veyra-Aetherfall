@@ -1,26 +1,45 @@
 # Plano de Segurança
 
-Veyra: Aetherfall é um Vite SPA mobile-first para Telegram Mini App. O MVP usa estado local/mockado para gameplay, economia, summon, battle rewards, Monetag, Stars e TON, mantendo integração real para uma etapa server-side futura.
+Veyra: Aetherfall é um Vite SPA mobile-first para Telegram Mini App. Após a Fase 3, autenticação, bootstrap de jogador, profile core, game-state, starter pack e summon foundation usam autoridade server-side. Partes visuais do frontend ainda podem ser mock/shell.
 
 ## Princípios
 
 - Nenhuma secret no frontend.
 - Service role do Supabase nunca deve entrar no browser.
 - Telegram `initDataUnsafe` é apenas conveniência visual.
-- Gacha, pity, rewarded ads, pagamentos, saques, inventário e rewards reais devem ser validados server-side.
-- Gold, Gems, Aether Shards, Stamina, materiais e Hero XP nunca viram TON.
+- Autenticação real usa `initData` validado server-side.
+- Gacha, pity, starter pack, inventário e resources reais são server-side.
+- Rewarded ads, pagamentos, saques e sistemas financeiros reais devem ser validados server-side em fases específicas.
+- Gold, Gems, Aether Shards, Stamina, materiais e Hero XP nunca viram TON/Gram.
 
-## Obrigatório antes de produção
+## Confirmado pós-Fase 3
 
-- Telegram initData deve ser validado server-side.
+- Telegram Auth, Player Bootstrap e Player Core Profile estão DONE.
+- `game-state` carregou no Mini App.
+- Starter Pack funcionou uma única vez por jogador via servidor.
+- Summon 1x e 10x funcionaram via servidor.
+- Currencies, pity, duplicatas, hero shards e soul dust foram testados como foundation real.
+
+## Garantias de segurança mantidas
+
+- O frontend não sorteia gacha.
+- O frontend não entrega resources, moedas, rewards, starter pack, shards ou soul dust.
+- Starter pack e summon são server-side.
+- RPCs críticas são `service_role` only.
+- Tokens Veyra não ficam em `localStorage`, `sessionStorage` ou cookies.
+- Supabase service role não é exposta.
+- RLS permanece habilitada nas tabelas públicas relevantes.
+- Respostas não devem expor token, `Authorization`, `initData`, hash, payload bruto do Telegram, service role ou segredo de sessão.
+
+## Obrigatório antes de novas features críticas
+
+- Battle rewards precisam validação e persistência server-side específicas.
+- Dungeon rewards precisam validação e persistência server-side específicas.
+- Hero upgrades reais precisam custos e execução atômica server-side.
 - Monetag rewards devem ser validados server-side.
-- TON payments devem ser verificados on-chain antes de crédito.
+- TON/Gram payments devem ser verificados on-chain antes de crédito.
 - Telegram Stars precisam confirmação oficial antes de reward.
-- Gacha precisa ser server-side.
-- Pity precisa ser server-side.
-- Battle rewards precisam ser server-side.
-- Inventory changes precisam ser server-side.
-- Aether Fragments precisam antifraude.
+- Aether Fragments precisam antifraude e revisão econômica/jurídica.
 - Withdraw precisa revisão manual no início.
 - `.env` real nunca no Git.
 
@@ -32,27 +51,12 @@ Veyra: Aetherfall é um Vite SPA mobile-first para Telegram Mini App. O MVP usa 
 - Nenhum saldo, pagamento ou saque em Gram deve ser confiado ao cliente.
 - Não existe conversão garantida entre recursos internos e Gram.
 
+## Sistemas bloqueados/futuros
 
-## Fase 2D | Bootstrap seguro de player
-
-- `SUPABASE_SERVICE_ROLE_KEY` é usada somente na Edge Function `player-bootstrap`, nunca no frontend.
-- `public.veyra_players` tem RLS habilitado e nenhuma policy pública nesta fase.
-- O frontend não acessa a tabela diretamente; ele chama a Edge Function com sessão Veyra em memória.
-- O token Veyra é passado por callback de auth e não é renderizado, persistido, logado, salvo em `localStorage`, `sessionStorage` ou cookie.
-- A resposta do bootstrap omite payload bruto do Telegram, `initData`, hash, `Authorization`, token e dados server-side sensíveis.
-
-
-## Fase 2E/2F | Segurança do profile read model
-
-- O profile read model é retornado somente após sessão Veyra válida.
-- O frontend continua sem acesso direto à tabela `public.veyra_players`.
-- RLS permanece ativo e nenhuma policy pública foi adicionada.
-- `service_role` continua restrita às Edge Functions.
-- A resposta não expõe token, `Authorization`, `initData`, hash, payload bruto do Telegram, service role ou segredo de sessão.
-
-## Atualização Fase 3 | Core game systems foundation
-
-- Preparada fundação real de game-state, starter pack, moedas, tickets, catálogo inicial de heróis, banners, pity, summon server-side, duplicatas, hero shards, soul dust, progressão de heróis, regras puras de combate, conteúdo base e contratos de ads.
-- Novas operações críticas são server-side via Supabase Edge Functions e funções SQL transacionais; o frontend não sorteia gacha nem entrega recursos.
-- RLS fica habilitado nas novas tabelas, sem policy pública e sem grants para `anon` ou `authenticated`.
-- Ainda planejado: battle/dungeon result persistente, guilda, raid, eventos funcionais, Monetag real, pagamentos, Stars, TON/Gram, marketplace, NFT, Aether Fragments e saques.
+- TON real.
+- Gram real.
+- Telegram Stars reais.
+- Aether Fragments reais.
+- Withdrawals/saques.
+- Marketplace.
+- NFT.
