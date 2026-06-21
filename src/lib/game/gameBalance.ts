@@ -1,0 +1,12 @@
+export const elements = ['fire', 'water', 'nature', 'light', 'dark', 'arcane'] as const;
+export const heroClasses = ['guardian', 'vanguard', 'duelist', 'ranger', 'arcanist', 'cleric', 'oracle', 'hexer', 'warden', 'reaver'] as const;
+export const races = ['human', 'aetherborn', 'sylvan', 'drakonid', 'umbral', 'celestian', 'ironforged', 'beastkin', 'voidspawn'] as const;
+export const playableFactions = ['aetherguard_covenant', 'astral_synod', 'verdant_clans', 'emberforged_legion', 'tidebound_enclave', 'umbral_court', 'ironbound_remnants', 'nomad_freeblades'] as const;
+export const enemyFactions = ['voidborn_heresy', 'ashen_horde', 'gravebound', 'abyssal_brood', 'fallen_celestials'] as const;
+export const rarities = ['common', 'uncommon', 'rare', 'epic', 'legendary', 'divine', 'mythic'] as const;
+export type GameElement = typeof elements[number]; export type HeroClass = typeof heroClasses[number]; export type HeroRace = typeof races[number]; export type HeroFaction = typeof playableFactions[number] | typeof enemyFactions[number]; export type HeroRarity = typeof rarities[number];
+export const classRoles: Record<HeroClass, string> = { guardian: 'tank, shield, provoke', vanguard: 'bruiser, frontline, sustain', duelist: 'single target DPS, boss killer', ranger: 'ranged DPS, bleed, multihit', arcanist: 'AoE magic, burst, elemental damage', cleric: 'heal, cleanse, regen', oracle: 'support, buff, energy, turn meter', hexer: 'debuff, poison, curse, control', warden: 'summon, pets, shields, battlefield control', reaver: 'assassin, execute, lifesteal' };
+export const starterPack = { gold: 5000, gems: 300, stamina: 120, standard_ticket: 10, hero_xp_books_minor: 5, common_skill_tomes: 3, campaignChapter: 1, campaignStage: 1, playerLevel: 1 } as const;
+export const summonGemCosts = { standard: 160, astral: 240, divine_focus: 320, mythic_focus: 320, event: 240, beginner: 120 } as const;
+export const duplicateConversion: Record<HeroRarity, { shards: number; soulDust: number; divineSigil?: number; mythicSigil?: number }> = { common: { shards: 10, soulDust: 5 }, uncommon: { shards: 15, soulDust: 10 }, rare: { shards: 25, soulDust: 30 }, epic: { shards: 50, soulDust: 100 }, legendary: { shards: 100, soulDust: 500 }, divine: { shards: 150, soulDust: 1500, divineSigil: 1 }, mythic: { shards: 200, soulDust: 3000, mythicSigil: 1 } };
+export const initialStarsByRarity: Record<HeroRarity, number> = { common: 1, uncommon: 2, rare: 3, epic: 4, legendary: 5, divine: 5, mythic: 5 };

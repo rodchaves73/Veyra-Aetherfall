@@ -49,3 +49,10 @@ Veyra: Aetherfall é um Vite SPA mobile-first para Telegram Mini App. O MVP usa 
 - RLS permanece ativo e nenhuma policy pública foi adicionada.
 - `service_role` continua restrita às Edge Functions.
 - A resposta não expõe token, `Authorization`, `initData`, hash, payload bruto do Telegram, service role ou segredo de sessão.
+
+## Atualização Fase 3 | Core game systems foundation
+
+- Preparada fundação real de game-state, starter pack, moedas, tickets, catálogo inicial de heróis, banners, pity, summon server-side, duplicatas, hero shards, soul dust, progressão de heróis, regras puras de combate, conteúdo base e contratos de ads.
+- Novas operações críticas são server-side via Supabase Edge Functions e funções SQL transacionais; o frontend não sorteia gacha nem entrega recursos.
+- RLS fica habilitado nas novas tabelas, sem policy pública e sem grants para `anon` ou `authenticated`.
+- Ainda planejado: battle/dungeon result persistente, guilda, raid, eventos funcionais, Monetag real, pagamentos, Stars, TON/Gram, marketplace, NFT, Aether Fragments e saques.

@@ -56,3 +56,10 @@ A migration `202606190002_add_veyra_player_core_profile.sql` adiciona ao player 
 - `last_bootstrap_at` para auditoria operacional do bootstrap.
 
 Também cria índice de progresso e preserva acesso `select`, `insert` e `update` para `service_role`. Não cria tabela nova, policy pública nem desabilita RLS.
+
+## Atualização Fase 3 | Core game systems foundation
+
+- Preparada fundação real de game-state, starter pack, moedas, tickets, catálogo inicial de heróis, banners, pity, summon server-side, duplicatas, hero shards, soul dust, progressão de heróis, regras puras de combate, conteúdo base e contratos de ads.
+- Novas operações críticas são server-side via Supabase Edge Functions e funções SQL transacionais; o frontend não sorteia gacha nem entrega recursos.
+- RLS fica habilitado nas novas tabelas, sem policy pública e sem grants para `anon` ou `authenticated`.
+- Ainda planejado: battle/dungeon result persistente, guilda, raid, eventos funcionais, Monetag real, pagamentos, Stars, TON/Gram, marketplace, NFT, Aether Fragments e saques.

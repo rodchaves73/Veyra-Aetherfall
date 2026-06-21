@@ -741,3 +741,10 @@ Entrar > receber equipe inicial > escolher fase > gastar stamina > lutar > valid
 #### Próxima fase
 
 - **Fase 3 — RPG Systems Foundation.** Deve começar por sistemas RPG server-aware, contratos de schema e validação, sem implementar battle completo ou economia real antecipadamente.
+
+## Atualização Fase 3 | Core game systems foundation
+
+- Preparada fundação real de game-state, starter pack, moedas, tickets, catálogo inicial de heróis, banners, pity, summon server-side, duplicatas, hero shards, soul dust, progressão de heróis, regras puras de combate, conteúdo base e contratos de ads.
+- Novas operações críticas são server-side via Supabase Edge Functions e funções SQL transacionais; o frontend não sorteia gacha nem entrega recursos.
+- RLS fica habilitado nas novas tabelas, sem policy pública e sem grants para `anon` ou `authenticated`.
+- Ainda planejado: battle/dungeon result persistente, guilda, raid, eventos funcionais, Monetag real, pagamentos, Stars, TON/Gram, marketplace, NFT, Aether Fragments e saques.
