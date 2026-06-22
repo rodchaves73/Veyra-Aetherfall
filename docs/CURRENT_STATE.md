@@ -85,6 +85,8 @@ Este documento registra o estado real atual do projeto e deve ser tratado como f
 - Campaign UI.
 - Shop UI.
 - Algumas partes visuais do frontend ainda usam mock/shell para apresentação.
+- Fase 4A.0 criou tokens CSS e fundação visual.
+- Fase 4A.1 criou pipeline de assets 2D com manifesto, placeholders e componentes utilitários, sem aplicar arte final às telas.
 
 ## BLOCKED / FUTURE
 
@@ -120,8 +122,8 @@ Este documento registra o estado real atual do projeto e deve ser tratado como f
 
 ## Próxima fase autorizada
 
-- **Fase 4A — Visual System + Game Shell Base.**
-- A Fase 4A deve alinhar base visual, layout, navegação/shell e fundamentos premium mobile-first sem implementar novos sistemas de economia ou autoridade server-side.
+- **Fase 4A.2 — Game Shell + Topbar + Bottom Nav.**
+- A próxima subfase deve usar tokens da Fase 4A.0 e o asset pipeline da Fase 4A.1 com placeholders locais, sem implementar novos sistemas de economia ou autoridade server-side.
 
 ## Terminologia Gram / TON
 

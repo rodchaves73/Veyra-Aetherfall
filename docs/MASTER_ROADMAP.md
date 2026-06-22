@@ -302,7 +302,46 @@ Padronizar a terminologia entre Gram, Toncoin, TON e TON Connect antes de implem
 - Consolidar shell mobile-first, navegação, espaçamentos, safe area, tokens visuais e estados globais.
 - Não implementar UI final completa de cada feature nem novos sistemas server-side.
 
-#### Fase 4B — Home RPG Premium
+##
+### Fase 4A.0 | Dark Arcane Visual Tokens Foundation
+
+**Status:** concluída.
+
+#### Entregáveis
+
+- Tokens CSS globais.
+- Classes visuais reutilizáveis.
+- Documentação do sistema visual.
+
+### Fase 4A.1 | Asset Pipeline Foundation
+
+**Status:** concluída.
+
+#### Entregáveis
+
+- Estrutura pública `public/assets/game/**`.
+- Placeholders SVG leves e locais.
+- Manifesto TypeScript `gameAssets`.
+- Tipos para imagens e spritesheets simples.
+- Componentes utilitários para imagem, background, rarity frame e asset slot.
+- Documentação de pipeline e licenças.
+
+#### Limites
+
+- Nenhum asset externo baixado.
+- Nenhuma tela redesenhada.
+- Sem Canvas, Phaser, gacha client-side, reward client-side ou sistemas econômicos novos.
+
+### Fase 4A.2 | Game Shell + Topbar + Bottom Nav
+
+**Status:** próxima subfase.
+
+#### Entregáveis esperados
+
+- Aplicar tokens da Fase 4A.0 e placeholders/manifesto da Fase 4A.1 no shell visual.
+- Preservar mobile-first, safe area, scroll vertical e ausência de autoridade client-side para economia.
+
+## Fase 4B — Home RPG Premium
 
 - Evoluir Home UI de mock/shell para experiência RPG premium conectada ao estado disponível.
 - Preservar honestidade sobre sistemas ainda preparados ou futuros.

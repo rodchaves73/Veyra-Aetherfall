@@ -50,4 +50,4 @@ A base usa `:root` com variáveis `--veyra-*` para fundos, painéis, bordas, cor
 
 ## Próxima aplicação
 
-A Fase 4A.1 deve aplicar esta fundação no Game Shell, Topbar e Bottom Nav sem criar autoridade client-side para economia, rewards ou gacha.
+A Fase 4A.1 adicionou a fundação de pipeline de assets 2D em `public/assets/game`, manifesto `gameAssets` e componentes utilitários. A Fase 4A.2 deve aplicar tokens e placeholders locais no Game Shell, Topbar e Bottom Nav sem criar autoridade client-side para economia, rewards ou gacha.
