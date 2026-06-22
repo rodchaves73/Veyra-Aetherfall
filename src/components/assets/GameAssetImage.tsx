@@ -1,4 +1,4 @@
-import { useState, type ImgHTMLAttributes } from 'react';
+import { useEffect, useMemo, useState, type ImgHTMLAttributes } from 'react';
 
 import { gameAssets } from '../../lib/assets';
 
@@ -10,6 +10,11 @@ type GameAssetImageProps = BaseImageProps & {
   loading?: 'eager' | 'lazy';
 } & ({ decorative: true; alt?: '' } | { decorative?: false; alt: string });
 
+const resolveImageSrc = (src: string | undefined, fallbackSrc: string) => {
+  const safeSrc = src?.trim();
+  return safeSrc && safeSrc.length > 0 ? safeSrc : fallbackSrc;
+};
+
 export function GameAssetImage({
   src,
   fallbackSrc = gameAssets.placeholders.icon.src,
@@ -19,8 +24,12 @@ export function GameAssetImage({
   loading = 'lazy',
   ...imageProps
 }: GameAssetImageProps) {
-  const safeInitialSrc = src || fallbackSrc;
-  const [currentSrc, setCurrentSrc] = useState(safeInitialSrc);
+  const safeSrc = useMemo(() => resolveImageSrc(src, fallbackSrc), [src, fallbackSrc]);
+  const [currentSrc, setCurrentSrc] = useState(safeSrc);
+
+  useEffect(() => {
+    setCurrentSrc(safeSrc);
+  }, [safeSrc]);
 
   return (
     <img
