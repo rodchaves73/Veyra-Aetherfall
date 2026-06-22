@@ -8,7 +8,7 @@ Este documento registra o estado real atual do projeto e deve ser tratado como f
 - **Gênero:** RPG gacha dark aether fantasy.
 - **Plataforma principal:** Telegram Mini App.
 - **Orientação:** mobile portrait.
-- **Status:** MVP frontend publicado com autenticação Telegram, player bootstrap e fundação real de sistemas core via Supabase/Edge Functions.
+- **Status:** MVP frontend publicado com autenticação Telegram, player bootstrap, fundação real de sistemas core via Supabase/Edge Functions e shell visual mobile-first em evolução.
 
 ## Stack
 
@@ -64,6 +64,9 @@ Este documento registra o estado real atual do projeto e deve ser tratado como f
 - Banners foundation.
 - Pity foundation.
 - Duplicate conversion foundation com hero shards e soul dust.
+- Fase 4A.0 — tokens CSS e fundação visual.
+- Fase 4A.1 — pipeline de assets 2D com manifesto, placeholders e componentes utilitários.
+- Fase 4A.2 — Game Shell + Topbar + Bottom Nav com fallback seguro de backgrounds e assets dinâmicos.
 
 ## PREPARED
 
@@ -85,8 +88,7 @@ Este documento registra o estado real atual do projeto e deve ser tratado como f
 - Campaign UI.
 - Shop UI.
 - Algumas partes visuais do frontend ainda usam mock/shell para apresentação.
-- Fase 4A.0 criou tokens CSS e fundação visual.
-- Fase 4A.1 criou pipeline de assets 2D com manifesto, placeholders e componentes utilitários, sem aplicar arte final às telas.
+- Assets reais finais ainda dependem de packs licenciados e registro em `docs/ASSET_LICENSES.md`.
 
 ## BLOCKED / FUTURE
 
@@ -119,11 +121,13 @@ Este documento registra o estado real atual do projeto e deve ser tratado como f
 - Migration da Fase 3 aplicada manualmente no Supabase.
 - Workflow de Edge Functions executado.
 - Teste real no Telegram Mini App concluído para game-state, starter pack, summon 1x, summon 10x, currencies, pity e conversão de duplicatas.
+- Fase 4A.1 concluiu a fundação do pipeline de assets.
+- Fase 4A.2 aplicou o pipeline no shell principal e corrigiu fallbacks de background/imagem apontados no review do PR #19.
 
 ## Próxima fase autorizada
 
-- **Fase 4A.2 — Game Shell + Topbar + Bottom Nav.**
-- A próxima subfase deve usar tokens da Fase 4A.0 e o asset pipeline da Fase 4A.1 com placeholders locais, sem implementar novos sistemas de economia ou autoridade server-side.
+- **Fase 4B — Home RPG Premium.**
+- A próxima subfase deve evoluir a Home com experiência RPG premium usando tokens e asset pipeline já criados, mantendo placeholders locais até que packs externos sejam registrados e sem implementar novos sistemas de economia ou autoridade client-side.
 
 ## Terminologia Gram / TON
 
