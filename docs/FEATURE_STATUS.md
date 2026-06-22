@@ -54,7 +54,8 @@ Este documento diferencia funcionalidades reais, foundations server-side, sistem
 | Marketplace | BLOCKED/FUTURE | Não implementado | Não | Exigida | Fase específica | Fora do MVP atual. |
 | NFT | BLOCKED/FUTURE | Não implementado | Não | Exigida | Fase específica | Fora do MVP atual. |
 | Antifraude | PLANNED | Plano/contratos | Não final | Exigida | Fases futuras | Necessário antes de ads/pagamentos/fragments. |
-| Assets finais | PLANNED | Placeholder/UI MVP | Não aplicável | Não aplicável | Fase 4+ | Direção premium começa na Fase 4A. |
+| Asset pipeline | DONE | Frontend/public assets | Não aplicável | Não aplicável | Fase 4A.2 | Manifesto, placeholders e componentes utilitários criados sem assets externos reais. |
+| Assets finais | PLANNED | Placeholder/UI MVP | Não aplicável | Não aplicável | Fase 4+ | Arte final real ainda depende de packs licenciados e registro em `docs/ASSET_LICENSES.md`. |
 | Analytics | PLANNED | Não implementado | Não | Não | Beta/produção | Adiar até observabilidade de beta. |
 
 ## Segurança confirmada
@@ -68,4 +69,4 @@ Este documento diferencia funcionalidades reais, foundations server-side, sistem
 
 ## Próxima fase autorizada
 
-- **Fase 4A — Visual System + Game Shell Base.**
+- **Fase 4A.2 — Game Shell + Topbar + Bottom Nav.**
