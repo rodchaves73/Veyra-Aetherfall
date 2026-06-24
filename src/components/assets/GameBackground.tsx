@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { useEffect, useState, type ReactNode } from 'react';
 
 import { gameAssets } from '../../lib/assets';
 
@@ -17,7 +17,44 @@ export function GameBackground({
   children,
   className = '',
 }: GameBackgroundProps) {
-  const backgroundImage = `linear-gradient(rgba(5, 6, 18, 0.2), rgba(5, 6, 18, 0.82)), url(${src || fallbackSrc})`;
+  const safeFallbackSrc = fallbackSrc || gameAssets.placeholders.background.src;
+  const requestedSrc = src || safeFallbackSrc;
+  const [loadedSrc, setLoadedSrc] = useState<string | null>(null);
+  const resolvedSrc = loadedSrc === requestedSrc ? loadedSrc : safeFallbackSrc;
+
+  useEffect(() => {
+    let isActive = true;
+
+    if (!requestedSrc || requestedSrc === safeFallbackSrc) {
+      return () => {
+        isActive = false;
+      };
+    }
+
+    const image = new Image();
+
+    image.onload = () => {
+      if (isActive) {
+        setLoadedSrc(requestedSrc);
+      }
+    };
+
+    image.onerror = () => {
+      if (isActive) {
+        setLoadedSrc(null);
+      }
+    };
+
+    image.src = requestedSrc;
+
+    return () => {
+      isActive = false;
+      image.onload = null;
+      image.onerror = null;
+    };
+  }, [requestedSrc, safeFallbackSrc]);
+
+  const backgroundImage = `linear-gradient(rgba(5, 6, 18, 0.2), rgba(5, 6, 18, 0.82)), url(${resolvedSrc})`;
 
   return (
     <section

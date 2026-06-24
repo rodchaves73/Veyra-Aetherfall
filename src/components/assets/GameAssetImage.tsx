@@ -1,4 +1,4 @@
-import { useState, type ImgHTMLAttributes } from 'react';
+import { useEffect, useState, type ImgHTMLAttributes } from 'react';
 
 import { gameAssets } from '../../lib/assets';
 
@@ -19,8 +19,23 @@ export function GameAssetImage({
   loading = 'lazy',
   ...imageProps
 }: GameAssetImageProps) {
-  const safeInitialSrc = src || fallbackSrc;
-  const [currentSrc, setCurrentSrc] = useState(safeInitialSrc);
+  const safeFallbackSrc = fallbackSrc || gameAssets.placeholders.icon.src;
+  const requestedSrc = src || safeFallbackSrc;
+  const [currentSrc, setCurrentSrc] = useState(requestedSrc);
+
+  useEffect(() => {
+    let isActive = true;
+
+    queueMicrotask(() => {
+      if (isActive) {
+        setCurrentSrc(requestedSrc);
+      }
+    });
+
+    return () => {
+      isActive = false;
+    };
+  }, [requestedSrc, safeFallbackSrc]);
 
   return (
     <img
@@ -32,8 +47,8 @@ export function GameAssetImage({
       loading={loading}
       decoding="async"
       onError={() => {
-        if (currentSrc !== fallbackSrc) {
-          setCurrentSrc(fallbackSrc);
+        if (currentSrc !== safeFallbackSrc) {
+          setCurrentSrc(safeFallbackSrc);
         }
       }}
       style={{ maxWidth: '100%', ...imageProps.style }}
