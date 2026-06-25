@@ -1,0 +1,40 @@
+name: Generate Pixel Assets
+
+on:
+  workflow_dispatch:
+
+jobs:
+  generate-assets:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r veyra_pixel_asset_factory/requirements.txt
+
+      - name: Generate assets
+        run: |
+          PYTHONDONTWRITEBYTECODE=1 python veyra_pixel_asset_factory/generate_all_assets.py
+
+      - name: Upload generated asset package
+        uses: actions/upload-artifact@v4
+        with:
+          name: veyra-procedural-assets-v1
+          path: |
+            veyra_pixel_asset_factory/veyra-procedural-assets-v1.zip
+            veyra_pixel_asset_factory/output/preview/contact_sheet.png
+            veyra_pixel_asset_factory/output/preview/contact_sheet_heroes.png
+            veyra_pixel_asset_factory/output/preview/contact_sheet_ui.png
+            veyra_pixel_asset_factory/output/preview/contact_sheet_icons.png
+            veyra_pixel_asset_factory/output/manifest/asset_manifest.json
+            veyra_pixel_asset_factory/output/manifest/asset_catalog.md
+            veyra_pixel_asset_factory/output/manifest/asset_license.md
