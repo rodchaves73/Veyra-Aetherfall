@@ -1,0 +1,1445 @@
+{
+  "version": "veyra-procedural-assets-v1",
+  "generated_by": "pixel_kit.py + Pillow procedural generator",
+  "license": "original procedural assets generated for Veyra: Aetherfall",
+  "categories": {
+    "backgrounds": {
+      "background-battle-void-temple": {
+        "key": "background-battle-void-temple",
+        "path": "/assets/game/backgrounds/background-battle-void-temple.webp",
+        "category": "backgrounds",
+        "format": "webp",
+        "width": 128,
+        "height": 192,
+        "transparent": false,
+        "procedural": true
+      },
+      "background-campaign-ruined-map": {
+        "key": "background-campaign-ruined-map",
+        "path": "/assets/game/backgrounds/background-campaign-ruined-map.webp",
+        "category": "backgrounds",
+        "format": "webp",
+        "width": 128,
+        "height": 192,
+        "transparent": false,
+        "procedural": true
+      },
+      "background-heroes-hall": {
+        "key": "background-heroes-hall",
+        "path": "/assets/game/backgrounds/background-heroes-hall.webp",
+        "category": "backgrounds",
+        "format": "webp",
+        "width": 128,
+        "height": 192,
+        "transparent": false,
+        "procedural": true
+      },
+      "background-home-arcane-ruins": {
+        "key": "background-home-arcane-ruins",
+        "path": "/assets/game/backgrounds/background-home-arcane-ruins.webp",
+        "category": "backgrounds",
+        "format": "webp",
+        "width": 128,
+        "height": 192,
+        "transparent": false,
+        "procedural": true
+      },
+      "background-shop-arcane-market": {
+        "key": "background-shop-arcane-market",
+        "path": "/assets/game/backgrounds/background-shop-arcane-market.webp",
+        "category": "backgrounds",
+        "format": "webp",
+        "width": 128,
+        "height": 192,
+        "transparent": false,
+        "procedural": true
+      },
+      "background-summon-aether-portal": {
+        "key": "background-summon-aether-portal",
+        "path": "/assets/game/backgrounds/background-summon-aether-portal.webp",
+        "category": "backgrounds",
+        "format": "webp",
+        "width": 128,
+        "height": 192,
+        "transparent": false,
+        "procedural": true
+      }
+    },
+    "ui": {
+      "ui-avatar-frame": {
+        "key": "ui-avatar-frame",
+        "path": "/assets/game/ui/ui-avatar-frame.png",
+        "category": "ui",
+        "format": "png",
+        "width": 80,
+        "height": 80,
+        "transparent": true,
+        "procedural": true
+      },
+      "ui-button-danger": {
+        "key": "ui-button-danger",
+        "path": "/assets/game/ui/ui-button-danger.png",
+        "category": "ui",
+        "format": "png",
+        "width": 144,
+        "height": 40,
+        "transparent": true,
+        "procedural": true
+      },
+      "ui-button-gold": {
+        "key": "ui-button-gold",
+        "path": "/assets/game/ui/ui-button-gold.png",
+        "category": "ui",
+        "format": "png",
+        "width": 144,
+        "height": 40,
+        "transparent": true,
+        "procedural": true
+      },
+      "ui-button-primary-purple": {
+        "key": "ui-button-primary-purple",
+        "path": "/assets/game/ui/ui-button-primary-purple.png",
+        "category": "ui",
+        "format": "png",
+        "width": 144,
+        "height": 40,
+        "transparent": true,
+        "procedural": true
+      },
+      "ui-button-secondary-dark": {
+        "key": "ui-button-secondary-dark",
+        "path": "/assets/game/ui/ui-button-secondary-dark.png",
+        "category": "ui",
+        "format": "png",
+        "width": 144,
+        "height": 40,
+        "transparent": true,
+        "procedural": true
+      },
+      "ui-button-small-horizontal": {
+        "key": "ui-button-small-horizontal",
+        "path": "/assets/game/ui/ui-button-small-horizontal.png",
+        "category": "ui",
+        "format": "png",
+        "width": 80,
+        "height": 36,
+        "transparent": true,
+        "procedural": true
+      },
+      "ui-button-small-square": {
+        "key": "ui-button-small-square",
+        "path": "/assets/game/ui/ui-button-small-square.png",
+        "category": "ui",
+        "format": "png",
+        "width": 40,
+        "height": 40,
+        "transparent": true,
+        "procedural": true
+      },
+      "ui-divider-arcane": {
+        "key": "ui-divider-arcane",
+        "path": "/assets/game/ui/ui-divider-arcane.png",
+        "category": "ui",
+        "format": "png",
+        "width": 192,
+        "height": 16,
+        "transparent": true,
+        "procedural": true
+      },
+      "ui-panel-bottom-nav": {
+        "key": "ui-panel-bottom-nav",
+        "path": "/assets/game/ui/ui-panel-bottom-nav.png",
+        "category": "ui",
+        "format": "png",
+        "width": 240,
+        "height": 56,
+        "transparent": true,
+        "procedural": true
+      },
+      "ui-panel-card-feature": {
+        "key": "ui-panel-card-feature",
+        "path": "/assets/game/ui/ui-panel-card-feature.png",
+        "category": "ui",
+        "format": "png",
+        "width": 160,
+        "height": 128,
+        "transparent": true,
+        "procedural": true
+      },
+      "ui-panel-card-hero": {
+        "key": "ui-panel-card-hero",
+        "path": "/assets/game/ui/ui-panel-card-hero.png",
+        "category": "ui",
+        "format": "png",
+        "width": 128,
+        "height": 176,
+        "transparent": true,
+        "procedural": true
+      },
+      "ui-panel-card-mission": {
+        "key": "ui-panel-card-mission",
+        "path": "/assets/game/ui/ui-panel-card-mission.png",
+        "category": "ui",
+        "format": "png",
+        "width": 144,
+        "height": 112,
+        "transparent": true,
+        "procedural": true
+      },
+      "ui-panel-dark-arcane": {
+        "key": "ui-panel-dark-arcane",
+        "path": "/assets/game/ui/ui-panel-dark-arcane.png",
+        "category": "ui",
+        "format": "png",
+        "width": 192,
+        "height": 128,
+        "transparent": true,
+        "procedural": true
+      },
+      "ui-panel-modal": {
+        "key": "ui-panel-modal",
+        "path": "/assets/game/ui/ui-panel-modal.png",
+        "category": "ui",
+        "format": "png",
+        "width": 224,
+        "height": 176,
+        "transparent": true,
+        "procedural": true
+      },
+      "ui-panel-progress-fill": {
+        "key": "ui-panel-progress-fill",
+        "path": "/assets/game/ui/ui-panel-progress-fill.png",
+        "category": "ui",
+        "format": "png",
+        "width": 144,
+        "height": 20,
+        "transparent": true,
+        "procedural": true
+      },
+      "ui-panel-progress-track": {
+        "key": "ui-panel-progress-track",
+        "path": "/assets/game/ui/ui-panel-progress-track.png",
+        "category": "ui",
+        "format": "png",
+        "width": 144,
+        "height": 20,
+        "transparent": true,
+        "procedural": true
+      },
+      "ui-panel-resource-pill": {
+        "key": "ui-panel-resource-pill",
+        "path": "/assets/game/ui/ui-panel-resource-pill.png",
+        "category": "ui",
+        "format": "png",
+        "width": 96,
+        "height": 32,
+        "transparent": true,
+        "procedural": true
+      },
+      "ui-panel-topbar": {
+        "key": "ui-panel-topbar",
+        "path": "/assets/game/ui/ui-panel-topbar.png",
+        "category": "ui",
+        "format": "png",
+        "width": 240,
+        "height": 48,
+        "transparent": true,
+        "procedural": true
+      },
+      "ui-slot-active": {
+        "key": "ui-slot-active",
+        "path": "/assets/game/ui/ui-slot-active.png",
+        "category": "ui",
+        "format": "png",
+        "width": 64,
+        "height": 64,
+        "transparent": true,
+        "procedural": true
+      },
+      "ui-slot-empty": {
+        "key": "ui-slot-empty",
+        "path": "/assets/game/ui/ui-slot-empty.png",
+        "category": "ui",
+        "format": "png",
+        "width": 64,
+        "height": 64,
+        "transparent": true,
+        "procedural": true
+      }
+    },
+    "icons": {
+      "icon-aether-magic": {
+        "key": "icon-aether-magic",
+        "path": "/assets/game/icons/icon-aether-magic.png",
+        "category": "icons",
+        "format": "png",
+        "width": 64,
+        "height": 64,
+        "transparent": true,
+        "procedural": true
+      },
+      "icon-aether": {
+        "key": "icon-aether",
+        "path": "/assets/game/icons/icon-aether.png",
+        "category": "icons",
+        "format": "png",
+        "width": 64,
+        "height": 64,
+        "transparent": true,
+        "procedural": true
+      },
+      "icon-astral-ticket": {
+        "key": "icon-astral-ticket",
+        "path": "/assets/game/icons/icon-astral-ticket.png",
+        "category": "icons",
+        "format": "png",
+        "width": 64,
+        "height": 64,
+        "transparent": true,
+        "procedural": true
+      },
+      "icon-battle": {
+        "key": "icon-battle",
+        "path": "/assets/game/icons/icon-battle.png",
+        "category": "icons",
+        "format": "png",
+        "width": 64,
+        "height": 64,
+        "transparent": true,
+        "procedural": true
+      },
+      "icon-boss": {
+        "key": "icon-boss",
+        "path": "/assets/game/icons/icon-boss.png",
+        "category": "icons",
+        "format": "png",
+        "width": 64,
+        "height": 64,
+        "transparent": true,
+        "procedural": true
+      },
+      "icon-bow": {
+        "key": "icon-bow",
+        "path": "/assets/game/icons/icon-bow.png",
+        "category": "icons",
+        "format": "png",
+        "width": 64,
+        "height": 64,
+        "transparent": true,
+        "procedural": true
+      },
+      "icon-campaign": {
+        "key": "icon-campaign",
+        "path": "/assets/game/icons/icon-campaign.png",
+        "category": "icons",
+        "format": "png",
+        "width": 64,
+        "height": 64,
+        "transparent": true,
+        "procedural": true
+      },
+      "icon-chest": {
+        "key": "icon-chest",
+        "path": "/assets/game/icons/icon-chest.png",
+        "category": "icons",
+        "format": "png",
+        "width": 64,
+        "height": 64,
+        "transparent": true,
+        "procedural": true
+      },
+      "icon-critical": {
+        "key": "icon-critical",
+        "path": "/assets/game/icons/icon-critical.png",
+        "category": "icons",
+        "format": "png",
+        "width": 64,
+        "height": 64,
+        "transparent": true,
+        "procedural": true
+      },
+      "icon-dagger": {
+        "key": "icon-dagger",
+        "path": "/assets/game/icons/icon-dagger.png",
+        "category": "icons",
+        "format": "png",
+        "width": 64,
+        "height": 64,
+        "transparent": true,
+        "procedural": true
+      },
+      "icon-dark": {
+        "key": "icon-dark",
+        "path": "/assets/game/icons/icon-dark.png",
+        "category": "icons",
+        "format": "png",
+        "width": 64,
+        "height": 64,
+        "transparent": true,
+        "procedural": true
+      },
+      "icon-defense": {
+        "key": "icon-defense",
+        "path": "/assets/game/icons/icon-defense.png",
+        "category": "icons",
+        "format": "png",
+        "width": 64,
+        "height": 64,
+        "transparent": true,
+        "procedural": true
+      },
+      "icon-fire": {
+        "key": "icon-fire",
+        "path": "/assets/game/icons/icon-fire.png",
+        "category": "icons",
+        "format": "png",
+        "width": 64,
+        "height": 64,
+        "transparent": true,
+        "procedural": true
+      },
+      "icon-gems": {
+        "key": "icon-gems",
+        "path": "/assets/game/icons/icon-gems.png",
+        "category": "icons",
+        "format": "png",
+        "width": 64,
+        "height": 64,
+        "transparent": true,
+        "procedural": true
+      },
+      "icon-gold": {
+        "key": "icon-gold",
+        "path": "/assets/game/icons/icon-gold.png",
+        "category": "icons",
+        "format": "png",
+        "width": 64,
+        "height": 64,
+        "transparent": true,
+        "procedural": true
+      },
+      "icon-heal": {
+        "key": "icon-heal",
+        "path": "/assets/game/icons/icon-heal.png",
+        "category": "icons",
+        "format": "png",
+        "width": 64,
+        "height": 64,
+        "transparent": true,
+        "procedural": true
+      },
+      "icon-heroes": {
+        "key": "icon-heroes",
+        "path": "/assets/game/icons/icon-heroes.png",
+        "category": "icons",
+        "format": "png",
+        "width": 64,
+        "height": 64,
+        "transparent": true,
+        "procedural": true
+      },
+      "icon-inventory": {
+        "key": "icon-inventory",
+        "path": "/assets/game/icons/icon-inventory.png",
+        "category": "icons",
+        "format": "png",
+        "width": 64,
+        "height": 64,
+        "transparent": true,
+        "procedural": true
+      },
+      "icon-light": {
+        "key": "icon-light",
+        "path": "/assets/game/icons/icon-light.png",
+        "category": "icons",
+        "format": "png",
+        "width": 64,
+        "height": 64,
+        "transparent": true,
+        "procedural": true
+      },
+      "icon-mail": {
+        "key": "icon-mail",
+        "path": "/assets/game/icons/icon-mail.png",
+        "category": "icons",
+        "format": "png",
+        "width": 64,
+        "height": 64,
+        "transparent": true,
+        "procedural": true
+      },
+      "icon-nature": {
+        "key": "icon-nature",
+        "path": "/assets/game/icons/icon-nature.png",
+        "category": "icons",
+        "format": "png",
+        "width": 64,
+        "height": 64,
+        "transparent": true,
+        "procedural": true
+      },
+      "icon-quests": {
+        "key": "icon-quests",
+        "path": "/assets/game/icons/icon-quests.png",
+        "category": "icons",
+        "format": "png",
+        "width": 64,
+        "height": 64,
+        "transparent": true,
+        "procedural": true
+      },
+      "icon-rank": {
+        "key": "icon-rank",
+        "path": "/assets/game/icons/icon-rank.png",
+        "category": "icons",
+        "format": "png",
+        "width": 64,
+        "height": 64,
+        "transparent": true,
+        "procedural": true
+      },
+      "icon-scroll": {
+        "key": "icon-scroll",
+        "path": "/assets/game/icons/icon-scroll.png",
+        "category": "icons",
+        "format": "png",
+        "width": 64,
+        "height": 64,
+        "transparent": true,
+        "procedural": true
+      },
+      "icon-settings": {
+        "key": "icon-settings",
+        "path": "/assets/game/icons/icon-settings.png",
+        "category": "icons",
+        "format": "png",
+        "width": 64,
+        "height": 64,
+        "transparent": true,
+        "procedural": true
+      },
+      "icon-shard": {
+        "key": "icon-shard",
+        "path": "/assets/game/icons/icon-shard.png",
+        "category": "icons",
+        "format": "png",
+        "width": 64,
+        "height": 64,
+        "transparent": true,
+        "procedural": true
+      },
+      "icon-shield": {
+        "key": "icon-shield",
+        "path": "/assets/game/icons/icon-shield.png",
+        "category": "icons",
+        "format": "png",
+        "width": 64,
+        "height": 64,
+        "transparent": true,
+        "procedural": true
+      },
+      "icon-shop": {
+        "key": "icon-shop",
+        "path": "/assets/game/icons/icon-shop.png",
+        "category": "icons",
+        "format": "png",
+        "width": 64,
+        "height": 64,
+        "transparent": true,
+        "procedural": true
+      },
+      "icon-speed": {
+        "key": "icon-speed",
+        "path": "/assets/game/icons/icon-speed.png",
+        "category": "icons",
+        "format": "png",
+        "width": 64,
+        "height": 64,
+        "transparent": true,
+        "procedural": true
+      },
+      "icon-staff": {
+        "key": "icon-staff",
+        "path": "/assets/game/icons/icon-staff.png",
+        "category": "icons",
+        "format": "png",
+        "width": 64,
+        "height": 64,
+        "transparent": true,
+        "procedural": true
+      },
+      "icon-stamina": {
+        "key": "icon-stamina",
+        "path": "/assets/game/icons/icon-stamina.png",
+        "category": "icons",
+        "format": "png",
+        "width": 64,
+        "height": 64,
+        "transparent": true,
+        "procedural": true
+      },
+      "icon-standard-ticket": {
+        "key": "icon-standard-ticket",
+        "path": "/assets/game/icons/icon-standard-ticket.png",
+        "category": "icons",
+        "format": "png",
+        "width": 64,
+        "height": 64,
+        "transparent": true,
+        "procedural": true
+      },
+      "icon-star": {
+        "key": "icon-star",
+        "path": "/assets/game/icons/icon-star.png",
+        "category": "icons",
+        "format": "png",
+        "width": 64,
+        "height": 64,
+        "transparent": true,
+        "procedural": true
+      },
+      "icon-summon": {
+        "key": "icon-summon",
+        "path": "/assets/game/icons/icon-summon.png",
+        "category": "icons",
+        "format": "png",
+        "width": 64,
+        "height": 64,
+        "transparent": true,
+        "procedural": true
+      },
+      "icon-sword": {
+        "key": "icon-sword",
+        "path": "/assets/game/icons/icon-sword.png",
+        "category": "icons",
+        "format": "png",
+        "width": 64,
+        "height": 64,
+        "transparent": true,
+        "procedural": true
+      },
+      "icon-water": {
+        "key": "icon-water",
+        "path": "/assets/game/icons/icon-water.png",
+        "category": "icons",
+        "format": "png",
+        "width": 64,
+        "height": 64,
+        "transparent": true,
+        "procedural": true
+      }
+    },
+    "frames": {
+      "frame-common": {
+        "key": "frame-common",
+        "path": "/assets/game/frames/frame-common.png",
+        "category": "frames",
+        "format": "png",
+        "width": 144,
+        "height": 192,
+        "transparent": true,
+        "procedural": true
+      },
+      "frame-divine": {
+        "key": "frame-divine",
+        "path": "/assets/game/frames/frame-divine.png",
+        "category": "frames",
+        "format": "png",
+        "width": 144,
+        "height": 192,
+        "transparent": true,
+        "procedural": true
+      },
+      "frame-epic": {
+        "key": "frame-epic",
+        "path": "/assets/game/frames/frame-epic.png",
+        "category": "frames",
+        "format": "png",
+        "width": 144,
+        "height": 192,
+        "transparent": true,
+        "procedural": true
+      },
+      "frame-legendary": {
+        "key": "frame-legendary",
+        "path": "/assets/game/frames/frame-legendary.png",
+        "category": "frames",
+        "format": "png",
+        "width": 144,
+        "height": 192,
+        "transparent": true,
+        "procedural": true
+      },
+      "frame-mythic": {
+        "key": "frame-mythic",
+        "path": "/assets/game/frames/frame-mythic.png",
+        "category": "frames",
+        "format": "png",
+        "width": 144,
+        "height": 192,
+        "transparent": true,
+        "procedural": true
+      },
+      "frame-rare": {
+        "key": "frame-rare",
+        "path": "/assets/game/frames/frame-rare.png",
+        "category": "frames",
+        "format": "png",
+        "width": 144,
+        "height": 192,
+        "transparent": true,
+        "procedural": true
+      },
+      "frame-uncommon": {
+        "key": "frame-uncommon",
+        "path": "/assets/game/frames/frame-uncommon.png",
+        "category": "frames",
+        "format": "png",
+        "width": 144,
+        "height": 192,
+        "transparent": true,
+        "procedural": true
+      }
+    },
+    "banners": {
+      "banner-astral-summon": {
+        "key": "banner-astral-summon",
+        "path": "/assets/game/banners/banner-astral-summon.png",
+        "category": "banners",
+        "format": "png",
+        "width": 288,
+        "height": 96,
+        "transparent": true,
+        "procedural": true
+      },
+      "banner-battle-event": {
+        "key": "banner-battle-event",
+        "path": "/assets/game/banners/banner-battle-event.png",
+        "category": "banners",
+        "format": "png",
+        "width": 288,
+        "height": 96,
+        "transparent": true,
+        "procedural": true
+      },
+      "banner-divine-awakening": {
+        "key": "banner-divine-awakening",
+        "path": "/assets/game/banners/banner-divine-awakening.png",
+        "category": "banners",
+        "format": "png",
+        "width": 288,
+        "height": 96,
+        "transparent": true,
+        "procedural": true
+      },
+      "banner-legendary-rateup": {
+        "key": "banner-legendary-rateup",
+        "path": "/assets/game/banners/banner-legendary-rateup.png",
+        "category": "banners",
+        "format": "png",
+        "width": 288,
+        "height": 96,
+        "transparent": true,
+        "procedural": true
+      },
+      "banner-mythic-eclipse": {
+        "key": "banner-mythic-eclipse",
+        "path": "/assets/game/banners/banner-mythic-eclipse.png",
+        "category": "banners",
+        "format": "png",
+        "width": 288,
+        "height": 96,
+        "transparent": true,
+        "procedural": true
+      },
+      "banner-standard-summon": {
+        "key": "banner-standard-summon",
+        "path": "/assets/game/banners/banner-standard-summon.png",
+        "category": "banners",
+        "format": "png",
+        "width": 288,
+        "height": 96,
+        "transparent": true,
+        "procedural": true
+      },
+      "banner-starter-pack": {
+        "key": "banner-starter-pack",
+        "path": "/assets/game/banners/banner-starter-pack.png",
+        "category": "banners",
+        "format": "png",
+        "width": 288,
+        "height": 96,
+        "transparent": true,
+        "procedural": true
+      }
+    },
+    "fx": {
+      "fx-aether-burst": {
+        "key": "fx-aether-burst",
+        "path": "/assets/game/fx/fx-aether-burst.png",
+        "category": "fx",
+        "format": "png",
+        "width": 128,
+        "height": 128,
+        "transparent": true,
+        "procedural": true
+      },
+      "fx-aether-orb": {
+        "key": "fx-aether-orb",
+        "path": "/assets/game/fx/fx-aether-orb.png",
+        "category": "fx",
+        "format": "png",
+        "width": 128,
+        "height": 128,
+        "transparent": true,
+        "procedural": true
+      },
+      "fx-aether-slash": {
+        "key": "fx-aether-slash",
+        "path": "/assets/game/fx/fx-aether-slash.png",
+        "category": "fx",
+        "format": "png",
+        "width": 128,
+        "height": 128,
+        "transparent": true,
+        "procedural": true
+      },
+      "fx-critical-hit": {
+        "key": "fx-critical-hit",
+        "path": "/assets/game/fx/fx-critical-hit.png",
+        "category": "fx",
+        "format": "png",
+        "width": 128,
+        "height": 128,
+        "transparent": true,
+        "procedural": true
+      },
+      "fx-dark-curse": {
+        "key": "fx-dark-curse",
+        "path": "/assets/game/fx/fx-dark-curse.png",
+        "category": "fx",
+        "format": "png",
+        "width": 128,
+        "height": 128,
+        "transparent": true,
+        "procedural": true
+      },
+      "fx-fire-burst": {
+        "key": "fx-fire-burst",
+        "path": "/assets/game/fx/fx-fire-burst.png",
+        "category": "fx",
+        "format": "png",
+        "width": 128,
+        "height": 128,
+        "transparent": true,
+        "procedural": true
+      },
+      "fx-heal-glow": {
+        "key": "fx-heal-glow",
+        "path": "/assets/game/fx/fx-heal-glow.png",
+        "category": "fx",
+        "format": "png",
+        "width": 128,
+        "height": 128,
+        "transparent": true,
+        "procedural": true
+      },
+      "fx-level-up": {
+        "key": "fx-level-up",
+        "path": "/assets/game/fx/fx-level-up.png",
+        "category": "fx",
+        "format": "png",
+        "width": 128,
+        "height": 128,
+        "transparent": true,
+        "procedural": true
+      },
+      "fx-light-blessing": {
+        "key": "fx-light-blessing",
+        "path": "/assets/game/fx/fx-light-blessing.png",
+        "category": "fx",
+        "format": "png",
+        "width": 128,
+        "height": 128,
+        "transparent": true,
+        "procedural": true
+      },
+      "fx-nature-spark": {
+        "key": "fx-nature-spark",
+        "path": "/assets/game/fx/fx-nature-spark.png",
+        "category": "fx",
+        "format": "png",
+        "width": 128,
+        "height": 128,
+        "transparent": true,
+        "procedural": true
+      },
+      "fx-portal-spark": {
+        "key": "fx-portal-spark",
+        "path": "/assets/game/fx/fx-portal-spark.png",
+        "category": "fx",
+        "format": "png",
+        "width": 128,
+        "height": 128,
+        "transparent": true,
+        "procedural": true
+      },
+      "fx-purple-impact": {
+        "key": "fx-purple-impact",
+        "path": "/assets/game/fx/fx-purple-impact.png",
+        "category": "fx",
+        "format": "png",
+        "width": 128,
+        "height": 128,
+        "transparent": true,
+        "procedural": true
+      },
+      "fx-shield-block": {
+        "key": "fx-shield-block",
+        "path": "/assets/game/fx/fx-shield-block.png",
+        "category": "fx",
+        "format": "png",
+        "width": 128,
+        "height": 128,
+        "transparent": true,
+        "procedural": true
+      },
+      "fx-star-particles": {
+        "key": "fx-star-particles",
+        "path": "/assets/game/fx/fx-star-particles.png",
+        "category": "fx",
+        "format": "png",
+        "width": 128,
+        "height": 128,
+        "transparent": true,
+        "procedural": true
+      },
+      "fx-summon-circle": {
+        "key": "fx-summon-circle",
+        "path": "/assets/game/fx/fx-summon-circle.png",
+        "category": "fx",
+        "format": "png",
+        "width": 128,
+        "height": 128,
+        "transparent": true,
+        "procedural": true
+      },
+      "fx-water-wave": {
+        "key": "fx-water-wave",
+        "path": "/assets/game/fx/fx-water-wave.png",
+        "category": "fx",
+        "format": "png",
+        "width": 128,
+        "height": 128,
+        "transparent": true,
+        "procedural": true
+      }
+    },
+    "heroes": {
+      "hero-common-apprentice-mage": {
+        "key": "hero-common-apprentice-mage",
+        "path": "/assets/game/heroes/hero-common-apprentice-mage.png",
+        "category": "heroes",
+        "format": "png",
+        "width": 128,
+        "height": 192,
+        "transparent": true,
+        "procedural": true
+      },
+      "hero-common-field-archer": {
+        "key": "hero-common-field-archer",
+        "path": "/assets/game/heroes/hero-common-field-archer.png",
+        "category": "heroes",
+        "format": "png",
+        "width": 128,
+        "height": 192,
+        "transparent": true,
+        "procedural": true
+      },
+      "hero-common-iron-squire": {
+        "key": "hero-common-iron-squire",
+        "path": "/assets/game/heroes/hero-common-iron-squire.png",
+        "category": "heroes",
+        "format": "png",
+        "width": 128,
+        "height": 192,
+        "transparent": true,
+        "procedural": true
+      },
+      "hero-common-stone-guard": {
+        "key": "hero-common-stone-guard",
+        "path": "/assets/game/heroes/hero-common-stone-guard.png",
+        "category": "heroes",
+        "format": "png",
+        "width": 128,
+        "height": 192,
+        "transparent": true,
+        "procedural": true
+      },
+      "hero-divine-oracle-of-stars": {
+        "key": "hero-divine-oracle-of-stars",
+        "path": "/assets/game/heroes/hero-divine-oracle-of-stars.png",
+        "category": "heroes",
+        "format": "png",
+        "width": 128,
+        "height": 192,
+        "transparent": true,
+        "procedural": true
+      },
+      "hero-divine-radiant-warden": {
+        "key": "hero-divine-radiant-warden",
+        "path": "/assets/game/heroes/hero-divine-radiant-warden.png",
+        "category": "heroes",
+        "format": "png",
+        "width": 128,
+        "height": 192,
+        "transparent": true,
+        "procedural": true
+      },
+      "hero-divine-seraph-of-aether": {
+        "key": "hero-divine-seraph-of-aether",
+        "path": "/assets/game/heroes/hero-divine-seraph-of-aether.png",
+        "category": "heroes",
+        "format": "png",
+        "width": 128,
+        "height": 192,
+        "transparent": true,
+        "procedural": true
+      },
+      "hero-epic-arcane-witch": {
+        "key": "hero-epic-arcane-witch",
+        "path": "/assets/game/heroes/hero-epic-arcane-witch.png",
+        "category": "heroes",
+        "format": "png",
+        "width": 128,
+        "height": 192,
+        "transparent": true,
+        "procedural": true
+      },
+      "hero-epic-blood-vanguard": {
+        "key": "hero-epic-blood-vanguard",
+        "path": "/assets/game/heroes/hero-epic-blood-vanguard.png",
+        "category": "heroes",
+        "format": "png",
+        "width": 128,
+        "height": 192,
+        "transparent": true,
+        "procedural": true
+      },
+      "hero-epic-golden-paladin": {
+        "key": "hero-epic-golden-paladin",
+        "path": "/assets/game/heroes/hero-epic-golden-paladin.png",
+        "category": "heroes",
+        "format": "png",
+        "width": 128,
+        "height": 192,
+        "transparent": true,
+        "procedural": true
+      },
+      "hero-epic-night-assassin": {
+        "key": "hero-epic-night-assassin",
+        "path": "/assets/game/heroes/hero-epic-night-assassin.png",
+        "category": "heroes",
+        "format": "png",
+        "width": 128,
+        "height": 192,
+        "transparent": true,
+        "procedural": true
+      },
+      "hero-epic-star-summoner": {
+        "key": "hero-epic-star-summoner",
+        "path": "/assets/game/heroes/hero-epic-star-summoner.png",
+        "category": "heroes",
+        "format": "png",
+        "width": 128,
+        "height": 192,
+        "transparent": true,
+        "procedural": true
+      },
+      "hero-epic-storm-sage": {
+        "key": "hero-epic-storm-sage",
+        "path": "/assets/game/heroes/hero-epic-storm-sage.png",
+        "category": "heroes",
+        "format": "png",
+        "width": 128,
+        "height": 192,
+        "transparent": true,
+        "procedural": true
+      },
+      "hero-legendary-aether-queen": {
+        "key": "hero-legendary-aether-queen",
+        "path": "/assets/game/heroes/hero-legendary-aether-queen.png",
+        "category": "heroes",
+        "format": "png",
+        "width": 128,
+        "height": 192,
+        "transparent": true,
+        "procedural": true
+      },
+      "hero-legendary-celestial-blade": {
+        "key": "hero-legendary-celestial-blade",
+        "path": "/assets/game/heroes/hero-legendary-celestial-blade.png",
+        "category": "heroes",
+        "format": "png",
+        "width": 128,
+        "height": 192,
+        "transparent": true,
+        "procedural": true
+      },
+      "hero-legendary-dragon-herald": {
+        "key": "hero-legendary-dragon-herald",
+        "path": "/assets/game/heroes/hero-legendary-dragon-herald.png",
+        "category": "heroes",
+        "format": "png",
+        "width": 128,
+        "height": 192,
+        "transparent": true,
+        "procedural": true
+      },
+      "hero-legendary-solar-champion": {
+        "key": "hero-legendary-solar-champion",
+        "path": "/assets/game/heroes/hero-legendary-solar-champion.png",
+        "category": "heroes",
+        "format": "png",
+        "width": 128,
+        "height": 192,
+        "transparent": true,
+        "procedural": true
+      },
+      "hero-legendary-void-emperor": {
+        "key": "hero-legendary-void-emperor",
+        "path": "/assets/game/heroes/hero-legendary-void-emperor.png",
+        "category": "heroes",
+        "format": "png",
+        "width": 128,
+        "height": 192,
+        "transparent": true,
+        "procedural": true
+      },
+      "hero-mythic-abyssal-archmage": {
+        "key": "hero-mythic-abyssal-archmage",
+        "path": "/assets/game/heroes/hero-mythic-abyssal-archmage.png",
+        "category": "heroes",
+        "format": "png",
+        "width": 128,
+        "height": 192,
+        "transparent": true,
+        "procedural": true
+      },
+      "hero-mythic-eclipse-sovereign": {
+        "key": "hero-mythic-eclipse-sovereign",
+        "path": "/assets/game/heroes/hero-mythic-eclipse-sovereign.png",
+        "category": "heroes",
+        "format": "png",
+        "width": 128,
+        "height": 192,
+        "transparent": true,
+        "procedural": true
+      },
+      "hero-rare-aether-duelist": {
+        "key": "hero-rare-aether-duelist",
+        "path": "/assets/game/heroes/hero-rare-aether-duelist.png",
+        "category": "heroes",
+        "format": "png",
+        "width": 128,
+        "height": 192,
+        "transparent": true,
+        "procedural": true
+      },
+      "hero-rare-crystal-knight": {
+        "key": "hero-rare-crystal-knight",
+        "path": "/assets/game/heroes/hero-rare-crystal-knight.png",
+        "category": "heroes",
+        "format": "png",
+        "width": 128,
+        "height": 192,
+        "transparent": true,
+        "procedural": true
+      },
+      "hero-rare-flame-oracle": {
+        "key": "hero-rare-flame-oracle",
+        "path": "/assets/game/heroes/hero-rare-flame-oracle.png",
+        "category": "heroes",
+        "format": "png",
+        "width": 128,
+        "height": 192,
+        "transparent": true,
+        "procedural": true
+      },
+      "hero-rare-moon-priestess": {
+        "key": "hero-rare-moon-priestess",
+        "path": "/assets/game/heroes/hero-rare-moon-priestess.png",
+        "category": "heroes",
+        "format": "png",
+        "width": 128,
+        "height": 192,
+        "transparent": true,
+        "procedural": true
+      },
+      "hero-rare-shadow-monk": {
+        "key": "hero-rare-shadow-monk",
+        "path": "/assets/game/heroes/hero-rare-shadow-monk.png",
+        "category": "heroes",
+        "format": "png",
+        "width": 128,
+        "height": 192,
+        "transparent": true,
+        "procedural": true
+      },
+      "hero-rare-void-ranger": {
+        "key": "hero-rare-void-ranger",
+        "path": "/assets/game/heroes/hero-rare-void-ranger.png",
+        "category": "heroes",
+        "format": "png",
+        "width": 128,
+        "height": 192,
+        "transparent": true,
+        "procedural": true
+      },
+      "hero-uncommon-ember-rogue": {
+        "key": "hero-uncommon-ember-rogue",
+        "path": "/assets/game/heroes/hero-uncommon-ember-rogue.png",
+        "category": "heroes",
+        "format": "png",
+        "width": 128,
+        "height": 192,
+        "transparent": true,
+        "procedural": true
+      },
+      "hero-uncommon-forest-lancer": {
+        "key": "hero-uncommon-forest-lancer",
+        "path": "/assets/game/heroes/hero-uncommon-forest-lancer.png",
+        "category": "heroes",
+        "format": "png",
+        "width": 128,
+        "height": 192,
+        "transparent": true,
+        "procedural": true
+      },
+      "hero-uncommon-frost-sentinel": {
+        "key": "hero-uncommon-frost-sentinel",
+        "path": "/assets/game/heroes/hero-uncommon-frost-sentinel.png",
+        "category": "heroes",
+        "format": "png",
+        "width": 128,
+        "height": 192,
+        "transparent": true,
+        "procedural": true
+      },
+      "hero-uncommon-rune-acolyte": {
+        "key": "hero-uncommon-rune-acolyte",
+        "path": "/assets/game/heroes/hero-uncommon-rune-acolyte.png",
+        "category": "heroes",
+        "format": "png",
+        "width": 128,
+        "height": 192,
+        "transparent": true,
+        "procedural": true
+      }
+    },
+    "enemies": {
+      "enemy-abyss-crawler": {
+        "key": "enemy-abyss-crawler",
+        "path": "/assets/game/enemies/enemy-abyss-crawler.png",
+        "category": "enemies",
+        "format": "png",
+        "width": 128,
+        "height": 128,
+        "transparent": true,
+        "procedural": true
+      },
+      "enemy-aether-wraith": {
+        "key": "enemy-aether-wraith",
+        "path": "/assets/game/enemies/enemy-aether-wraith.png",
+        "category": "enemies",
+        "format": "png",
+        "width": 128,
+        "height": 128,
+        "transparent": true,
+        "procedural": true
+      },
+      "enemy-corrupted-mage": {
+        "key": "enemy-corrupted-mage",
+        "path": "/assets/game/enemies/enemy-corrupted-mage.png",
+        "category": "enemies",
+        "format": "png",
+        "width": 128,
+        "height": 128,
+        "transparent": true,
+        "procedural": true
+      },
+      "enemy-crystal-spider": {
+        "key": "enemy-crystal-spider",
+        "path": "/assets/game/enemies/enemy-crystal-spider.png",
+        "category": "enemies",
+        "format": "png",
+        "width": 128,
+        "height": 128,
+        "transparent": true,
+        "procedural": true
+      },
+      "enemy-cursed-armor": {
+        "key": "enemy-cursed-armor",
+        "path": "/assets/game/enemies/enemy-cursed-armor.png",
+        "category": "enemies",
+        "format": "png",
+        "width": 128,
+        "height": 128,
+        "transparent": true,
+        "procedural": true
+      },
+      "enemy-dark-slime": {
+        "key": "enemy-dark-slime",
+        "path": "/assets/game/enemies/enemy-dark-slime.png",
+        "category": "enemies",
+        "format": "png",
+        "width": 128,
+        "height": 128,
+        "transparent": true,
+        "procedural": true
+      },
+      "enemy-ember-imp": {
+        "key": "enemy-ember-imp",
+        "path": "/assets/game/enemies/enemy-ember-imp.png",
+        "category": "enemies",
+        "format": "png",
+        "width": 128,
+        "height": 128,
+        "transparent": true,
+        "procedural": true
+      },
+      "enemy-fallen-acolyte": {
+        "key": "enemy-fallen-acolyte",
+        "path": "/assets/game/enemies/enemy-fallen-acolyte.png",
+        "category": "enemies",
+        "format": "png",
+        "width": 128,
+        "height": 128,
+        "transparent": true,
+        "procedural": true
+      },
+      "enemy-gloom-serpent": {
+        "key": "enemy-gloom-serpent",
+        "path": "/assets/game/enemies/enemy-gloom-serpent.png",
+        "category": "enemies",
+        "format": "png",
+        "width": 128,
+        "height": 128,
+        "transparent": true,
+        "procedural": true
+      },
+      "enemy-night-stalker": {
+        "key": "enemy-night-stalker",
+        "path": "/assets/game/enemies/enemy-night-stalker.png",
+        "category": "enemies",
+        "format": "png",
+        "width": 128,
+        "height": 128,
+        "transparent": true,
+        "procedural": true
+      },
+      "enemy-ruin-guardian": {
+        "key": "enemy-ruin-guardian",
+        "path": "/assets/game/enemies/enemy-ruin-guardian.png",
+        "category": "enemies",
+        "format": "png",
+        "width": 128,
+        "height": 128,
+        "transparent": true,
+        "procedural": true
+      },
+      "enemy-ruin-skeleton": {
+        "key": "enemy-ruin-skeleton",
+        "path": "/assets/game/enemies/enemy-ruin-skeleton.png",
+        "category": "enemies",
+        "format": "png",
+        "width": 128,
+        "height": 128,
+        "transparent": true,
+        "procedural": true
+      },
+      "enemy-shadow-wolf": {
+        "key": "enemy-shadow-wolf",
+        "path": "/assets/game/enemies/enemy-shadow-wolf.png",
+        "category": "enemies",
+        "format": "png",
+        "width": 128,
+        "height": 128,
+        "transparent": true,
+        "procedural": true
+      },
+      "enemy-stone-gargoyle": {
+        "key": "enemy-stone-gargoyle",
+        "path": "/assets/game/enemies/enemy-stone-gargoyle.png",
+        "category": "enemies",
+        "format": "png",
+        "width": 128,
+        "height": 128,
+        "transparent": true,
+        "procedural": true
+      },
+      "enemy-void-bat": {
+        "key": "enemy-void-bat",
+        "path": "/assets/game/enemies/enemy-void-bat.png",
+        "category": "enemies",
+        "format": "png",
+        "width": 128,
+        "height": 128,
+        "transparent": true,
+        "procedural": true
+      },
+      "enemy-void-hound": {
+        "key": "enemy-void-hound",
+        "path": "/assets/game/enemies/enemy-void-hound.png",
+        "category": "enemies",
+        "format": "png",
+        "width": 128,
+        "height": 128,
+        "transparent": true,
+        "procedural": true
+      }
+    },
+    "bosses": {
+      "boss-ancient-dragon": {
+        "key": "boss-ancient-dragon",
+        "path": "/assets/game/bosses/boss-ancient-dragon.png",
+        "category": "bosses",
+        "format": "png",
+        "width": 144,
+        "height": 144,
+        "transparent": true,
+        "procedural": true
+      },
+      "boss-crystal-lich": {
+        "key": "boss-crystal-lich",
+        "path": "/assets/game/bosses/boss-crystal-lich.png",
+        "category": "bosses",
+        "format": "png",
+        "width": 144,
+        "height": 144,
+        "transparent": true,
+        "procedural": true
+      },
+      "boss-eclipse-reaper": {
+        "key": "boss-eclipse-reaper",
+        "path": "/assets/game/bosses/boss-eclipse-reaper.png",
+        "category": "bosses",
+        "format": "png",
+        "width": 144,
+        "height": 144,
+        "transparent": true,
+        "procedural": true
+      },
+      "boss-void-titan": {
+        "key": "boss-void-titan",
+        "path": "/assets/game/bosses/boss-void-titan.png",
+        "category": "bosses",
+        "format": "png",
+        "width": 144,
+        "height": 144,
+        "transparent": true,
+        "procedural": true
+      }
+    }
+  }
+}

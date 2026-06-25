@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.DS_Store
+
+veyra-procedural-assets-v1.zip
+
+output/public/
+output/preview/
