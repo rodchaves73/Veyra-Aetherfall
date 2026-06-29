@@ -1,17 +1,15 @@
 import { useState } from 'react';
 import { shopProducts } from '../data/shopProducts';
 import { VAButton } from '../components/ui/VAButton';
-import { GameAssetImage } from '../components/assets/GameAssetImage';
-import { VeyraPanel, VeyraScreen } from '../components/ui/VeyraVisual';
+import { VACard } from '../components/ui/VACard';
 import { VABadge } from '../components/ui/VABadge';
-import { gameAssets } from '../lib/assets';
 
 export function ShopScreen() {
   const [category, setCategory] = useState('Free');
   const categories = ['Free', 'Ads', 'Gems', 'Stars', 'TON', 'Battle Pass', 'Bundles', 'Stamina', 'Materials', 'Summons'];
 
   return (
-    <VeyraScreen>
+    <div className="min-w-0 space-y-4 overflow-x-hidden">
       <h2 className="text-2xl font-black">Shop</h2>
       <div className="va-scroll -mx-3 flex gap-2 overflow-x-auto px-3 pb-1 sm:-mx-4 sm:px-4">
         {categories.map((item) => (
@@ -27,8 +25,8 @@ export function ShopScreen() {
       {shopProducts
         .filter((p) => p.category === category || (category === 'Bundles' && p.category === 'Stars'))
         .map((product) => (
-          <VeyraPanel key={product.id} className="veyra-reward-shine">
-            <GameAssetImage decorative src={gameAssets.banners.beginner.src} fallbackSrc={gameAssets.banners.beginner.fallbackSrc} className="mb-3 h-20 w-full rounded-2xl object-cover opacity-80" /><div className="flex min-w-0 flex-col gap-3 min-[390px]:flex-row min-[390px]:items-center min-[390px]:justify-between">
+          <VACard key={product.id}>
+            <div className="flex min-w-0 flex-col gap-3 min-[390px]:flex-row min-[390px]:items-center min-[390px]:justify-between">
               <div className="min-w-0">
                 <div className="flex min-w-0 flex-wrap items-center gap-2">
                   <h3 className="break-words font-black">{product.name}</h3>
@@ -41,9 +39,9 @@ export function ShopScreen() {
               </div>
               <VAButton variant={product.badge === 'coming soon' ? 'secondary' : 'primary'}>{product.price}</VAButton>
             </div>
-          </VeyraPanel>
+          </VACard>
         ))}
       <p className="break-words text-xs text-amber-100/75">Pagamentos reais, Stars e TON não creditam rewards no cliente. Validação server-side obrigatória.</p>
-    </VeyraScreen>
+    </div>
   );
 }

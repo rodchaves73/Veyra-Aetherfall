@@ -3,12 +3,10 @@ import { heroes } from '../data/heroes';
 import { elementIcons, rarityOrder } from '../lib/rpg/constants';
 import { calculateHeroPower } from '../lib/rpg/heroProgression';
 import type { HeroDefinition, PlayerState } from '../lib/rpg/types';
-import { GameAssetImage } from '../components/assets/GameAssetImage';
-import { VeyraAssetFrame, VeyraPanel, VeyraScreen } from '../components/ui/VeyraVisual';
+import { VARarityFrame } from '../components/ui/VARarityFrame';
 import { VABadge } from '../components/ui/VABadge';
 import { VAModal } from '../components/ui/VAModal';
 import { VAProgressBar } from '../components/ui/VAProgressBar';
-import { gameAssets } from '../lib/assets';
 
 export function HeroesScreen({ state }: { state: PlayerState }) {
   const [filter, setFilter] = useState('All');
@@ -24,7 +22,7 @@ export function HeroesScreen({ state }: { state: PlayerState }) {
   );
 
   return (
-    <VeyraScreen>
+    <div className="min-w-0 space-y-4 overflow-x-hidden">
       <div className="min-w-0">
         <h2 className="text-2xl font-black">Heroes</h2>
         <p className="text-sm text-violet-100/60">Coleção, upgrades e detalhes de progressão.</p>
@@ -46,9 +44,9 @@ export function HeroesScreen({ state }: { state: PlayerState }) {
           const power = calculateHeroPower(hero, owned);
           return (
             <button key={hero.id} onClick={() => setSelected(hero)} className="min-w-0 text-left">
-              <VeyraAssetFrame rarity={hero.rarity} active={selected?.id === hero.id}>
+              <VARarityFrame rarity={hero.rarity}>
                 <div className="min-w-0 p-2 min-[390px]:p-3">
-                  <GameAssetImage src={gameAssets.heroes.placeholder.src} fallbackSrc={gameAssets.heroes.placeholder.fallbackSrc} alt={`${hero.name} placeholder`} className="mb-2 h-24 w-full rounded-2xl object-cover" />
+                  <div className="mb-2 grid h-24 place-items-center rounded-2xl bg-gradient-to-br from-slate-800 to-violet-950 text-3xl font-black">{hero.portrait}</div>
                   <div className="flex min-w-0 items-center justify-between gap-1">
                     <b className="min-w-0 truncate text-sm">{hero.name}</b>
                     <span className="shrink-0">{elementIcons[hero.element]}</span>
@@ -59,7 +57,7 @@ export function HeroesScreen({ state }: { state: PlayerState }) {
                   <p className="truncate text-[11px] text-cyan-100">{power} Power</p>
                   {!owned.owned && <VABadge>Unowned</VABadge>}
                 </div>
-              </VeyraAssetFrame>
+              </VARarityFrame>
             </button>
           );
         })}
@@ -67,7 +65,7 @@ export function HeroesScreen({ state }: { state: PlayerState }) {
       <VAModal open={Boolean(selected)} title={selected?.name ?? ''} onClose={() => setSelected(undefined)}>
         {selected && <HeroDetail hero={selected} state={state} />}
       </VAModal>
-    </VeyraScreen>
+    </div>
   );
 }
 
@@ -75,7 +73,6 @@ function HeroDetail({ hero, state }: { hero: HeroDefinition; state: PlayerState 
   const owned = state.heroes.find((h) => h.heroId === hero.id)!;
   return (
     <div className="min-w-0 space-y-3">
-      <VeyraPanel className="text-center"><GameAssetImage src={gameAssets.heroes.placeholder.src} fallbackSrc={gameAssets.heroes.placeholder.fallbackSrc} alt="Hero placeholder" className="mx-auto h-32 w-32 rounded-3xl object-cover" /></VeyraPanel>
       <p className="break-words text-sm text-violet-100/70">{hero.shortLore}</p>
       <div className="grid grid-cols-1 gap-2 text-center text-xs min-[360px]:grid-cols-3">
         <div className="min-w-0 rounded-2xl bg-white/5 p-2">
