@@ -206,38 +206,3 @@
     animation: none;
   }
 }
-
-/* Veyra visual FX — Stage 1-8 generated asset application */
-.veyra-screen-backdrop { isolation: isolate; overflow: hidden; border: 1px solid rgba(155,124,255,.14); box-shadow: inset 0 0 54px rgba(0,0,0,.42), 0 0 28px rgba(124,92,255,.08); }
-.veyra-screen-backdrop::after { position: absolute; inset: 0; pointer-events: none; content: ""; background: radial-gradient(circle at 50% 18%, rgba(124,92,255,.2), transparent 28%), radial-gradient(circle at 50% 105%, rgba(0,0,0,.74), transparent 38%), linear-gradient(180deg, rgba(7,7,19,.2), rgba(7,7,19,.72)); z-index: 0; }
-.veyra-fx-layer { position: absolute; inset: 0; z-index: 1; overflow: hidden; pointer-events: none; }
-.veyra-mote-layer, .veyra-mote-layer::before, .veyra-mote-layer::after { position: absolute; inset: -20%; content: ""; background-image: radial-gradient(circle, rgba(245,193,92,.42) 0 1px, transparent 1.8px), radial-gradient(circle, rgba(124,92,255,.34) 0 1px, transparent 1.6px); background-size: 74px 92px, 118px 86px; opacity: .34; animation: veyraRuneDrift 16s linear infinite; }
-.veyra-mote-layer::before { transform: rotate(16deg); opacity: .22; animation-duration: 24s; }
-.veyra-mote-layer::after { transform: rotate(-10deg); opacity: .16; animation-duration: 31s; animation-direction: reverse; }
-.veyra-arcane-panel { position: relative; overflow: hidden; border: 1px solid rgba(155,124,255,.22); border-radius: 1.65rem; background: linear-gradient(180deg, rgba(255,255,255,.07), transparent 38%), var(--veyra-panel); box-shadow: 0 18px 42px rgba(0,0,0,.42), inset 0 0 0 1px rgba(245,193,92,.08); backdrop-filter: blur(14px); padding: 1rem; }
-.veyra-arcane-panel::before { position: absolute; inset: 0; pointer-events: none; content: ""; background-image: url('/assets/game/ui/ui-panel-dark-arcane.png'); background-size: 100% 100%; opacity: .18; mix-blend-mode: screen; }
-.veyra-arcane-panel::after { position: absolute; inset: 0; pointer-events: none; content: ""; background: linear-gradient(110deg, transparent 0 38%, rgba(255,255,255,.08) 48%, transparent 58%); transform: translateX(-120%); animation: veyraSoftShimmer 7s ease-in-out infinite; }
-.veyra-asset-button { border: 1px solid rgba(155,124,255,.35); color: white; background: linear-gradient(180deg, rgba(155,124,255,.9), rgba(56,189,248,.58)), url('/assets/game/ui/ui-button-primary.png') center/100% 100%; box-shadow: 0 0 24px rgba(124,92,255,.35); }
-.veyra-gold-button { border: 1px solid rgba(245,193,92,.7); color: #211404; background: linear-gradient(180deg, rgba(255,232,160,.85), rgba(172,106,22,.78)), url('/assets/game/ui/ui-button-gold.png') center/100% 100%; box-shadow: 0 0 26px rgba(245,193,92,.35); }
-.veyra-resource-pill { display: inline-flex; min-height: 38px; align-items: center; gap: .35rem; border: 1px solid rgba(245,193,92,.18); border-radius: 999px; background: rgba(7,7,19,.68); padding: .25rem .55rem; box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 0 16px rgba(124,92,255,.12); font-size: .75rem; }
-.veyra-asset-frame { position: relative; overflow: hidden; border: 1px solid rgba(255,255,255,.1); border-radius: 1.35rem; background: rgba(7,7,19,.72); box-shadow: 0 12px 28px rgba(0,0,0,.38); }
-.veyra-glow-common { box-shadow: 0 0 18px rgba(100,116,139,.22); } .veyra-glow-soft { box-shadow: 0 0 20px rgba(124,92,255,.2); } .veyra-glow-rare { box-shadow: 0 0 20px rgba(56,189,248,.28); } .veyra-glow-epic { box-shadow: 0 0 24px rgba(168,85,247,.36); } .veyra-glow-legendary { box-shadow: 0 0 28px rgba(245,193,92,.4); } .veyra-glow-divine { box-shadow: 0 0 30px rgba(255,247,204,.45); } .veyra-glow-mythic { box-shadow: 0 0 32px rgba(244,114,182,.48); }
-.veyra-portal-breathe { animation: veyraPortalBreathe 5.8s ease-in-out infinite; filter: drop-shadow(0 0 28px rgba(124,92,255,.5)); }
-.veyra-shimmer { position: relative; overflow: hidden; }
-.veyra-shimmer::after { position: absolute; inset: 0; pointer-events: none; content: ""; background: linear-gradient(100deg, transparent 0 35%, rgba(255,255,255,.18) 48%, transparent 62%); transform: translateX(-120%); animation: veyraSoftShimmer 3.8s ease-in-out infinite; }
-.veyra-float-slow { animation: veyraFloatSlow 6.2s ease-in-out infinite; }
-.veyra-pulse-selected { animation: veyraSelectedPulse 2.4s ease-in-out infinite; }
-.veyra-target-pulse { animation: veyraTargetPulse 1.8s ease-in-out infinite; }
-.veyra-press-feedback { transition: transform 140ms ease, filter 140ms ease, box-shadow 140ms ease; }
-.veyra-press-feedback:active { transform: scale(.975); filter: brightness(1.12); box-shadow: 0 0 30px rgba(245,193,92,.38); }
-.veyra-summon-ring { animation: veyraSummonRing 18s linear infinite; }
-.veyra-reward-shine { animation: veyraRewardShine 4.8s ease-in-out infinite; }
-@keyframes veyraPortalBreathe { 0%,100% { transform: translateX(-50%) scale(.96); opacity: .48; } 50% { transform: translateX(-50%) scale(1.05); opacity: .72; } }
-@keyframes veyraRuneDrift { from { transform: translate3d(0,0,0); } to { transform: translate3d(34px,-52px,0); } }
-@keyframes veyraSoftShimmer { 0%,55% { transform: translateX(-125%); opacity: 0; } 70% { opacity: 1; } 100% { transform: translateX(125%); opacity: 0; } }
-@keyframes veyraFloatSlow { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-@keyframes veyraSelectedPulse { 0%,100% { filter: drop-shadow(0 0 10px rgba(124,92,255,.28)); } 50% { filter: drop-shadow(0 0 24px rgba(245,193,92,.48)); } }
-@keyframes veyraTargetPulse { 0%,100% { transform: scale(1); box-shadow: 0 0 18px rgba(255,138,61,.18); } 50% { transform: scale(1.025); box-shadow: 0 0 32px rgba(255,138,61,.42); } }
-@keyframes veyraSummonRing { to { transform: rotate(360deg); } }
-@keyframes veyraRewardShine { 0%,100% { filter: brightness(1); } 50% { filter: brightness(1.18) drop-shadow(0 0 18px rgba(245,193,92,.25)); } }
-@media (prefers-reduced-motion: reduce) { .veyra-mote-layer, .veyra-mote-layer::before, .veyra-mote-layer::after, .veyra-portal-breathe, .veyra-shimmer::after, .veyra-float-slow, .veyra-pulse-selected, .veyra-target-pulse, .veyra-summon-ring, .veyra-reward-shine, .veyra-arcane-panel::after { animation: none !important; } }

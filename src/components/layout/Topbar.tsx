@@ -1,7 +1,6 @@
 import { PlayerBootstrapStatus } from './PlayerBootstrapStatus';
 import { TelegramAuthStatus } from './TelegramAuthStatus';
-import { VeyraResourcePill } from '../ui/VeyraVisual';
-import { gameAssets } from '../../lib/assets';
+import { VAResourcePill } from '../ui/VAResourcePill';
 import type { PlayerState } from '../../lib/rpg/types';
 import { useGameState } from '../../lib/game/useGameState';
 
@@ -18,10 +17,10 @@ export function Topbar({ state }: { state: PlayerState }) {
         <TelegramAuthStatus />
         <PlayerBootstrapStatus />
         <div className="flex min-w-0 flex-wrap justify-end gap-1">
-          <VeyraResourcePill asset={gameAssets.icons.stamina} value={currencies?.stamina ?? state.inventory.stamina} label="" />
-          <VeyraResourcePill asset={gameAssets.icons.gems} value={currencies?.gems ?? state.inventory.aether_shards} label="" />
-          <VeyraResourcePill asset={gameAssets.icons.standardTicket} value={currencies?.standard_ticket ?? 0} label="" />
-          <VeyraResourcePill asset={gameAssets.icons.gold} value={Math.round((currencies?.gold ?? state.inventory.gold) / 1000) + 'k'} label="" />
+          <VAResourcePill icon="⚡" value={currencies?.stamina ?? state.inventory.stamina} label="" />
+          <VAResourcePill icon="💎" value={currencies?.gems ?? state.inventory.aether_shards} label="" />
+          <VAResourcePill icon="🎟️" value={currencies?.standard_ticket ?? 0} label="" />
+          <VAResourcePill icon="🪙" value={Math.round((currencies?.gold ?? state.inventory.gold) / 1000) + 'k'} label="" />
         </div>
       </div>
     </header>
