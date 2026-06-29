@@ -4,11 +4,8 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "predev": "npm run extract:assets",
     "dev": "vite",
-    "prebuild": "npm run extract:assets",
     "build": "vite build",
-    "extract:assets": "node scripts/extract-stage-assets.mjs",
     "preview": "vite preview",
     "lint": "eslint .",
     "format": "prettier --write .",
@@ -39,8 +36,6 @@
     "prettier": "latest",
     "typescript": "latest",
     "typescript-eslint": "latest",
-    "vite": "latest",
-    "adm-zip": "latest",
-    "sharp": "latest"
+    "vite": "latest"
   }
 }
