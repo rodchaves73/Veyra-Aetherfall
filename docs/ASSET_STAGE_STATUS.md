@@ -1,16 +1,12 @@
 # Asset Stage Status
 
-| Stage | Status |
-|---|---|
-| Stage 1 | prepared for generated runtime integration |
-| Stage 2 | prepared for generated runtime integration |
-| Stage 3 | prepared for generated runtime integration |
-| Stage 4 | prepared for generated runtime integration |
-| Stage 5 | prepared for generated runtime integration |
-| Stage 6 | prepared for generated runtime integration |
-| Stage 7 | prepared for generated runtime integration |
-| Stage 8 | approved for future integration |
-| Stage 9 | documentation merged |
-| Stage 10 | paused |
-
-Os assets de runtime selecionados são extraídos em build/dev time a partir dos ZIPs versionados na raiz. Imagens geradas em `public/assets/game/**` não devem ser commitadas.
+- **Stage 1:** visualmente aplicada onde há telas e assets disponíveis.
+- **Stage 2:** visualmente aplicada em Home, Summon e base de Battle onde disponível.
+- **Stage 3:** visualmente aplicada em Heroes/Collection com frames, placeholder e glow de raridade.
+- **Stage 4:** preparada visualmente para Inventory/Equipment por componente/frame; rota dedicada ainda não existe.
+- **Stage 5:** visualmente aplicada em Campaign/Missions/Dungeons onde há telas correspondentes.
+- **Stage 6:** visualmente aplicada em Shop/Rewards/Offers.
+- **Stage 7:** aplicada estruturalmente apenas ao Battle UI; sem sprites finais, skills finais ou alteração de cálculo.
+- **Stage 8:** aplicada onde telas compatíveis existem; demais usos ficam em fila para rotas futuras.
+- **Stage 9:** documentação consolidada nesta entrega.
+- **Stage 10:** pausada; nenhum personagem/sprite final foi integrado.

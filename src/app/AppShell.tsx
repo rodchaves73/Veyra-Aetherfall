@@ -17,7 +17,7 @@ export function AppShell({
   children: ReactNode;
 }) {
   return (
-    <div className="relative min-h-dvh w-full overflow-x-hidden overflow-y-auto">
+    <div className="veyra-app-bg relative min-h-dvh w-full overflow-x-hidden overflow-y-auto">
       <GlowOrb className="left-1/2 top-0 h-48 w-48 -translate-x-1/2" />
       <GlowOrb className="bottom-24 left-6 h-32 w-32 bg-violet-500/20" />
       <Topbar state={state} />
