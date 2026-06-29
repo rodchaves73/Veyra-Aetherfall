@@ -34,10 +34,10 @@ export type GameSpritesheetAsset = GameImageAsset & {
 export type GameAssetsManifest = {
   backgrounds: Record<'home' | 'summon' | 'campaign' | 'battle', GameImageAsset>;
   ui: Record<'panel' | 'buttonPrimary' | 'buttonGold' | 'divider', GameImageAsset>;
-  icons: Record<'gold' | 'gems' | 'stamina' | 'standardTicket' | 'astralTicket', GameImageAsset>;
+  icons: Record<'gold' | 'gems' | 'stamina' | 'standardTicket' | 'astralTicket' | 'wallet' | 'settings' | 'lock', GameImageAsset>;
   frames: Record<AssetRarity, GameImageAsset>;
   banners: Record<'standard' | 'astral' | 'divine' | 'mythic' | 'beginner', GameImageAsset>;
-  fx: Record<'portal' | 'summonGlow' | 'hit' | 'heal' | 'fire' | 'arcane', GameImageAsset>;
+  fx: Record<'portal' | 'summonGlow' | 'hit' | 'heal' | 'fire' | 'arcane' | 'slotActiveGlow' | 'uiShimmer', GameImageAsset>;
   heroes: Record<'placeholder', GameImageAsset>;
   enemies: Record<'placeholder', GameImageAsset>;
   items: Record<'placeholder', GameImageAsset>;
