@@ -4,28 +4,3 @@ dist
 .env
 .env.*
 !.env.example
-
-# Generated Veyra runtime assets extracted from committed ZIP packages
-/public/assets/game/backgrounds/*.png
-/public/assets/game/backgrounds/*.webp
-/public/assets/game/ui/*.png
-/public/assets/game/ui/*.webp
-/public/assets/game/icons/*.png
-/public/assets/game/icons/*.webp
-/public/assets/game/frames/*.png
-/public/assets/game/frames/*.webp
-/public/assets/game/banners/*.png
-/public/assets/game/banners/*.webp
-/public/assets/game/fx/*.png
-/public/assets/game/fx/*.webp
-/public/assets/game/heroes/*.png
-/public/assets/game/heroes/*.webp
-/public/assets/game/enemies/*.png
-/public/assets/game/enemies/*.webp
-/public/assets/game/items/*.png
-/public/assets/game/items/*.webp
-/public/assets/game/spritesheets/*.png
-/public/assets/game/spritesheets/*.webp
-
-# Keep placeholders tracked
-!/public/assets/game/placeholders/*.svg

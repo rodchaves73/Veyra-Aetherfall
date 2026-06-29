@@ -38,9 +38,6 @@ export const gameAssets = {
     stamina: asset('icons', 'icon-stamina', '/assets/game/icons/icon-stamina.png', placeholders.icon.src, 'Ícone de stamina futuro.'),
     standardTicket: asset('icons', 'icon-standard-ticket', '/assets/game/icons/icon-standard-ticket.png', placeholders.icon.src, 'Ícone de ticket padrão futuro.'),
     astralTicket: asset('icons', 'icon-astral-ticket', '/assets/game/icons/icon-astral-ticket.png', placeholders.icon.src, 'Ícone de ticket astral futuro.'),
-    wallet: asset('icons', 'icon-wallet', '/assets/game/icons/icon-wallet.png', placeholders.icon.src, 'Ícone de wallet futuro.'),
-    settings: asset('icons', 'icon-settings', '/assets/game/icons/icon-settings.png', placeholders.icon.src, 'Ícone de configurações futuro.'),
-    lock: asset('icons', 'icon-lock', '/assets/game/icons/icon-lock.png', placeholders.icon.src, 'Ícone de bloqueio futuro.'),
   },
   frames: Object.fromEntries(['common', 'uncommon', 'rare', 'epic', 'legendary', 'divine', 'mythic'].map((rarity) => [rarity, asset('frames', `frame-${rarity}`, `/assets/game/frames/frame-${rarity}.png` as GameAssetPath, placeholders.frame.src, `Moldura futura de raridade ${rarity}.`)])) as GameAssetsManifest['frames'],
   banners: {
@@ -57,8 +54,6 @@ export const gameAssets = {
     heal: asset('fx', 'fx-heal', '/assets/game/fx/fx-heal.png', placeholders.fx.src, 'Efeito de cura futuro.'),
     fire: asset('fx', 'fx-fire', '/assets/game/fx/fx-fire.png', placeholders.fx.src, 'Efeito de fogo futuro.'),
     arcane: asset('fx', 'fx-arcane', '/assets/game/fx/fx-arcane.png', placeholders.fx.src, 'Efeito arcano futuro.'),
-    slotActiveGlow: asset('fx', 'fx-slot-active-glow', '/assets/game/fx/fx-slot-active-glow.png', placeholders.fx.src, 'Glow futuro de slot ativo.'),
-    uiShimmer: asset('fx', 'fx-ui-shimmer', '/assets/game/fx/fx-ui-shimmer.png', placeholders.fx.src, 'Shimmer futuro de UI.'),
   },
   heroes: { placeholder: asset('heroes', 'hero-placeholder', '/assets/game/heroes/hero-placeholder.webp', placeholders.hero.src, 'Slot para retrato de herói futuro.') },
   enemies: { placeholder: asset('enemies', 'enemy-placeholder', '/assets/game/enemies/enemy-placeholder.webp', placeholders.hero.src, 'Slot para inimigo futuro.') },
